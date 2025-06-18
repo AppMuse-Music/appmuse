@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <script type="module" crossorigin src="./assets/main-xsl2_xCl.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-Cr-Xwejx.css">
+    <script type="module" crossorigin src="./assets/main-yhaI7pHS.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-DEl1maB5.css">
   </head>
   <body class="font-didot min-h-screen">
     <!-- Navigation -->
@@ -20,16 +20,16 @@
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center">
-  <img 
-    src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png" 
-    alt="AppMuse Logo"
-    class="logo-img logo-glow mr-2 logo-shift-left"
-    style="max-width: 40px; height: auto;"
-  />
-  <a href="/" class="font-didot text-2xl font-medium nav-link highlight-glow" style="text-decoration: none;">
-    AppMuse
-</a>
-</div>
+          <img 
+            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png" 
+            alt="AppMuse Logo"
+            class="logo-img logo-glow mr-2 logo-shift-left"
+            style="max-width: 40px; height: auto;"
+          />
+          <a href="/" class="font-didot text-2xl font-medium nav-link highlight-glow" style="text-decoration: none;">
+            AppMuse
+          </a>
+        </div>
         
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8 desktop-nav">
@@ -48,6 +48,7 @@
               <a href="/composition-course.html">Composition Course</a>
               <a href="/piano-course.html">Piano Course</a>
               <a href="/hybrid-course.html">Hybrid</a>
+              <a href="/blog.html">Blog</a>
             </div>
           </div>
           
@@ -77,15 +78,21 @@
             </svg>
           </button>
           
-          <!-- Language Switcher -->
-          <div class="flex items-center space-x-2 text-sm">
-            <a href="/en/" class="lang-link active">EN</a>
-            <span class="text-white/30">•</span>
-            <a href="/fi/" class="lang-link">FI</a>
-            <span class="text-white/30">•</span>
-            <a href="/sv/" class="lang-link">SV</a>
-            <span class="text-white/30">•</span>
-            <a href="/no/" class="lang-link">NO</a>
+          <!-- Language Switcher Dropdown -->
+          <div class="dropdown">
+            <button class="lang-dropdown-btn flex items-center space-x-1 text-sm">
+              <span id="current-lang">EN</span>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <div class="dropdown-menu lang-dropdown-menu">
+              <a href="/index.html" class="lang-link" data-lang="EN">English</a>
+              <a href="/fi/index.html" class="lang-link" data-lang="FI">Suomi</a>
+              <a href="/sv/index.html" class="lang-link" data-lang="SV">Svenska</a>
+              <a href="/no/index.html" class="lang-link" data-lang="NO">Norsk</a>
+              <a href="/fr/index.html" class="lang-link" data-lang="FR">Français</a>
+            </div>
           </div>
         </div>
         
@@ -112,6 +119,7 @@
             <a href="/composition-course.html" class="nav-link block pl-4">Composition Course</a>
             <a href="/piano-course.html" class="nav-link block pl-4">Piano Course</a>
             <a href="/hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
+            <a href="/blog.html" class="nav-link block pl-4">Blog</a>
           </div>
           
           <div class="space-y-2">
@@ -151,17 +159,39 @@
       </div>
     </section>
 
-    <!-- Social Media Section -->
+    <!-- Soul's Alchemy Section -->
     <section class="py-20 px-6">
       <div class="max-w-4xl mx-auto">
         <div class="social-section fade-in-element">
           <h2 class="text-3xl md:text-4xl font-didot font-medium mb-6 text-center">
-            <span class="glow-title">𝔖𝔬𝔲𝔩’𝔰 </span> <span class="highlight-glow">𝔄𝔩𝔠𝔥𝔢𝔪𝔶</span>
+            <span class="glow-title">𝔖𝔬𝔲𝔩'𝔰 </span> <span class="highlight-glow">𝔄𝔩𝔠𝔥𝔢𝔪𝔶</span>
           </h2>
           <p class="text-lg opacity-80 mb-8 text-center max-w-2xl mx-auto leading-relaxed">
             🎧 どうぞ、風の中へお入りください。 <br>御粗末。
           </p>
           
+          <!-- Three Child Glass Blocks -->
+          <div class="grid md:grid-cols-3 gap-6 mb-8">
+            <div class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300" onclick="window.open('#', '_blank')">
+              <div class="text-center">
+                <h3 class="font-signature text-lg mb-2 glow-title">𝑪𝒐𝒎𝒑𝒍𝒆𝒕𝒆 𝑫𝒆𝒍𝒖𝒙𝒆 𝑷𝒊𝒂𝒏𝒐 𝑬𝒅𝒊𝒕𝒊𝒐𝒏</h3>
+              </div>
+            </div>
+            
+            <div class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300" onclick="window.open('#', '_blank')">
+              <div class="text-center">
+                <h3 class="font-signature text-lg mb-2 glow-title">Reclaim your 1% of Life - 𝑫𝒆𝒍𝒖𝒙𝒆 𝑷𝒐𝒆𝒎 𝒆𝒕 𝑰𝒎𝒂𝒈𝒆 𝑬𝒅𝒊𝒕𝒊𝒐𝒏</h3>
+              </div>
+            </div>
+            
+            <div class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300" onclick="window.open('#', '_blank')">
+              <div class="text-center">
+                <h3 class="font-signature text-lg mb-2 glow-title">🎧 どうぞ、風の中へお入りください。御粗末。</h3>
+              </div>
+            </div>
+          </div>
+          
+          <!-- Social Media Links -->
           <div class="flex justify-center space-x-6">
             <a href="https://appalv.bandcamp.com/music" class="icon" title="Bandcamp">
               <svg class="w-8 h-8" viewBox="0 0 24 24" fill="currentColor">
@@ -183,7 +213,6 @@
                 <path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm0 22C6.486 22 2 17.514 2 12S6.486 2 12 2s10 4.486 10 10-4.486 10-10 10zm-1-17v4h2V5h-2zm0 6v8h2v-8h-2z"/>
               </svg>
             </a>
-            
           </div>
         </div>
       </div>
