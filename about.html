@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <script type="module" crossorigin src="./assets/main-mmOuzYSm.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-2zquWcYU.css">
+    <script type="module" crossorigin src="./assets/main-B68MTRDv.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-7wz6YCUV.css">
   </head>
   <body class="font-didot min-h-screen">
     <!-- Navigation -->
@@ -48,6 +48,7 @@
               <a href="/composition-course.html">Composition Course</a>
               <a href="/piano-course.html">Piano Course</a>
               <a href="/hybrid-course.html">Hybrid</a>
+              <a href="/blog.html">Blog</a>
             </div>
           </div>
           
@@ -78,14 +79,20 @@
           </button>
           
           <!-- Language Switcher -->
-          <div class="flex items-center space-x-2 text-sm">
-            <a href="/en/" class="lang-link active">EN</a>
-            <span class="text-white/30">•</span>
-            <a href="/fi/" class="lang-link">FI</a>
-            <span class="text-white/30">•</span>
-            <a href="/sv/" class="lang-link">SV</a>
-            <span class="text-white/30">•</span>
-            <a href="/no/" class="lang-link">NO</a>
+          <div class="dropdown">
+            <button class="lang-dropdown-btn flex items-center space-x-1 text-sm">
+              <span id="current-lang">EN</span>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <div class="dropdown-menu lang-dropdown-menu">
+              <a href="/index.html" class="lang-link" data-lang="EN">English</a>
+              <a href="/fi/index.html" class="lang-link" data-lang="FI">Suomi</a>
+              <a href="/sv/index.html" class="lang-link" data-lang="SV">Svenska</a>
+              <a href="/no/index.html" class="lang-link" data-lang="NO">Norsk</a>
+              <a href="/fr/index.html" class="lang-link" data-lang="FR">Français</a>
+            </div>
           </div>
         </div>
         
@@ -112,6 +119,7 @@
             <a href="/composition-course.html" class="nav-link block pl-4">Composition Course</a>
             <a href="/piano-course.html" class="nav-link block pl-4">Piano Course</a>
             <a href="/hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
+            <a href="/blog.html" class="nav-link block pl-4">Blog</a>
           </div>
           
           <div class="space-y-2">
