@@ -5,14 +5,394 @@
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Game Scoring - AppMuse</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <script type="module" crossorigin src="./assets/main-a68W8eAo.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-0zeDFnp9.css">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS — matching live site palette
+    ═══════════════════════════════════════════ */
+    :root {
+      --bg:            #1a0a2e;
+      --bg-card:       rgba(255,255,255,0.05);
+      --bg-card-hover: rgba(255,255,255,0.08);
+      --border:        rgba(255,255,255,0.10);
+      --border-hover:  rgba(192,132,252,0.28);
+      --cyan:          #00e5ff;
+      --lav:           #c084fc;
+      --text:          #e8d9f5;
+      --text-muted:    #9f8fb8;
+      --nav-h:         68px;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background painting — purple atmospheric gradient, no image */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 90% 55% at 10% 15%, rgba(130,50,210,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 70% at 88% 80%, rgba(0,160,240,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 90% at 50% 50%, rgba(80,20,140,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       PAGE LAYOUT
+    ═══════════════════════════════════════════ */
+    main {
+      position: relative; z-index: 1;
+      padding-top: var(--nav-h);
+    }
+
+    /* Utility: glass block */
+    .glass {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .glass:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+
+    /* ═══════════════════════════════════════════
+       HERO / PAGE TITLE
+    ═══════════════════════════════════════════ */
+    .page-hero {
+      text-align: center;
+      padding: 4.5rem 2rem 2.5rem;
+    }
+    .page-hero h1 {
+      font-family: "Didot", "Playfair Display", serif;
+      font-size: clamp(2.6rem, 6vw, 4rem);
+      font-weight: 700;
+      letter-spacing: 0.04em;
+      line-height: 1.15;
+      color: var(--text);
+    }
+    .page-hero h1 .accent { color: var(--cyan); }
+    .page-hero .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.12rem; font-weight: 300;
+      color: var(--text-muted);
+      max-width: 580px;
+      margin: 1rem auto 0;
+      line-height: 1.75;
+    }
+
+    /* ═══════════════════════════════════════════
+       SECTION CONTAINERS
+    ═══════════════════════════════════════════ */
+    .section-wrap {
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    .section-title {
+      font-family: "Didot", "Playfair Display", serif;
+      font-size: 1.5rem; font-weight: 600;
+      text-align: center;
+      margin-bottom: 1.8rem;
+      color: var(--text);
+    }
+    .section-title .accent { color: var(--cyan); }
+
+    /* ═══════════════════════════════════════════
+       APPROACH BLOCK
+    ═══════════════════════════════════════════ */
+    .approach-block {
+      padding: 2.8rem 3rem;
+      margin: 2rem auto;
+      max-width: 900px;
+    }
+    .approach-block p {
+      font-size: 1.06rem;
+      line-height: 1.88;
+      color: var(--text-muted);
+      margin-bottom: 1.1rem;
+    }
+    .approach-block p:last-child { margin-bottom: 0; }
+    .approach-block em { color: var(--text); font-style: italic; }
+    .approach-block strong { color: var(--lav); font-weight: 400; }
+
+    /* ═══════════════════════════════════════════
+       TAG STRIP
+    ═══════════════════════════════════════════ */
+    .tag-strip {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      justify-content: center;
+      padding: 1.6rem 2rem;
+      max-width: 900px;
+      margin: 0 auto 0.5rem;
+    }
+    .tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.32rem 0.85rem;
+      border-radius: 100px;
+      white-space: nowrap;
+      border: 1px solid rgba(192,132,252,0.30);
+      color: var(--lav);
+      background: rgba(192,132,252,0.07);
+    }
+    .tag-cyan {
+      color: var(--cyan);
+      border-color: rgba(0,229,255,0.28);
+      background: rgba(0,229,255,0.06);
+    }
+
+    /* ═══════════════════════════════════════════
+       FEATURE CARDS — 2-column grid
+    ═══════════════════════════════════════════ */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      max-width: 900px;
+      margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    @media (max-width: 640px) {
+      .cards-grid { grid-template-columns: 1fr; }
+    }
+    .feat-card { padding: 1.8rem 1.9rem; }
+    .feat-card .card-icon {
+      font-size: 1.5rem;
+      margin-bottom: 0.75rem;
+    }
+    .feat-card h3 {
+      font-family: "Didot", "Playfair Display", serif;
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--lav); letter-spacing: 0.07em;
+      margin-bottom: 0.65rem;
+    }
+    .feat-card p {
+      font-size: 0.97rem;
+      line-height: 1.78;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       INSTRUMENTS ROW
+    ═══════════════════════════════════════════ */
+    .instruments-block {
+      padding: 1.6rem 2rem;
+      max-width: 900px;
+      margin: 0 auto 2rem;
+    }
+    .instr-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-muted); text-align: center;
+      margin-bottom: 1.1rem;
+    }
+    .instr-row {
+      display: flex; flex-wrap: wrap; gap: 0.55rem;
+      justify-content: center;
+    }
+    .instr-pill {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1rem;
+      padding: 0.28rem 0.9rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 8px;
+      color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       ORNAMENT DIVIDER
+    ═══════════════════════════════════════════ */
+    .ornament {
+      text-align: center;
+      color: rgba(192,132,252,0.28);
+      font-size: 0.85rem; letter-spacing: 0.45em;
+      margin: 1.8rem 0;
+      -webkit-user-select: none;
+         -moz-user-select: none;
+              user-select: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       DÉMO SECTION
+    ═══════════════════════════════════════════ */
+    .demo-section {
+      max-width: 900px;
+      margin: 0 auto 2.5rem;
+      padding: 2.8rem 2.5rem;
+    }
+    .demo-section .section-title { margin-bottom: 0.4rem; }
+    .demo-cat {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media (max-width: 580px) { .demo-grid { grid-template-columns: 1fr; } }
+
+    .demo-card {
+      display: block;
+      text-decoration: none;
+      border-radius: 14px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.25);
+      transition: transform 0.22s ease, border-color 0.22s;
+    }
+    .demo-card:hover {
+      transform: translateY(-4px);
+      border-color: rgba(0,229,255,0.28);
+    }
+
+    .demo-thumb {
+      position: relative;
+      width: 100%; aspect-ratio: 16/9;
+      overflow: hidden;
+      background: #0c0118;
+    }
+    .demo-thumb img {
+      width: 100%; height: 100%;
+      -o-object-fit: cover;
+         object-fit: cover; display: block;
+      opacity: 0.80;
+      transition: opacity 0.22s;
+    }
+    .demo-card:hover .demo-thumb img { opacity: 1; }
+
+    .play-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .play-btn {
+      width: 50px; height: 50px;
+      border-radius: 50%;
+      background: rgba(0,0,0,0.42);
+      border: 2px solid var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .play-btn svg { width: 18px; fill: var(--cyan); margin-left: 3px; }
+    .demo-card:hover .play-btn {
+      background: rgba(0,229,255,0.22);
+      transform: scale(1.1);
+    }
+
+    .demo-caption {
+      padding: 0.85rem 1rem 1rem;
+    }
+    .demo-caption .demo-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.15rem;
+      color: var(--text);
+      display: block;
+      margin-bottom: 0.2rem;
+    }
+    .demo-caption .demo-genre {
+      font-family: 'Cinzel', serif;
+      font-size: 0.60rem; letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--lav);
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BLOCK
+    ═══════════════════════════════════════════ */
+    .cta-block {
+      text-align: center;
+      max-width: 800px;
+      margin: 0 auto 4.5rem;
+      padding: 3rem 2.5rem;
+    }
+    .cta-block h2 {
+      font-family: "Didot", "Playfair Display", serif;
+      font-size: clamp(1.5rem, 4vw, 2.1rem);
+      font-weight: 600;
+      letter-spacing: 0.03em;
+      margin-bottom: 1rem;
+      color: var(--text);
+    }
+    .cta-block h2 .accent { color: var(--cyan); }
+    .cta-block p {
+      font-size: 1.02rem; line-height: 1.75;
+      color: var(--text-muted);
+      max-width: 520px; margin: 0 auto 2.2rem;
+    }
+    .btn-row {
+      display: flex; gap: 1rem;
+      justify-content: center; flex-wrap: wrap;
+    }
+    .btn {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.82rem 2rem;
+      border-radius: 100px;
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.2s;
+      border: none;
+    }
+    .btn.btn-primary {
+      background: var(--cyan);
+      color: #0a001a;
+      font-weight: 600;
+      box-shadow: 0 0 20px rgba(0,229,255,0.30);
+    }
+    .btn.btn-primary:hover {
+      box-shadow: 0 0 32px rgba(0,229,255,0.55);
+      transform: translateY(-2px);
+    }
+    .btn-ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+    .btn-ghost:hover {
+      border-color: var(--cyan);
+      color: var(--cyan);
+    }
+
+    /* ═══════════════════════════════════════════
+       ENTRANCE ANIMATIONS
+    ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .page-hero        { animation: fadeUp 0.6s ease both; }
+    .tag-strip        { animation: fadeUp 0.6s 0.08s ease both; }
+    .approach-block   { animation: fadeUp 0.6s 0.14s ease both; }
+    .cards-grid       { animation: fadeUp 0.6s 0.20s ease both; }
+    .instruments-block{ animation: fadeUp 0.6s 0.26s ease both; }
+    .demo-section     { animation: fadeUp 0.6s 0.32s ease both; }
+    .cta-block        { animation: fadeUp 0.6s 0.38s ease both; }
+  </style>
+    <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
   </head>
   <body class="font-didot min-h-screen">
     <!-- Navigation -->
@@ -20,8 +400,8 @@
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center">
-          <img 
-            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png" 
+          <img
+            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png"
             alt="AppMuse Logo"
             class="logo-img logo-glow mr-2 logo-shift-left"
             style="max-width: 40px; height: auto;"
@@ -30,7 +410,7 @@
             AppMuse
           </a>
         </div>
-        
+
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8 desktop-nav">
           <div class="dropdown">
@@ -41,17 +421,17 @@
               <a href="https://appmuse-isekai.com/anime-scoring.html">Piano Accompaniment Track</a>
             </div>
           </div>
-          
+
           <div class="dropdown">
-            <a href="#" class="nav-link">Education</a>
+            <a href="/education.html" class="nav-link">Education</a>
             <div class="dropdown-menu">
-              <a href="https://appmuse-isekai.com/blog.html">Composition Course</a>
-              <a href="https://appmuse-isekai.com/blog.html">Piano Course</a>
-              <a href="https://appmuse-isekai.com/blog.html">Hybrid</a>
+              <a href="/composition-course.html">Composition Course</a>
+              <a href="/piano-course.html">Piano Course</a>
+              <a href="/hybrid-course.html">Hybrid</a>
               <a href="/blog.html">Blog</a>
             </div>
           </div>
-          
+
           <div class="dropdown">
             <a href="#" class="nav-link">Performance</a>
             <div class="dropdown-menu">
@@ -59,12 +439,12 @@
               <a href="/classical-performance.html">Classical Performance</a>
             </div>
           </div>
-          
+
           <a href="/pricing.html" class="nav-link">Pricing</a>
           <a href="/about.html" class="nav-link">About</a>
           <a href="/contact.html" class="nav-link">Contact</a>
         </div>
-        
+
         <!-- Theme Toggle & Language Switcher -->
         <div class="flex items-center space-x-4">
           <!-- Theme Toggle Button -->
@@ -76,7 +456,7 @@
               <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"/>
             </svg>
           </button>
-          
+
           <!-- Language Switcher Dropdown -->
           <div class="dropdown">
             <button class="lang-dropdown-btn flex items-center space-x-1 text-sm">
@@ -94,7 +474,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Mobile Menu Button -->
         <div class="hamburger md:hidden" id="mobile-menu-btn">
           <span></span>
@@ -102,7 +482,7 @@
           <span></span>
         </div>
       </div>
-      
+
       <!-- Mobile Menu -->
       <div class="mobile-menu hidden mobile-nav">
         <div class="p-6 space-y-4">
@@ -112,22 +492,22 @@
             <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
             <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
           </div>
-          
+
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Education</div>
-            <a href="https://appmuse-isekai.com/blog.html" class="nav-link block pl-4">Composition Course</a>
-            <a href="https://appmuse-isekai.com/blog.html" class="nav-link block pl-4">Piano Course</a>
-            <a href="https://appmuse-isekai.com/blog.html" class="nav-link block pl-4">Hybrid</a>
+            <a href="./composition-course.html" class="nav-link block pl-4">Composition Course</a>
+            <a href="./piano-course.html" class="nav-link block pl-4">Piano Course</a>
+            <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
             <a href="/blog.html" class="nav-link block pl-4">Blog</a>
           </div>
-          
+
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Performance</div>
             <a href="/ambiance-performance.html" class="nav-link block pl-4">Ambiance Piano Performance</a>
             <a href="/classical-performance.html" class="nav-link block pl-4">Classical Performance</a>
             <!-- Conducting link removed -->
           </div>
-          
+
           <a href="/pricing.html" class="nav-link block">Pricing</a>
           <a href="/about.html" class="nav-link block">About</a>
           <a href="/contact.html" class="nav-link block">Contact</a>
@@ -135,102 +515,188 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16 fade-in-element">
-          <h1 class="text-5xl md:text-6xl font-didot font-medium mb-6">
-            Game <span class="glow-title">Scoring</span>
-          </h1>
-          <p class="text-xl md:text-2xl opacity-80 leading-relaxed max-w-3xl mx-auto">
-            Immersive musical compositions that enhance gameplay experiences and bring virtual worlds to life.
-          </p>
-        </div>
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════ -->
+<main>
 
-        <!-- Service Details -->
-        <div class="glass-card p-8 md:p-12 mb-12 fade-in-element">
-          <h2 class="text-3xl md:text-4xl font-didot font-medium mb-6 text-center">
-            Our <span class="glow-title">Approach</span>
-          </h2>
-          <div class="prose prose-lg max-w-none opacity-80 leading-relaxed">
-            <p class="mb-6">
-              Game scoring requires a unique understanding of interactive media and player psychology. Our compositions are designed to enhance gameplay without overwhelming the player, creating atmospheric soundscapes that adapt to different game states and emotional moments.
-            </p>
-            <p class="mb-6">
-              We specialize in creating dynamic musical systems that respond to player actions, environmental changes, and narrative developments. From epic orchestral themes to intimate character motifs, our game scores are crafted to become an integral part of the gaming experience.
-            </p>
-            <p>
-              Our portfolio includes work across various game genres, from indie puzzle games to large-scale RPGs, each requiring a tailored musical approach that serves the game's unique vision and player engagement goals.
-            </p>
-          </div>
-        </div>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <h1>Game <span class="accent">Scoring</span></h1>
+    <p class="hero-sub">
+      From a solitary piano motif haunting a moonlit dungeon to sweeping orchestral climaxes
+      at the edge of worlds — music composed to carry the soul of your game.
+    </p>
+  </section>
 
-        <!-- Features -->
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <div class="glass-card p-8 fade-in-element">
-            <h3 class="text-2xl font-medium mb-4 glow-title">Dynamic Scoring</h3>
-            <p class="opacity-80 leading-relaxed">
-              Interactive music systems that adapt to gameplay, creating seamless transitions between different game states and emotional contexts.
-            </p>
-          </div>
-          
-          <div class="glass-card p-8 fade-in-element">
-            <h3 class="text-2xl font-medium mb-4 glow-title">Genre Expertise</h3>
-            <p class="opacity-80 leading-relaxed">
-              Specialized knowledge across multiple game genres, from atmospheric horror to uplifting adventure, ensuring the perfect musical fit for your project.
-            </p>
-          </div>
-        </div>
+  <!-- GENRE TAGS -->
+  <div class="tag-strip glass section-wrap">
+    <span class="tag">RPG</span>
+    <span class="tag">Action</span>
+    <span class="tag">Adventure</span>
+    <span class="tag">Fantasy</span>
+    <span class="tag">Isekai</span>
+    <span class="tag tag-cyan">Orchestral</span>
+    <span class="tag tag-cyan">NeoBaroque</span>
+    <span class="tag tag-cyan">Medieval</span>
+    <span class="tag">J-pop</span>
+    <span class="tag">Classical</span>
+    <span class="tag">Contemporary Classical</span>
+  </div>
 
-        <!-- Demo Section  -->
-        <div class="max-w-4xl mx-auto">
-          <div class="social-section fade-in-element"> 
-              <h2 class="text-3xl md:text-4xl font-didot font-medium mb-6 text-center">
-                  <span class="glow-title">DÉ</span><span class="highlight-glow">MO</span>
-              </h2>
-              <p class="text-lg opacity-80 mb-8 text-center max-w-2xl mx-auto leading-relaxed notice-glow">
-                  Game Scoring
-              </p>
-              <div class="grid md:grid-cols-2 gap-6 mb-8">
-                  <a href="https://appalv.bandcamp.com/track/chorus-ignis-et-venti-a-song-of-fire-and-wind" target="_blank" class="glass-card p-6 cursor-pointer hover:bg-white/[0.12] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-                      <div class="text-center">
-                          <h3 class="font-signature text-lg mb-4 glow-title"></h3>
-                          <div class="featured-image-container mb-4">
-                              <img src="./assets/A%20Song%20of%20Fire%20and%20Wind-aSJrTJxj.png" alt="soundtrack ancient anime music anison composition counterpoint fugue game soundtrack harpsichord neo-baroque piano pipe organ variation Finland" class="featured-image w-84 h-48 object-cover rounded-lg opacity-90 hover:opacity-100 transition-opacity duration-300" style="box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);">
-                          </div>
-                          <p class="text-sm opacity-70 hover:opacity-90 transition-opacity duration-300 italic notice-glow">
-                              <br>Chorus Ignis et Venti - A Song of Fire and Wind
-                          </p>
-                      </div>
-                  </a>
-                  <a href="https://appalv.bandcamp.com/track/ragnar-k-twilight-of-the-gods-2" target="_blank" class="glass-card p-6 cursor-pointer hover:bg-white/[0.12] transition-all duration-300 transform hover:scale-105 hover:shadow-2xl">
-                      <div class="text-center">
-                          <h3 class="font-signature text-lg mb-4 glow-title"></h3>
-                          <div class="featured-image-container mb-4">
-                              <img src="./assets/Ragnaro%CC%88k-CRx3cSvP.png" alt="soundtrack anime music anison battle concerto game soundtrack harpsichord neo-baroque neo-medieval neoclassical organ piano Finland" class="featured-image w-84 h-48 object-cover rounded-lg opacity-90 hover:opacity-100 transition-opacity duration-300" style="box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);">
-                          </div>
-                          <p class="text-sm opacity-70 hover:opacity-90 transition-opacity duration-300 italic notice-glow">
-                              <br>Ragnarök-Twilight of the Gods
-                          </p>
-                      </div>
-                  </a>
-              </div>
-          </div>
-        </div>
+  <!-- APPROACH -->
+  <div class="approach-block glass section-wrap">
+    <h2 class="section-title">My <span class="accent">Approach</span></h2>
+    <p>
+      A game score is not background music — it is the <em>invisible narrator</em>. Trained in
+      the classical tradition of Paris conservatories, and drawn deeply into the Japanese aesthetic
+      principles of <strong>mono no aware</strong> (the poignant beauty of transience) and
+      <strong>yūgen</strong> (subtle, profound mystery), I compose cues that hold the emotional
+      weight of a world.
+    </p>
+    <p>
+      Each piece is built as an emotional landscape: a quiet piano line threading through a forgotten
+      forest, a harpsichord fugue that tightens beneath a boss's descent, an orchestral swell that
+      arrives at the precise moment a hero understands what they must sacrifice. The music speaks
+      before the dialogue does.
+    </p>
+    <p>
+      I work with indie developers and independent studios who need more than functional loops —
+      those seeking a <em>narrative partner in sound</em>: someone who reads the world they have
+      built, and reflects it back through melody, silence, and everything in between.
+    </p>
+  </div>
 
-        <!-- Call to Action -->
-        <div class="glass-card p-8 md:p-12 text-center fade-in-element">
-          <h3 class="text-2xl font-medium mb-4 glow-title">Ready to Enhance Your Game?</h3>
-          <p class="opacity-80 mb-6 leading-relaxed">
-            Let's discuss how custom game scoring can elevate your project and create memorable experiences for your players.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact.html" class="btn-primary">Start Your Project</a>
-            <a href="/pricing.html" class="btn-secondary">View Pricing</a>
+  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- FEATURE CARDS -->
+  <div class="cards-grid">
+
+    <div class="feat-card glass">
+      <div class="card-icon">🎹</div>
+      <h3>Piano at the Core</h3>
+      <p>
+        Every composition begins at the keyboard. Whether as an intimate solo motif or
+        the harmonic spine beneath a full orchestra, piano is the thread that gives
+        each score its voice.
+      </p>
+    </div>
+
+    <div class="feat-card glass">
+      <div class="card-icon">🏰</div>
+      <h3>NeoBaroque &amp; Medieval Palette</h3>
+      <p>
+        Harpsichord counterpoint, pipe organ overtones, and Baroque structural rigour
+        blended with modern orchestration — for fantasy worlds that feel genuinely ancient
+        and vast.
+      </p>
+    </div>
+
+    <div class="feat-card glass">
+      <div class="card-icon">🌊</div>
+      <h3>Emotional Landscapes</h3>
+      <p>
+        From <em>mono no aware</em> — the quiet ache of a world ending — to the
+        adrenaline of an isekai battle. Each cue is crafted to move the player, not
+        merely accompany them.
+      </p>
+    </div>
+
+    <div class="feat-card glass">
+      <div class="card-icon">🎛️</div>
+      <h3>MIDI Craftsmanship</h3>
+      <p>
+        Six years of MIDI expertise and top-tier virtual instruments including Pianoteq.
+        Meticulous dynamics, voicing, and velocity — delivered clean, loop-ready, and
+        at professional quality.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- INSTRUMENTS -->
+  <div class="instruments-block glass section-wrap">
+    <p class="instr-label">Instrumentation</p>
+    <div class="instr-row">
+      <span class="instr-pill">Piano</span>
+      <span class="instr-pill">Pipe Organ</span>
+      <span class="instr-pill">Harpsichord</span>
+      <span class="instr-pill">Contrabass</span>
+      <span class="instr-pill">Violin</span>
+      <span class="instr-pill">Pipa</span>
+    </div>
+  </div>
+
+  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- DÉMO SECTION -->
+  <div class="demo-section glass section-wrap">
+    <h2 class="section-title">DÉMO</h2>
+    <p class="demo-cat">Game Scoring</p>
+
+    <div class="demo-grid">
+
+      <!-- Demo 1: Chorus Ignis et Venti -->
+      <a class="demo-card"
+         href="https://appalv.bandcamp.com/track/chorus-ignis-et-venti-a-song-of-fire-and-wind"
+         target="_blank" rel="noopener noreferrer">
+        <div class="demo-thumb">
+          <img
+            src="https://appmuse-isekai.com/assets/A%20Song%20of%20Fire%20and%20Wind-aSJrTJxj.png"
+            alt="Chorus Ignis et Venti — A Song of Fire and Wind">
+          <div class="play-overlay">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="demo-caption">
+          <span class="demo-title">Chorus Ignis et Venti</span>
+          <span class="demo-genre">A Song of Fire and Wind · RPG / Fantasy</span>
+        </div>
+      </a>
+
+      <!-- Demo 2: Ragnarök -->
+      <a class="demo-card"
+         href="https://appalv.bandcamp.com/track/ragnar-k-twilight-of-the-gods-2"
+         target="_blank" rel="noopener noreferrer">
+        <div class="demo-thumb">
+          <img
+            src="https://appmuse-isekai.com/assets/Ragnaro%CC%88k-CRx3cSvP.png"
+            alt="Ragnarök — Twilight of the Gods">
+          <div class="play-overlay">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
+          </div>
+        </div>
+        <div class="demo-caption">
+          <span class="demo-title">Ragnarök — Twilight of the Gods</span>
+          <span class="demo-genre">Nordic Epic · Action / Fantasy</span>
+        </div>
+      </a>
+
+    </div>
+  </div><!-- /demo-section -->
+
+  <!-- CTA -->
+  <div class="cta-block glass section-wrap">
+    <h2>Ready to score your <span class="accent">world</span>?</h2>
+    <p>
+      Whether you're building an indie RPG, an isekai adventure, or a medieval action game —
+      let's craft a soundtrack that feels inevitable. Share your vision and we'll build its sound.
+    </p>
+    <div class="btn-row">
+      <a href="https://appmuse-isekai.com/contact.html" class="btn btn-primary">Start Your Project</a>
+      <a href="https://appmuse-isekai.com/pricing.html"  class="btn btn-ghost">View Pricing</a>
+    </div>
+  </div>
+
+</main>
 
     <!-- Footer -->
     <footer class="py-12 px-6 border-t border-white/10">

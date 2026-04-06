@@ -5,14 +5,325 @@
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Anime/Animation Scoring - AppMuse</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <script type="module" crossorigin src="./assets/main-a68W8eAo.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-0zeDFnp9.css">
+
+  <style>
+    /* ═══════════════════════════════════════════
+       DESIGN TOKENS — identical to game-scoring.html
+    ═══════════════════════════════════════════ */
+    :root {
+      --bg:            #1a0a2e;
+      --bg-card:       rgba(255,255,255,0.05);
+      --bg-card-hover: rgba(255,255,255,0.08);
+      --border:        rgba(255,255,255,0.10);
+      --border-hover:  rgba(192,132,252,0.28);
+      --cyan:          #00e5ff;
+      --lav:           #c084fc;
+      --text:          #e8d9f5;
+      --text-muted:    #9f8fb8;
+      --nav-h:         68px;
+    }
+
+    /* ═══════════════════════════════════════════
+       RESET & BASE
+    ═══════════════════════════════════════════ */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Cormorant Garamond', serif;
+      background-color: var(--bg);
+      color: var(--text);
+      min-height: 100vh;
+      overflow-x: hidden;
+    }
+
+    /* Background painting — purple atmospheric gradient, no image */
+    body::before {
+      content: '';
+      position: fixed; inset: 0; z-index: 0;
+      background:
+        radial-gradient(ellipse 90% 55% at 10% 15%, rgba(130,50,210,0.22) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 70% at 88% 80%, rgba(0,160,240,0.10) 0%, transparent 55%),
+        radial-gradient(ellipse 50% 90% at 50% 50%, rgba(80,20,140,0.15) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* ═══════════════════════════════════════════
+       PAGE LAYOUT
+    ═══════════════════════════════════════════ */
+    main { position: relative; z-index: 1; padding-top: var(--nav-h); }
+
+    .glass {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      transition: background 0.25s, border-color 0.25s;
+    }
+    .glass:hover { background: var(--bg-card-hover); border-color: var(--border-hover); }
+
+    /* ═══════════════════════════════════════════
+       HERO
+    ═══════════════════════════════════════════ */
+    .page-hero {
+      text-align: center;
+      padding: 4.5rem 2rem 2.5rem;
+    }
+    .page-hero h1 {
+      font-family: "Didot", "Playfair Display", serif;
+      font-size: clamp(2rem, 5.5vw, 3.6rem);
+      font-weight: 700; letter-spacing: 0.04em; line-height: 1.15;
+      color: var(--text);
+    }
+    .page-hero h1 .accent { color: var(--cyan); }
+    .page-hero .hero-sub {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.12rem; font-weight: 300;
+      color: var(--text-muted);
+      max-width: 600px; margin: 1rem auto 0;
+      line-height: 1.78;
+    }
+    .page-hero .hero-scope {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 0.92rem;
+      color: rgba(192,132,252,0.65);
+      margin-top: 0.5rem;
+      letter-spacing: 0.04em;
+    }
+
+    /* ═══════════════════════════════════════════
+       SHARED COMPONENTS
+    ═══════════════════════════════════════════ */
+    .section-wrap { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    .section-title {
+      font-family: "Didot", "Playfair Display", serif;
+      font-size: 1.5rem; font-weight: 600;
+      text-align: center; margin-bottom: 1.8rem;
+      color: var(--text);
+    }
+    .section-title .accent { color: var(--cyan); }
+
+    .tag-strip {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      justify-content: center;
+      padding: 1.6rem 2rem;
+      max-width: 900px; margin: 0 auto 0.5rem;
+    }
+    .tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.32rem 0.85rem; border-radius: 100px; white-space: nowrap;
+      border: 1px solid rgba(192,132,252,0.30);
+      color: var(--lav); background: rgba(192,132,252,0.07);
+    }
+    .tag-cyan {
+      color: var(--cyan);
+      border-color: rgba(0,229,255,0.28);
+      background: rgba(0,229,255,0.06);
+    }
+    .tag-rose {
+      color: #f9a8d4;
+      border-color: rgba(249,168,212,0.28);
+      background: rgba(249,168,212,0.06);
+    }
+
+    .approach-block {
+      padding: 2.8rem 3rem;
+      margin: 2rem auto; max-width: 900px;
+    }
+    .approach-block p {
+      font-size: 1.06rem; line-height: 1.88;
+      color: var(--text-muted); margin-bottom: 1.1rem;
+    }
+    .approach-block p:last-child { margin-bottom: 0; }
+    .approach-block em { color: var(--text); font-style: italic; }
+    .approach-block strong { color: var(--lav); font-weight: 400; }
+
+    .ornament {
+      text-align: center;
+      color: rgba(192,132,252,0.28);
+      font-size: 0.85rem; letter-spacing: 0.45em;
+      margin: 1.8rem 0; -webkit-user-select: none; -moz-user-select: none; user-select: none;
+    }
+
+    .cards-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+      max-width: 900px; margin: 2rem auto;
+      padding: 0 1.5rem;
+    }
+    @media (max-width: 640px) { .cards-grid { grid-template-columns: 1fr; } }
+    .feat-card { padding: 1.8rem 1.9rem; }
+    .feat-card .card-icon { font-size: 1.5rem; margin-bottom: 0.75rem; }
+    .feat-card h3 {
+      font-family: "Didot", "Playfair Display", serif;
+      font-size: 0.88rem; font-weight: 600;
+      color: var(--lav); letter-spacing: 0.07em; margin-bottom: 0.65rem;
+    }
+    .feat-card p { font-size: 0.97rem; line-height: 1.78; color: var(--text-muted); }
+
+    .instruments-block {
+      padding: 1.6rem 2rem;
+      max-width: 900px; margin: 0 auto 2rem;
+    }
+    .instr-label {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem; letter-spacing: 0.14em; text-transform: uppercase;
+      color: var(--text-muted); text-align: center; margin-bottom: 1.1rem;
+    }
+    .instr-row { display: flex; flex-wrap: wrap; gap: 0.55rem; justify-content: center; }
+    .instr-pill {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; font-size: 1rem;
+      padding: 0.28rem 0.9rem;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 8px; color: var(--text-muted);
+    }
+
+    /* ═══════════════════════════════════════════
+       DÉMO SECTION
+    ═══════════════════════════════════════════ */
+    .demo-section {
+      max-width: 900px;
+      margin: 0 auto 2.5rem;
+      padding: 2.8rem 2.5rem;
+    }
+    .demo-section .section-title { margin-bottom: 0.4rem; }
+    .demo-cat {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.4rem;
+      color: var(--text-muted);
+      text-align: center; margin-bottom: 2rem;
+    }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.2rem;
+    }
+    @media (max-width: 580px) { .demo-grid { grid-template-columns: 1fr; } }
+
+    .demo-card {
+      display: block; text-decoration: none;
+      border-radius: 14px; overflow: hidden;
+      border: 1px solid var(--border);
+      background: rgba(0,0,0,0.25);
+      transition: transform 0.22s ease, border-color 0.22s;
+    }
+    .demo-card:hover { transform: translateY(-4px); border-color: rgba(0,229,255,0.28); }
+
+    .demo-thumb {
+      position: relative; width: 100%;
+      aspect-ratio: 16/9; overflow: hidden;
+      background: #0c0118;
+    }
+    .demo-thumb img {
+      width: 100%; height: 100%;
+      -o-object-fit: cover;
+         object-fit: cover; display: block;
+      opacity: 0.80; transition: opacity 0.22s;
+    }
+    .demo-card:hover .demo-thumb img { opacity: 1; }
+
+    .demo-thumb-ph {
+      width: 100%; aspect-ratio: 16/9;
+      display: flex; align-items: center; justify-content: center;
+      flex-direction: column; gap: 0.6rem;
+      background: linear-gradient(140deg,#130825 0%,#1e0d38 100%);
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem; letter-spacing: 0.10em; text-transform: uppercase;
+      color: rgba(192,132,252,0.45);
+    }
+    .demo-thumb-ph .ph-icon { font-size: 2.2rem; opacity: 0.4; }
+
+    .play-overlay {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+    }
+    .play-btn {
+      width: 50px; height: 50px; border-radius: 50%;
+      background: rgba(0,0,0,0.42);
+      border: 2px solid var(--cyan);
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .play-btn svg { width: 18px; fill: var(--cyan); margin-left: 3px; }
+    .demo-card:hover .play-btn { background: rgba(0,229,255,0.22); transform: scale(1.1); }
+
+    .demo-caption { padding: 0.85rem 1rem 1rem; }
+    .demo-caption .demo-title {
+      font-family: 'Great Vibes', cursive;
+      font-size: 1.15rem; color: var(--text);
+      display: block; margin-bottom: 0.2rem;
+    }
+    .demo-caption .demo-genre {
+      font-family: 'Cinzel', serif;
+      font-size: 0.60rem; letter-spacing: 0.10em; text-transform: uppercase;
+      color: var(--lav);
+    }
+
+    /* ═══════════════════════════════════════════
+       CTA BLOCK
+    ═══════════════════════════════════════════ */
+    .cta-block {
+      text-align: center; max-width: 800px;
+      margin: 0 auto 4.5rem; padding: 3rem 2.5rem;
+    }
+    .cta-block h2 {
+      font-family: "Didot", "Playfair Display", serif;
+      font-size: clamp(1.5rem, 4vw, 2.1rem);
+      font-weight: 600; letter-spacing: 0.03em;
+      margin-bottom: 1rem; color: var(--text);
+    }
+    .cta-block h2 .accent { color: var(--cyan); }
+    .cta-block p {
+      font-size: 1.02rem; line-height: 1.75;
+      color: var(--text-muted); max-width: 520px; margin: 0 auto 2.2rem;
+    }
+    .btn-row { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+    .btn {
+      display: inline-block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.82rem 2rem; border-radius: 100px;
+      text-decoration: none; cursor: pointer;
+      transition: all 0.2s; border: none;
+    }
+    .btn.btn-primary {
+      background: var(--cyan); color: #0a001a; font-weight: 600;
+      box-shadow: 0 0 20px rgba(0,229,255,0.30);
+    }
+    .btn.btn-primary:hover { box-shadow: 0 0 32px rgba(0,229,255,0.55); transform: translateY(-2px); }
+    .btn-ghost {
+      background: transparent; color: var(--text);
+      border: 1px solid rgba(255,255,255,0.22);
+    }
+    .btn-ghost:hover { border-color: var(--cyan); color: var(--cyan); }
+
+    /* ═══════════════════════════════════════════
+       ENTRANCE ANIMATIONS
+    ═══════════════════════════════════════════ */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    .page-hero         { animation: fadeUp 0.6s ease both; }
+    .tag-strip         { animation: fadeUp 0.6s 0.08s ease both; }
+    .approach-block    { animation: fadeUp 0.6s 0.14s ease both; }
+    .cards-grid        { animation: fadeUp 0.6s 0.20s ease both; }
+    .instruments-block { animation: fadeUp 0.6s 0.26s ease both; }
+    .demo-section      { animation: fadeUp 0.6s 0.32s ease both; }
+    .cta-block         { animation: fadeUp 0.6s 0.38s ease both; }
+  </style>
+    <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
   </head>
   <body class="font-didot min-h-screen">
     <!-- Navigation -->
@@ -20,8 +331,8 @@
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center">
-          <img 
-            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png" 
+          <img
+            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png"
             alt="AppMuse Logo"
             class="logo-img logo-glow mr-2 logo-shift-left"
             style="max-width: 40px; height: auto;"
@@ -30,7 +341,7 @@
             AppMuse
           </a>
         </div>
-        
+
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8 desktop-nav">
           <div class="dropdown">
@@ -41,17 +352,17 @@
               <a href="https://appmuse-isekai.com/anime-scoring.html">Piano Accompaniment Track</a>
             </div>
           </div>
-          
+
           <div class="dropdown">
-            <a href="#" class="nav-link">Education</a>
+            <a href="/education.html" class="nav-link">Education</a>
             <div class="dropdown-menu">
-              <a href="https://appmuse-isekai.com/blog.html">Composition Course</a>
-              <a href="https://appmuse-isekai.com/blog.html">Piano Course</a>
-              <a href="https://appmuse-isekai.com/blog.html">Hybrid</a>
+              <a href="/composition-course.html">Composition Course</a>
+              <a href="/piano-course.html">Piano Course</a>
+              <a href="/hybrid-course.html">Hybrid</a>
               <a href="/blog.html">Blog</a>
             </div>
           </div>
-          
+
           <div class="dropdown">
             <a href="#" class="nav-link">Performance</a>
             <div class="dropdown-menu">
@@ -59,12 +370,12 @@
               <a href="/classical-performance.html">Classical Performance</a>
             </div>
           </div>
-          
+
           <a href="/pricing.html" class="nav-link">Pricing</a>
           <a href="/about.html" class="nav-link">About</a>
           <a href="/contact.html" class="nav-link">Contact</a>
         </div>
-        
+
         <!-- Theme Toggle & Language Switcher -->
         <div class="flex items-center space-x-4">
           <!-- Theme Toggle Button -->
@@ -76,7 +387,7 @@
               <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"/>
             </svg>
           </button>
-          
+
           <!-- Language Switcher Dropdown -->
           <div class="dropdown">
             <button class="lang-dropdown-btn flex items-center space-x-1 text-sm">
@@ -94,7 +405,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Mobile Menu Button -->
         <div class="hamburger md:hidden" id="mobile-menu-btn">
           <span></span>
@@ -102,7 +413,7 @@
           <span></span>
         </div>
       </div>
-      
+
       <!-- Mobile Menu -->
       <div class="mobile-menu hidden mobile-nav">
         <div class="p-6 space-y-4">
@@ -112,22 +423,22 @@
             <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
             <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
           </div>
-          
+
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Education</div>
-            <a href="https://appmuse-isekai.com/blog.html" class="nav-link block pl-4">Composition Course</a>
-            <a href="https://appmuse-isekai.com/blog.html" class="nav-link block pl-4">Piano Course</a>
-            <a href="https://appmuse-isekai.com/blog.html" class="nav-link block pl-4">Hybrid</a>
+            <a href="./composition-course.html" class="nav-link block pl-4">Composition Course</a>
+            <a href="./piano-course.html" class="nav-link block pl-4">Piano Course</a>
+            <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
             <a href="/blog.html" class="nav-link block pl-4">Blog</a>
           </div>
-          
+
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Performance</div>
             <a href="/ambiance-performance.html" class="nav-link block pl-4">Ambiance Piano Performance</a>
             <a href="/classical-performance.html" class="nav-link block pl-4">Classical Performance</a>
             <!-- Conducting link removed -->
           </div>
-          
+
           <a href="/pricing.html" class="nav-link block">Pricing</a>
           <a href="/about.html" class="nav-link block">About</a>
           <a href="/contact.html" class="nav-link block">Contact</a>
@@ -135,66 +446,182 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
-      <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16 fade-in-element">
-          <h1 class="text-5xl md:text-6xl font-didot font-medium mb-6">
-            Anime & Animation <span class="glow-title">Scoring</span>
-          </h1>
-          <p class="text-xl md:text-2xl opacity-80 leading-relaxed max-w-3xl mx-auto">
-            Emotional musical narratives that breathe life into animated stories and connect deeply with audiences.
-          </p>
-        </div>
+<!-- ══════════════════════════════════════════
+     MAIN CONTENT
+══════════════════════════════════════════ -->
+<main>
 
-        <!-- Service Details -->
-        <div class="glass-card p-8 md:p-12 mb-12 fade-in-element">
-          <h2 class="text-3xl md:text-4xl font-didot font-medium mb-6 text-center">
-            Our <span class="glow-title">Philosophy</span>
-          </h2>
-          <div class="prose prose-lg max-w-none opacity-80 leading-relaxed">
-            <p class="mb-6">
-              Anime and animation scoring is an art form that requires deep understanding of emotional storytelling and character development. Our compositions are crafted to enhance the visual narrative, creating musical themes that resonate with viewers long after the credits roll.
-            </p>
-            <p class="mb-6">
-              We specialize in creating leitmotifs for characters, atmospheric pieces for world-building, and dynamic action sequences that perfectly synchronize with the animation. Each piece is designed to evoke specific emotions and support the story's dramatic arc.
-            </p>
-            <p>
-              From intimate character moments to epic battle sequences, our anime scoring captures the essence of Japanese storytelling traditions while incorporating modern compositional techniques that appeal to global audiences.
-            </p>
-          </div>
-        </div>
+  <!-- PAGE HERO -->
+  <section class="page-hero">
+    <h1>Animé &amp; Short-Film <span class="accent">Scoring</span></h1>
+    <p class="hero-sub">
+      Original scores for anime, animated shorts, and live-action short films —
+      music that poeticises stories rather than merely accompanying them.
+    </p>
+    <p class="hero-scope">Anime · Animation · Short Film · Isekai · Emotional · Poetic</p>
+  </section>
 
-        <!-- Features -->
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <div class="glass-card p-8 fade-in-element">
-            <h3 class="text-2xl font-medium mb-4 glow-title">Character Themes</h3>
-            <p class="opacity-80 leading-relaxed">
-              Distinctive musical motifs that represent characters' personalities, growth, and relationships throughout the story.
-            </p>
-          </div>
-          
-          <div class="glass-card p-8 fade-in-element">
-            <h3 class="text-2xl font-medium mb-4 glow-title">Emotional Depth</h3>
-            <p class="opacity-80 leading-relaxed">
-              Compositions that capture the full spectrum of human emotion, from tender moments to intense dramatic climaxes.
-            </p>
-          </div>
-        </div>
+  <!-- GENRE TAGS -->
+  <div class="tag-strip glass section-wrap">
+    <span class="tag">Anime</span>
+    <span class="tag">Fantasy</span>
+    <span class="tag">Isekai</span>
+    <span class="tag">Emotional</span>
+    <span class="tag">Poetic</span>
+    <span class="tag tag-cyan">Orchestral</span>
+    <span class="tag tag-cyan">Anison</span>
+    <span class="tag tag-cyan">J-pop</span>
+    <span class="tag tag-rose">Classical</span>
+    <span class="tag tag-rose">Contemporary Classical</span>
+    <span class="tag tag-rose">NeoBaroque</span>
+  </div>
 
-        <!-- Call to Action -->
-        <div class="glass-card p-8 md:p-12 text-center fade-in-element">
-          <h3 class="text-2xl font-medium mb-4 glow-title">Bring Your Story to Life</h3>
-          <p class="opacity-80 mb-6 leading-relaxed">
-            Let's create a musical score that elevates your animation and creates lasting emotional connections with your audience.
-          </p>
-          <div class="flex flex-col sm:flex-row gap-4 justify-center">
-            <a href="/contact.html" class="btn-primary">Start Your Project</a>
-            <a href="/pricing.html" class="btn-secondary">View Pricing</a>
+  <!-- APPROACH -->
+  <div class="approach-block glass section-wrap">
+    <h2 class="section-title">My <span class="accent">Philosophy</span></h2>
+    <p>
+      Anime taught me that music can make the unspeakable visible. The moment a character
+      understands something they can never undo — <em>that</em> is where a score must already
+      be waiting. Rooted in the Japanese aesthetic of <strong>mono no aware</strong>
+      (the bittersweet awareness of impermanence) and <strong>yūgen</strong>
+      (beauty too deep for words), I write music that doesn't explain the story —
+      it enters it.
+    </p>
+    <p>
+      For short films — whether animated or live-action — each second of picture carries
+      enormous emotional weight. I work closely with the director's vision, building
+      themes that develop across the arc of a short, honouring its intimacy rather than
+      inflating it with sound it doesn't need.
+    </p>
+    <p>
+      My work blends classical training from Paris conservatories with the aesthetics of
+      Japanese culture and Nordic restraint — a combination that allows me to score both
+      the grandeur of an isekai climax and the silence after a quiet, devastating revelation.
+    </p>
+  </div>
+
+  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- FEATURE CARDS -->
+  <div class="cards-grid">
+
+    <div class="feat-card glass">
+      <div class="card-icon">🌸</div>
+      <h3>Emotional Storytelling</h3>
+      <p>
+        Every theme is composed as a character's inner life made audible — motifs that
+        carry weight, develop with the arc, and leave a resonance that outlasts the
+        final frame.
+      </p>
+    </div>
+
+    <div class="feat-card glass">
+      <div class="card-icon">🎹</div>
+      <h3>Piano as the Narrative Voice</h3>
+      <p>
+        The piano is at the heart of each score — intimate where intimacy is needed,
+        expansive at the climax, and silent in precisely the right moments. It is the
+        instrument closest to breath.
+      </p>
+    </div>
+
+    <div class="feat-card glass">
+      <div class="card-icon">🗾</div>
+      <h3>Japanese Aesthetic Roots</h3>
+      <p>
+        Drawing on <em>anison</em> sensibility, classical counterpoint, and the
+        contemplative tradition of Japanese art music — producing scores that feel
+        genuinely Eastern in spirit without being superficial in execution.
+      </p>
+    </div>
+
+    <div class="feat-card glass">
+      <div class="card-icon">🎬</div>
+      <h3>Short-Film Precision</h3>
+      <p>
+        Short films demand economy. Every cue must earn its place. I compose to picture,
+        synchronising with editorial rhythm and working collaboratively with directors
+        through the revision process.
+      </p>
+    </div>
+
+  </div>
+
+  <!-- INSTRUMENTS -->
+  <div class="instruments-block glass">
+    <p class="instr-label">Instrumentation</p>
+    <div class="instr-row">
+      <span class="instr-pill">Piano</span>
+      <span class="instr-pill">Violin</span>
+      <span class="instr-pill">Contrabass</span>
+      <span class="instr-pill">Pipe Organ</span>
+      <span class="instr-pill">Harpsichord</span>
+      <span class="instr-pill">Pipa</span>
+    </div>
+  </div>
+
+  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
+  <!-- DÉMO SECTION -->
+  <div class="demo-section glass section-wrap">
+    <h2 class="section-title">DÉMO</h2>
+    <p class="demo-cat">Animé &amp; Short-Film Scoring</p>
+
+    <div class="demo-grid">
+
+      <a class="demo-card"
+         href="https://youtu.be/BDkEIR6GQAs?si=8kKxDyqxqvhpE1UF"
+         target="_blank" rel="noopener noreferrer">
+        <div class="demo-thumb">
+          <img
+            src="https://img.youtube.com/vi/BDkEIR6GQAs/maxresdefault.jpg"
+            alt="Climax, Thoughtful, Heart of the Story — Anime Scoring demo"
+            onerror="this.style.display='none'">
+          <div class="play-overlay">
+            <div class="play-btn">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path d="M8 5v14l11-7z"/>
+              </svg>
+            </div>
           </div>
         </div>
-      </div>
-    </section>
+        <div class="demo-caption">
+          <span class="demo-title">Climax, Thoughtful, Heart of the Story</span>
+          <span class="demo-genre">Anime Scoring · Emotional / Climax</span>
+        </div>
+      </a>
+
+      <a class="demo-card"
+         href="#"
+         target="_blank" rel="noopener noreferrer">
+        <div class="demo-thumb-ph">
+          <span class="ph-icon">🎬</span>
+          <span>Add YouTube / Bandcamp link</span>
+        </div>
+        <div class="demo-caption">
+          <span class="demo-title">Your Next Demo Title</span>
+          <span class="demo-genre">Short Film · Genre Tag</span>
+        </div>
+      </a>
+
+    </div>
+  </div><!-- /demo-section -->
+
+  <!-- CTA -->
+  <div class="cta-block glass section-wrap">
+    <h2>Bring your <span class="accent">story</span> to life.</h2>
+    <p>
+      Whether you're producing an anime short, an animated film, or a live-action
+      short-film — let's build a score that makes the invisible visible. Share your
+      project and we'll find the music it has been waiting for.
+    </p>
+    <div class="btn-row">
+      <a href="https://appmuse-isekai.com/contact.html" class="btn btn-primary">Start Your Project</a>
+      <a href="https://appmuse-isekai.com/pricing.html"  class="btn btn-ghost">View Pricing</a>
+    </div>
+  </div>
+
+</main>
 
     <!-- Footer -->
     <footer class="py-12 px-6 border-t border-white/10">

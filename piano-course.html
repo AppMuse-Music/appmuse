@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Piano Course — AppMuse</title>
+  <meta name="description" content="Piano as a Living Language — A course in technique, listening, and musical thinking. Music Consultation sessions with a composer-pianist trained in the French classical tradition." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg:            #1a0a2e;
+      --bg-card:       rgba(255,255,255,0.05);
+      --bg-card-hover: rgba(255,255,255,0.08);
+      --border:        rgba(255,255,255,0.10);
+      --border-hover:  rgba(0,229,255,0.28);
+      --cyan:          #00e5ff;
+      --lav:           #c084fc;
+      --text:          #e8d9f5;
+      --text-muted:    #9f8fb8;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Cormorant Garamond', Georgia, serif;
+      font-size: 1.125rem;
+      line-height: 1.75;
+      min-height: 100vh;
+    }
+
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      text-align: center;
+      padding: 6rem 2rem 4rem;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% 0%, rgba(0,229,255,0.10) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 40% at 20% 70%, rgba(192,132,252,0.07) 0%, transparent 50%),
+        var(--bg);
+      position: relative; overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%2300e5ff' fill-opacity='0.02'%3E%3Ccircle cx='30' cy='30' r='1'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      pointer-events: none;
+    }
+    .hero-inner { max-width: 780px; position: relative; }
+    .hero-tag {
+      display: inline-block;
+      font-family: 'Cinzel', serif; font-size: 0.7rem; font-weight: 600;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--cyan);
+      border: 1px solid rgba(0,229,255,0.30);
+      border-radius: 30px; padding: 0.35rem 1.1rem;
+      margin-bottom: 1.6rem;
+    }
+    .hero h1 {
+      font-family: "Didot", "Playfair Display", serif;
+      font-size: clamp(2.4rem, 6vw, 4rem);
+      font-weight: 700;
+      line-height: 1.15;
+      margin-bottom: 1.2rem;
+      background: linear-gradient(135deg, var(--text) 40%, var(--cyan) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.4rem);
+      font-style: italic;
+      color: var(--text-muted);
+      margin-bottom: 2.2rem;
+      font-weight: 300;
+    }
+    .hero-cta-row {
+      display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;
+    }
+
+    /* ── BUTTONS ── */
+    .btn {
+      font-family: 'Cinzel', serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      padding: 0.75rem 1.8rem;
+      border-radius: 8px;
+      text-decoration: none;
+      transition: all 0.25s;
+      display: inline-block;
+    }
+    .btn-primary {
+      background: linear-gradient(135deg, #0891b2, var(--cyan));
+      color: #0a0a1a;
+      border: none;
+      font-weight: 700;
+    }
+    .btn-primary:hover {
+      background: linear-gradient(135deg, var(--cyan), #67e8f9);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(0,229,255,0.30);
+    }
+    .btn-outline {
+      background: transparent;
+      color: var(--lav);
+      border: 1px solid rgba(192,132,252,0.40);
+    }
+    .btn-outline:hover {
+      background: rgba(192,132,252,0.08);
+      border-color: var(--lav);
+      transform: translateY(-2px);
+    }
+
+    /* ── LAYOUT ── */
+    main { padding-top: 64px; }
+    section { padding: 5rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-title {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 3vw, 2.2rem);
+      font-weight: 700;
+      text-align: center;
+      margin-bottom: 0.6rem;
+      color: var(--text);
+    }
+    .section-subtitle {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      color: var(--text-muted);
+      text-align: center;
+      font-size: 1.15rem;
+      margin-bottom: 3rem;
+      font-weight: 300;
+    }
+
+    /* ── TAG STRIP ── */
+    .tag-strip { background: none; padding: 2rem 2rem 0; }
+    .tag-strip-inner {
+      max-width: 1100px; margin: 0 auto;
+      display: flex; flex-wrap: wrap; gap: 0.6rem; justify-content: center;
+    }
+    .tag {
+      font-family: 'Cinzel', serif;
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.12em;
+      color: var(--text-muted);
+      border: 1px solid var(--border);
+      border-radius: 20px;
+      padding: 0.3rem 0.9rem;
+      background: var(--bg-card);
+      transition: all 0.2s;
+    }
+    .tag:hover {
+      color: var(--cyan); border-color: rgba(0,229,255,0.4);
+      background: rgba(0,229,255,0.06);
+    }
+
+    /* ── GLASS CARD ── */
+    .glass {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      border-radius: 18px;
+      -webkit-backdrop-filter: blur(10px);
+              backdrop-filter: blur(10px);
+      transition: border-color 0.3s, background 0.3s;
+    }
+    .glass:hover {
+      border-color: var(--border-hover);
+      background: var(--bg-card-hover);
+    }
+
+    /* ── PHILOSOPHY ── */
+    .philosophy { background: none; }
+    .philosophy-card {
+      max-width: 860px; margin: 0 auto;
+      padding: 3rem 3.5rem;
+    }
+    .philosophy-card p {
+      font-size: 1.15rem;
+      color: var(--text);
+      line-height: 1.9;
+      margin-bottom: 1.5rem;
+      font-weight: 300;
+    }
+    .philosophy-card p:last-child { margin-bottom: 0; }
+
+    /* ── ORNAMENT ── */
+    .ornament {
+      text-align: center;
+      padding: 0.5rem 0;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.4rem;
+      color: var(--cyan);
+      letter-spacing: 0.5em;
+      opacity: 0.5;
+    }
+
+    /* ── FEATURE CARDS ── */
+    .feature-cards { background: none; }
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .card { padding: 2rem; }
+    .card-icon {
+      font-size: 1.8rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .card h3 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.92rem; font-weight: 600;
+      letter-spacing: 0.06em;
+      color: var(--cyan);
+      margin-bottom: 0.75rem;
+    }
+    .card p {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      line-height: 1.75;
+      font-weight: 300;
+    }
+
+    /* ── INCLUDED ── */
+    .included-block { background: none; }
+    .included-card {
+      max-width: 900px; margin: 0 auto;
+      padding: 2.5rem 3rem;
+    }
+    .included-list {
+      list-style: none;
+      display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.85rem;
+    }
+    .included-list li {
+      display: flex; align-items: flex-start; gap: 0.75rem;
+      font-size: 1.05rem; color: var(--text-muted); font-weight: 300;
+    }
+    .included-list li::before {
+      content: '✦';
+      color: var(--lav); font-size: 0.7rem; margin-top: 0.35rem;
+      flex-shrink: 0;
+    }
+
+    /* ── PULL QUOTE ── */
+    .pull-quote-section { background: none; padding: 2rem 2rem 0; }
+    .pull-quote {
+      max-width: 760px; margin: 0 auto;
+      padding: 2.5rem 3rem;
+      border-left: 3px solid var(--cyan);
+      background: rgba(0,229,255,0.04);
+      border-radius: 0 14px 14px 0;
+    }
+    .pull-quote blockquote {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic;
+      font-size: clamp(1.15rem, 2.5vw, 1.4rem);
+      color: var(--text);
+      font-weight: 300;
+      line-height: 1.75;
+    }
+    .pull-quote cite {
+      display: block; margin-top: 1rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem; font-style: normal;
+      letter-spacing: 0.1em;
+      color: var(--text-muted);
+    }
+
+    /* ── DEMO ── */
+    .demo-section { background: none; }
+    .demo-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      max-width: 1000px; margin: 0 auto;
+    }
+    .demo-card { padding: 0; overflow: hidden; }
+    .demo-thumb {
+      width: 100%; aspect-ratio: 16/9;
+      background: linear-gradient(135deg, rgba(0,229,255,0.10), rgba(192,132,252,0.06));
+      display: flex; align-items: center; justify-content: center;
+      position: relative;
+      border-bottom: 1px solid var(--border);
+    }
+    .demo-thumb-icon { font-size: 2.5rem; opacity: 0.4; }
+    .demo-thumb-badge {
+      position: absolute; top: 0.75rem; right: 0.75rem;
+      font-family: 'Cinzel', serif; font-size: 0.6rem; font-weight: 600;
+      letter-spacing: 0.1em;
+      background: rgba(192,132,252,0.12);
+      color: var(--lav);
+      border: 1px solid rgba(192,132,252,0.25);
+      border-radius: 4px; padding: 0.2rem 0.5rem;
+    }
+    .demo-thumb-badge.coming-soon {
+      background: rgba(255,255,255,0.04);
+      color: var(--text-muted);
+      border-color: var(--border);
+    }
+    .demo-info { padding: 1.25rem 1.5rem; }
+    .demo-info h4 {
+      font-family: 'Cinzel', serif;
+      font-size: 0.82rem; font-weight: 600;
+      color: var(--text); margin-bottom: 0.4rem;
+      letter-spacing: 0.04em;
+    }
+    .demo-info p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      font-weight: 300; font-style: italic;
+    }
+    .demo-info .demo-meta {
+      font-family: 'Cinzel', serif; font-size: 0.62rem;
+      color: var(--text-muted); opacity: 0.7;
+      margin-top: 0.5rem; letter-spacing: 0.06em;
+    }
+
+    /* ── CTA ── */
+    .cta-section { background: none; }
+    .cta-card {
+      max-width: 780px; margin: 0 auto;
+      padding: 3.5rem; text-align: center;
+      background: linear-gradient(135deg, rgba(0,229,255,0.06), rgba(192,132,252,0.04));
+      border: 1px solid rgba(0,229,255,0.18);
+    }
+    .cta-card h2 {
+      font-family: 'Cinzel', serif;
+      font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 700;
+      margin-bottom: 1rem; color: var(--text);
+    }
+    .cta-card p {
+      font-size: 1.15rem; color: var(--text-muted);
+      margin-bottom: 2rem; font-weight: 300; line-height: 1.8;
+    }
+    .cta-buttons { display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap; }
+
+    /* ── FOOTER ── */
+    footer {
+      background: rgba(0,0,0,0.35);
+      border-top: 1px solid var(--border);
+      padding: 3rem 2rem; text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Great Vibes', cursive;
+      font-size: 2rem; color: var(--lav); margin-bottom: 0.5rem;
+    }
+    .footer-tagline {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: var(--text-muted);
+      font-size: 0.95rem; margin-bottom: 1.5rem;
+    }
+    .footer-links {
+      display: flex; gap: 1.5rem; justify-content: center; flex-wrap: wrap;
+      margin-bottom: 1.5rem;
+    }
+    .footer-links a {
+      font-family: 'Cinzel', serif;
+      font-size: 0.68rem; letter-spacing: 0.1em;
+      color: var(--text-muted); text-decoration: none; transition: color 0.2s;
+    }
+    .footer-links a:hover { color: var(--cyan); }
+    .footer-copy { font-size: 0.8rem; color: var(--text-muted); opacity: 0.5; }
+    .footer-signature {
+      font-family: 'Cormorant Garamond', serif;
+      font-style: italic; color: var(--text-muted); opacity: 0.6;
+      font-size: 0.9rem; margin-top: 1rem;
+      max-width: 520px; margin-left: auto; margin-right: auto;
+    }
+
+    /* ── FADE-IN ── */
+    .fade-in {
+      opacity: 0; transform: translateY(28px);
+      transition: opacity 0.7s ease, transform 0.7s ease;
+    }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .fade-in-delay-1 { transition-delay: 0.1s; }
+    .fade-in-delay-2 { transition-delay: 0.2s; }
+    .fade-in-delay-3 { transition-delay: 0.3s; }
+    .fade-in-delay-4 { transition-delay: 0.4s; }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 640px) {
+      nav { padding: 0 1rem; }
+      .nav-links { display: none; }
+      .hero { padding: 5rem 1.25rem 3rem; }
+      section { padding: 3.5rem 1.25rem; }
+      .philosophy-card { padding: 2rem 1.5rem; }
+      .cards-grid { grid-template-columns: 1fr; }
+      .included-list { grid-template-columns: 1fr; }
+      .demo-grid { grid-template-columns: 1fr; }
+      .cta-card { padding: 2.5rem 1.5rem; }
+      .pull-quote { padding: 1.75rem 1.5rem; }
+    }
+  </style>
+  <style>
+    /* nav compat: site nav uses .dropdown as a visible flex wrapper, not a hidden panel */
+    .desktop-nav > .dropdown { display: block; position: relative; }
+    .flex.items-center.space-x-4 > .dropdown { display: block; position: relative; }
+
+    /* ====================== SOLID DARK BACKGROUND FIX ====================== */
+html, body {
+    background: var(--bg) !important;
+    background-attachment: fixed !important;
+}
+
+/* Clear backgrounds from all content sections */
+main, section, .philosophy, .bridges-section, .feature-cards, 
+.included-block, .demo-section, .cta-section, .pull-quote-section,
+footer {
+    background: transparent !important;
+    background-image: none !important;
+}
+
+/* ====================== DIDOT HEADINGS ====================== */
+h1, h2, h3 {
+    font-family: "Didot", "Playfair Display", serif !important;
+}
+
+  </style>
+  <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
+</head>
+<body>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 right-0 z-50">
+      <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
+        <!-- Logo -->
+        <div class="flex items-center">
+          <img
+            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png"
+            alt="AppMuse Logo"
+            class="logo-img logo-glow mr-2 logo-shift-left"
+            style="max-width: 40px; height: auto;"
+          />
+          <a href="/" class="font-didot text-2xl font-medium nav-link highlight-glow" style="text-decoration: none;">
+            AppMuse
+          </a>
+        </div>
+
+        <!-- Desktop Navigation -->
+        <div class="hidden md:flex items-center space-x-8 desktop-nav">
+          <div class="dropdown">
+            <a href="#" class="nav-link">Music Production</a>
+            <div class="dropdown-menu">
+              <a href="/game-scoring.html">Game Scoring</a>
+              <a href="/anime-scoring.html">Anime/Animation Scoring</a>
+              <a href="https://appmuse-isekai.com/anime-scoring.html">Piano Accompaniment Track</a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <a href="./education.html" class="nav-link">Education</a>
+            <div class="dropdown-menu">
+              <a href="./composition-course.html">Composition Course</a>
+              <a href="./piano-course.html">Piano Course</a>
+              <a href="./hybrid-course.html">Hybrid</a>
+              <a href="./blog.html">Blog</a>
+            </div>
+          </div>
+
+          <div class="dropdown">
+            <a href="#" class="nav-link">Performance</a>
+            <div class="dropdown-menu">
+              <a href="/ambiance-performance.html">Ambiance Piano Performance</a>
+              <a href="/classical-performance.html">Classical Performance</a>
+            </div>
+          </div>
+
+          <a href="/pricing.html" class="nav-link">Pricing</a>
+          <a href="/about.html" class="nav-link">About</a>
+          <a href="/contact.html" class="nav-link">Contact</a>
+        </div>
+
+        <!-- Theme Toggle & Language Switcher -->
+        <div class="flex items-center space-x-4">
+          <!-- Theme Toggle Button -->
+          <button id="theme-switch" title="Toggle theme">
+            <svg class="w-5 h-5 sun-icon" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
+            </svg>
+            <svg class="w-5 h-5 moon-icon hidden" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"/>
+            </svg>
+          </button>
+
+          <!-- Language Switcher Dropdown -->
+          <div class="dropdown">
+            <button class="lang-dropdown-btn flex items-center space-x-1 text-sm">
+              <span id="current-lang">EN</span>
+              <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20">
+                <path fill-rule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clip-rule="evenodd"/>
+              </svg>
+            </button>
+            <div class="dropdown-menu lang-dropdown-menu">
+              <a href="/index.html" class="lang-link" data-lang="EN">English</a>
+              <a href="/fi/index.html" class="lang-link" data-lang="FI">Suomi</a>
+              <a href="/sv/index.html" class="lang-link" data-lang="SV">Svenska</a>
+              <a href="/no/index.html" class="lang-link" data-lang="NO">Norsk</a>
+              <a href="/fr/index.html" class="lang-link" data-lang="FR">Français</a>
+            </div>
+          </div>
+        </div>
+
+
+      <!-- Mobile Menu Button -->
+      <div class="hamburger md:hidden" id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden mobile-nav">
+      <div class="p-6 space-y-4">
+        <div class="space-y-2">
+          <div class="font-medium text-glow-blue">Music Production</div>
+          <a href="/game-scoring.html" class="nav-link block pl-4">Game Scoring</a>
+          <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
+          <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
+        </div>
+
+        <div class="space-y-2">
+          <div class="font-medium text-glow-blue">Education</div>
+          <a href="./composition-course.html" class="nav-link block pl-4">Composition Course</a>
+          <a href="./piano-course.html" class="nav-link block pl-4">Piano Course</a>
+          <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
+          <a href="./blog.html" class="nav-link block pl-4">Blog</a>
+        </div>
+
+        <div class="space-y-2">
+          <div class="font-medium text-glow-blue">Performance</div>
+          <a href="/ambiance-performance.html" class="nav-link block pl-4">Ambiance Piano Performance</a>
+          <a href="/classical-performance.html" class="nav-link block pl-4">Classical Performance</a>
+        </div>
+
+        <a href="/pricing.html" class="nav-link block">Pricing</a>
+        <a href="/about.html" class="nav-link block">About</a>
+        <a href="/contact.html" class="nav-link block">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main>
+
+    <!-- HERO -->
+    <section class="hero">
+      <div class="hero-inner">
+        <div class="hero-tag fade-in">Education · Piano Course</div>
+        <h1 class="fade-in fade-in-delay-1">Piano as a<br/>Living Language</h1>
+        <p class="hero-subtitle fade-in fade-in-delay-2">A Course in Technique, Listening, and Musical Thinking</p>
+        <div class="hero-cta-row fade-in fade-in-delay-3">
+          <a href="https://appmuse-isekai.com/contact.html" class="btn btn-primary">Book a Consultation</a>
+          <a href="https://appmuse-isekai.com/pricing.html" class="btn btn-outline">View Pricing</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- TAG STRIP -->
+    <div class="tag-strip fade-in">
+      <div class="tag-strip-inner">
+        <span class="tag">Piano Technique</span>
+        <span class="tag">Classical Repertoire</span>
+        <span class="tag">Biomechanics</span>
+        <span class="tag">Listening</span>
+        <span class="tag">Interpretation</span>
+        <span class="tag">Sight-Reading</span>
+        <span class="tag">Chopin</span>
+        <span class="tag">Beethoven</span>
+        <span class="tag">Bach</span>
+        <span class="tag">Recording Practice</span>
+        <span class="tag">French Classical Tradition</span>
+      </div>
+    </div>
+
+    <!-- PHILOSOPHY -->
+    <section class="philosophy">
+      <div class="container">
+        <div class="glass philosophy-card fade-in">
+          <p>I call this a <em>Music Consultation</em> rather than a piano lesson, because the word "lesson" implies a syllabus you are moving through. What I offer is closer to a conversation about sound. You bring what you are working on — a piece you love, a passage you cannot hear clearly, a technical problem that keeps returning — and we work on it together for seventy minutes. After nine years of teaching, I have found that students learn most quickly not when they are corrected, but when they begin to hear the difference themselves.</p>
+          <p>The most common physical problem I encounter in piano students is tension — in the wrist, in the forearm, in the shoulder. The technique I use to address this is built around what I call the <em>saisissement</em>, the natural "grabbing" motion of the hand that recruits muscle groups the way they are designed to work, not against each other. This is not a special method I invented; it is an observation about how the body already moves when it is not being overridden by anxiety or misplaced effort. Once a student feels it once, they recognise it everywhere.</p>
+          <p>One of the most powerful tools in a piano session is a recording of the student playing. Not to judge the performance, but to make audible what the fingers cannot report back to the player in real time — micro-timing, dynamic shading, the difference between what you intended and what actually happened. I encourage all students to record their own practice and bring questions about what they hear. This is not a performance assessment. It is a listening exercise.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORNAMENT -->
+    <div class="ornament fade-in">✦ · ✦ · ✦</div>
+
+    <!-- FEATURE CARDS -->
+    <section class="feature-cards">
+      <div class="container">
+        <h2 class="section-title fade-in">Four Foundations</h2>
+        <p class="section-subtitle fade-in">What shapes every session</p>
+        <div class="cards-grid">
+          <div class="glass card fade-in">
+            <span class="card-icon">◎</span>
+            <h3>The Listening Session</h3>
+            <p>Every session begins and ends with listening — to the music, to your playing, to the questions that arise when both are placed side by side. Technical work is always in service of sound, never the other way around.</p>
+          </div>
+          <div class="glass card fade-in fade-in-delay-1">
+            <span class="card-icon">⌾</span>
+            <h3>Biomechanical Foundations</h3>
+            <p>Tension is the enemy of technique. I work from the natural mechanics of the hand — the <em>saisissement</em> that releases the forearm and frees the wrist — to build a physical foundation that makes difficult passages playable without strain or injury.</p>
+          </div>
+          <div class="glass card fade-in fade-in-delay-2">
+            <span class="card-icon">⊞</span>
+            <h3>Repertoire Across History</h3>
+            <p>My training in the French classical tradition means I approach repertoire historically. A Chopin étude is a response to Beethoven, a departure from Hummel, an influence on Liszt. Understanding where a piece sits in its lineage changes how you interpret it.</p>
+          </div>
+          <div class="glass card fade-in fade-in-delay-3">
+            <span class="card-icon">♭</span>
+            <h3>Playing What You Already Hear</h3>
+            <p>The goal of piano study is not to perfect your execution of someone else's vision. It is to narrow the gap between what you imagine when you listen to music and what your hands can produce. That gap closes faster than most students expect.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORNAMENT -->
+    <div class="ornament fade-in">✦ · ✦ · ✦</div>
+
+    <!-- PULL QUOTE -->
+    <div class="pull-quote-section fade-in">
+      <div class="container">
+        <div class="pull-quote">
+          <blockquote>"Hearing — the first sense to arise, the last to fade. Music — unseen, intangible, yet the very soul of ambience."</blockquote>
+          <cite>— AppaLV · AppMuse</cite>
+        </div>
+      </div>
+    </div>
+
+    <!-- INCLUDED -->
+    <section class="included-block">
+      <div class="container">
+        <h2 class="section-title fade-in">What's Included</h2>
+        <p class="section-subtitle fade-in">Everything in a Music Consultation</p>
+        <div class="glass included-card fade-in">
+          <ul class="included-list">
+            <li>70-minute Music Consultation sessions (online or in-person, Tampere &amp; Helsinki reach)</li>
+            <li>First-lesson overview: the history of the instrument and the traditions you are entering</li>
+            <li>Bespoke exercise material designed for your specific technical challenges</li>
+            <li>Access to a curated repertoire progression — Baroque through Contemporary</li>
+            <li>Session notes and resources delivered before each lesson</li>
+            <li>Recording practice encouraged and supported from the very first session</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- ORNAMENT -->
+    <div class="ornament fade-in">✦ · ✦ · ✦</div>
+
+    <!-- DEMO -->
+    <section class="demo-section">
+      <div class="container">
+        <h2 class="section-title fade-in">From the Teaching Practice</h2>
+        <p class="section-subtitle fade-in">Scores used in the piano curriculum</p>
+        <div class="demo-grid">
+          <div class="glass demo-card fade-in">
+            <div class="demo-thumb">
+              <span class="demo-thumb-icon">𝄞</span>
+              <span class="demo-thumb-badge">SCORE</span>
+            </div>
+            <div class="demo-info">
+              <h4>Temporal Measure &amp; Unit</h4>
+              <p>Finding a common pulse across Handel, Bach BWV Anh.114, Chopin Op.10 No.1, and Beethoven Pathétique</p>
+              <div class="demo-meta">3 pages · Intermediate</div>
+            </div>
+          </div>
+          <div class="glass demo-card fade-in fade-in-delay-1">
+            <div class="demo-thumb">
+              <span class="demo-thumb-icon">𝄞</span>
+              <span class="demo-thumb-badge">SCORE</span>
+            </div>
+            <div class="demo-info">
+              <h4>Texture &amp; Chord — Integration</h4>
+              <p>Beethoven Op.129 · Handel Passacaille · Liszt La Chasse — layering chord tones with melodic line</p>
+              <div class="demo-meta">5 pages · Advanced</div>
+            </div>
+          </div>
+          <div class="glass demo-card fade-in fade-in-delay-2">
+            <div class="demo-thumb">
+              <span class="demo-thumb-icon">𝄞</span>
+              <span class="demo-thumb-badge">SCORE</span>
+            </div>
+            <div class="demo-info">
+              <h4>Flowing Between Texture and Melody</h4>
+              <p>Chopin Op.10 No.1 · Beethoven Pathétique · Featuring <em>La Neige Étoilée</em> — original AppaLV composition</p>
+              <div class="demo-meta">6 pages · Intermediate–Advanced</div>
+            </div>
+          </div>
+          <div class="glass demo-card fade-in fade-in-delay-3">
+            <div class="demo-thumb" style="background: linear-gradient(135deg, rgba(255,255,255,0.03), rgba(0,229,255,0.03));">
+              <span class="demo-thumb-icon" style="opacity:0.18;">▷</span>
+              <span class="demo-thumb-badge coming-soon">COMING SOON</span>
+            </div>
+            <div class="demo-info">
+              <h4>Session Recording Sample</h4>
+              <p>A short recording excerpt demonstrating the listening practice and self-reflection method used in sessions</p>
+              <div class="demo-meta">Audio · In preparation</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <div class="cta-card glass fade-in">
+          <h2>Book a Music Consultation</h2>
+          <p>Whether you are returning to the piano after years away, working through a persistent technical problem, or simply wondering what the instrument could become in your hands — the first session is always a conversation. Reach out to arrange a time.</p>
+          <div class="cta-buttons">
+            <a href="https://appmuse-isekai.com/contact.html" class="btn btn-primary">Get in Touch</a>
+            <a href="https://appmuse-isekai.com/pricing.html" class="btn btn-outline">View Pricing</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+    <!-- Footer -->
+    <footer class="py-12 px-6 border-t border-white/10">
+      <div class="max-w-4xl mx-auto">
+        <div class="text-center mb-8">
+          <p class="font-signature text-2xl highlight-text">Creating musical magic, one note at a time</p>
+        </div>
+        <div class="text-center mb-8">
+          <p>
+            <a href="https://appmuse-isekai.com/contact.html" class="highlight-glow text-xl md:text-2xl opacity-80 mb-8 leading-relaxed max-w-2xl mx-auto">
+              |&emsp; Contact&emsp; |
+            </a>
+          </p>
+        </div>
+        <div class="text-center opacity-60 text-sm">
+          <p>&copy; 2025 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
+        </div>
+      </div>
+    </footer>
+
+  <script>
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('visible');
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  </script>
+
+</body>
+</html>

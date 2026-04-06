@@ -11,8 +11,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     
-    <script type="module" crossorigin src="./assets/main-a68W8eAo.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-0zeDFnp9.css">
+    <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
   </head>
   <body class="font-didot min-h-screen">
     <!-- Navigation -->
@@ -43,11 +43,11 @@
           </div>
           
           <div class="dropdown">
-            <a href="#" class="nav-link">Education</a>
+            <a href="/education.html" class="nav-link">Education</a>
             <div class="dropdown-menu">
-              <a href="https://appmuse-isekai.com/blog.html">Composition Course</a>
-              <a href="https://appmuse-isekai.com/blog.html">Piano Course</a>
-              <a href="https://appmuse-isekai.com/blog.html">Hybrid</a>
+              <a href="/composition-course.html">Composition Course</a>
+              <a href="/piano-course.html">Piano Course</a>
+              <a href="/hybrid-course.html">Hybrid</a>
               <a href="/blog.html">Blog</a>
             </div>
           </div>
@@ -95,73 +95,139 @@
           </div>
         </div>
         
-        <!-- Mobile Menu Button -->
-        <div class="hamburger md:hidden" id="mobile-menu-btn">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
-      
-      <!-- Mobile Menu -->
-      <div class="mobile-menu hidden mobile-nav">
-        <div class="p-6 space-y-4">
-          <div class="space-y-2">
-            <div class="font-medium text-glow-blue">Music Production</div>
-            <a href="/game-scoring.html" class="nav-link block pl-4">Game Scoring</a>
-            <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
-            <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
-          </div>
-          
-          <div class="space-y-2">
-            <div class="font-medium text-glow-blue">Education</div>
-            <a href="https://appmuse-isekai.com/blog.html" class="nav-link block pl-4">Composition Course</a>
-            <a href="https://appmuse-isekai.com/blog.html" class="nav-link block pl-4">Piano Course</a>
-            <a href="https://appmuse-isekai.com/blog.html" class="nav-link block pl-4">Hybrid</a>
-            <a href="/blog.html" class="nav-link block pl-4">Blog</a>
-          </div>
-          
-          <div class="space-y-2">
-            <div class="font-medium text-glow-blue">Performance</div>
-            <a href="/ambiance-performance.html" class="nav-link block pl-4">Ambiance Piano Performance</a>
-            <a href="/classical-performance.html" class="nav-link block pl-4">Classical Performance</a>
-            <!-- Conducting link removed -->
-          </div>
-          
-          <a href="/pricing.html" class="nav-link block">Pricing</a>
-          <a href="/about.html" class="nav-link block">About</a>
-          <a href="/contact.html" class="nav-link block">Contact</a>
-        </div>
-      </div>
-    </nav>
 
-    <!-- Mobile Blog List Button - Now Vertical -->
-    <button id="mobile-blog-list-btn" class="fixed z-40 md:hidden">
-      <div class="flex flex-col items-center">
-        <svg class="w-4 h-4 menu-icon" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/>
+      <!-- Mobile Menu Button -->
+      <div class="hamburger md:hidden" id="mobile-menu-btn">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+    
+    <!-- Mobile Menu -->
+    <div class="mobile-menu hidden mobile-nav">
+      <div class="p-6 space-y-4">
+        <div class="space-y-2">
+          <div class="font-medium text-glow-blue">Music Production</div>
+          <a href="/game-scoring.html" class="nav-link block pl-4">Game Scoring</a>
+          <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
+          <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
+        </div>
+        
+        <div class="space-y-2">
+          <div class="font-medium text-glow-blue">Education</div>
+          <a href="./composition-course.html" class="nav-link block pl-4">Composition Course</a>
+          <a href="./piano-course.html" class="nav-link block pl-4">Piano Course</a>
+          <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
+          <a href="/blog.html" class="nav-link block pl-4">Blog</a>
+        </div>
+        
+        <div class="space-y-2">
+          <div class="font-medium text-glow-blue">Performance</div>
+          <a href="/ambiance-performance.html" class="nav-link block pl-4">Ambiance Piano Performance</a>
+          <a href="/classical-performance.html" class="nav-link block pl-4">Classical Performance</a>
+        </div>
+        
+        <a href="/pricing.html" class="nav-link block">Pricing</a>
+        <a href="/about.html" class="nav-link block">About</a>
+        <a href="/contact.html" class="nav-link block">Contact</a>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Mobile Blog List Button - Now Vertical -->
+  <button id="mobile-blog-list-btn" class="fixed z-40 md:hidden">
+    <div class="flex flex-col items-center">
+      <svg class="w-4 h-4 menu-icon" fill="currentColor" viewBox="0 0 24 24">
+        <path d="M3 4h18v2H3V4zm0 7h18v2H3v-2zm0 7h18v2H3v-2z"/>
+      </svg>
+      <span class="vertical-text">Articles</span>
+    </div>
+  </button>
+  
+  <!-- Mobile Blog List Panel -->
+  <div id="mobile-blog-panel" class="fixed inset-y-0 left-0 z-50 w-80 bg-glass-dark backdrop-blur-lg border-r border-white/10 transform -translate-x-full transition-transform duration-300 md:hidden">
+    <div class="flex items-center justify-between p-4 border-b border-white/10">
+      <h3 class="text-lg font-medium glow-title">Articles</h3>
+      <button id="close-blog-panel" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
+        <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
-        <span class="vertical-text">Articles</span>
+      </button>
+    </div>
+    
+    <div class="p-4 overflow-y-auto h-full pb-20">
+      <!-- Mobile Article List Content -->
+      <div class="space-y-6">
+        <!-- 2025/08 -->
+        <div class="border-b border-white/10 pb-4">
+          <h4 class="text-sm font-medium text-glow-blue mb-3">2025/08</h4>
+          <div class="space-y-2">
+            <a href="/article-7.html" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-7">
+              Chord function- I
+            </a>
+          </div>
+        </div>
+        
+        <!-- 2025/01 -->
+        <div class="border-b border-white/10 pb-4">
+          <h4 class="text-sm font-medium text-glow-blue mb-3">2025/01</h4>
+          <div class="space-y-2">
+            <a href="#article-1" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-1">
+              The Art of Isekai Music Composition
+            </a>
+            <a href="#article-2" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-2">
+              Piano Techniques for Game Scoring
+            </a>
+            <a href="#article-3" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-3">
+              Emotional Storytelling Through Music
+            </a>
+          </div>
+        </div>
+        
+        <!-- 2024/12 -->
+        <div class="border-b border-white/10 pb-4">
+          <h4 class="text-sm font-medium text-glow-blue mb-3">2024/12</h4>
+          <div class="space-y-2">
+            <a href="#article-4" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-4">
+              Classical Foundations for Modern Composers
+            </a>
+            <a href="#article-5" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-5">
+              The Philosophy of Musical Expression
+            </a>
+            <a href="#article-6" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-6">
+              Performance Tips for Ambiance Piano
+            </a>
+          </div>
+        </div>
       </div>
-    </button>
-
-    <!-- Mobile Blog List Panel -->
-    <div id="mobile-blog-panel" class="fixed inset-y-0 left-0 z-50 w-80 bg-glass-dark backdrop-blur-lg border-r border-white/10 transform -translate-x-full transition-transform duration-300 md:hidden">
-      <div class="flex items-center justify-between p-4 border-b border-white/10">
-        <h3 class="text-lg font-medium glow-title">Articles</h3>
-        <button id="close-blog-panel" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
-          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
-          </svg>
-        </button>
-      </div>
-      
-      <div class="p-4 overflow-y-auto h-full pb-20">
-        <!-- Mobile Article List Content -->
+    </div>
+  </div>
+  
+  <!-- Mobile Panel Overlay -->
+  <div id="mobile-panel-overlay" class="fixed inset-0 bg-black/50 z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
+  
+  <!-- Main Content -->
+  <div class="flex min-h-screen pt-20">
+    <!-- Desktop Sidebar -->
+    <aside class="hidden md:block w-80 p-6 border-r border-white/10 bg-glass-dark backdrop-blur-sm">
+      <div class="sticky top-24">
+        <h2 class="text-xl font-medium mb-6 glow-title">Articles</h2>
+        
         <div class="space-y-6">
+          <!-- 2025/08 -->
+          <div class="border-b border-white/10 pb-4">
+            <h3 class="text-sm font-medium text-glow-blue mb-3">2025/08</h3>
+            <div class="space-y-2">
+              <a href="/article-7.html" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-7">
+                Chord function- I
+              </a>
+            </div>
+          </div>
+          
           <!-- 2025/01 -->
           <div class="border-b border-white/10 pb-4">
-            <h4 class="text-sm font-medium text-glow-blue mb-3">2025/01</h4>
+            <h3 class="text-sm font-medium text-glow-blue mb-3">2025/01</h3>
             <div class="space-y-2">
               <a href="#article-1" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-1">
                 The Art of Isekai Music Composition
@@ -177,7 +243,7 @@
           
           <!-- 2024/12 -->
           <div class="border-b border-white/10 pb-4">
-            <h4 class="text-sm font-medium text-glow-blue mb-3">2024/12</h4>
+            <h3 class="text-sm font-medium text-glow-blue mb-3">2024/12</h3>
             <div class="space-y-2">
               <a href="#article-4" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-4">
                 Classical Foundations for Modern Composers
@@ -192,53 +258,7 @@
           </div>
         </div>
       </div>
-    </div>
-
-    <!-- Mobile Panel Overlay -->
-    <div id="mobile-panel-overlay" class="fixed inset-0 bg-black/50 z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
-
-    <!-- Main Content -->
-    <div class="flex min-h-screen pt-20">
-      <!-- Desktop Sidebar -->
-      <aside class="hidden md:block w-80 p-6 border-r border-white/10 bg-glass-dark backdrop-blur-sm">
-        <div class="sticky top-24">
-          <h2 class="text-xl font-medium mb-6 glow-title">Articles</h2>
-          
-          <div class="space-y-6">
-            <!-- 2025/01 -->
-            <div class="border-b border-white/10 pb-4">
-              <h3 class="text-sm font-medium text-glow-blue mb-3">2025/01</h3>
-              <div class="space-y-2">
-                <a href="#article-1" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-1">
-                  The Art of Isekai Music Composition
-                </a>
-                <a href="#article-2" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-2">
-                  Piano Techniques for Game Scoring
-                </a>
-                <a href="#article-3" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-3">
-                  Emotional Storytelling Through Music
-                </a>
-              </div>
-            </div>
-            
-            <!-- 2024/12 -->
-            <div class="border-b border-white/10 pb-4">
-              <h3 class="text-sm font-medium text-glow-blue mb-3">2024/12</h3>
-              <div class="space-y-2">
-                <a href="#article-4" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-4">
-                  Classical Foundations for Modern Composers
-                </a>
-                <a href="#article-5" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-5">
-                  The Philosophy of Musical Expression
-                </a>
-                <a href="#article-6" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-6">
-                  Performance Tips for Ambiance Piano
-                </a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </aside>
+    </aside>
 
       <!-- Main Content Area -->
       <main class="flex-1 px-6 py-12">
@@ -255,6 +275,23 @@
 
           <!-- Blog Posts Grid -->
           <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 fade-in-element">
+            <!-- Blog Post 7 - New Article -->
+            <article id="article-7" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <a href="/article-7.html" class="block">
+                <div class="mb-4">
+                  <img src="./assets/Img-chord-function-I-min-DiSGjrN5.jpg" alt="Chord Function- I" class="w-full h-48 object-cover rounded-lg opacity-80">
+                </div>
+                <div class="space-y-3">
+                  <div class="text-sm opacity-60">August 23, 2025</div>
+                  <h3 class="text-xl font-medium glow-title">Chord Function- I</h3>
+                  <p class="opacity-80 text-sm leading-relaxed">
+                    Understanding the fundamental principles of chord progressions and how they create the harmonic foundation of music composition.
+                  </p>
+                  <span class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</span>
+                </div>
+              </a>
+            </article>
+
             <!-- Blog Post 1 -->
             <article id="article-1" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
               <div class="mb-4">

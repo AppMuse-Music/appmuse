@@ -4,13 +4,16 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>About - AppMuse</title>
+    <title>Chord Function - I - AppMuse</title>
     
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     
+
+    <!-- Inline CSS for audio player styling (add to style.css if preferred) -->
+
     <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
   </head>
@@ -20,16 +23,16 @@
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center">
-  <img 
-    src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png" 
-    alt="AppMuse Logo"
-    class="logo-img logo-glow mr-2 logo-shift-left"
-    style="max-width: 40px; height: auto;"
-  />
-  <a href="/" class="font-didot text-2xl font-medium nav-link highlight-glow" style="text-decoration: none;">
-    AppMuse
-</a>
-</div>
+          <img 
+            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png" 
+            alt="AppMuse Logo"
+            class="logo-img logo-glow mr-2 logo-shift-left"
+            style="max-width: 40px; height: auto;"
+          />
+          <a href="/" class="font-didot text-2xl font-medium nav-link highlight-glow" style="text-decoration: none;">
+            AppMuse
+          </a>
+        </div>
         
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8 desktop-nav">
@@ -125,7 +128,6 @@
             <div class="font-medium text-glow-blue">Performance</div>
             <a href="/ambiance-performance.html" class="nav-link block pl-4">Ambiance Piano Performance</a>
             <a href="/classical-performance.html" class="nav-link block pl-4">Classical Performance</a>
-            <!-- Conducting link removed -->
           </div>
           
           <a href="/pricing.html" class="nav-link block">Pricing</a>
@@ -135,93 +137,66 @@
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="min-h-screen flex items-center justify-center px-6 pt-20">
+    <!-- Article Content -->
+    <main class="pt-24 pb-16 px-6">
       <div class="max-w-4xl mx-auto">
-        <div class="text-center mb-16 fade-in-element">
-          <h1 class="text-5xl md:text-6xl font-didot font-medium mb-6">
-            About <span class="glow-title">AppMuse</span>
-          </h1>
-          <p class="text-xl md:text-2xl opacity-80 leading-relaxed max-w-3xl mx-auto">
-            Where musical passion meets professional excellence, creating extraordinary experiences through composition, performance, and education.
-          </p>
+        <!-- Back to Blog -->
+        <div class="mb-8 fade-in-element">
+          <a href="/blog.html" class="nav-link hover:text-glow-blue transition-colors">
+            ← Back to Blog
+          </a>
         </div>
 
-        <!-- Story Section -->
-        <div class="glass-card p-8 md:p-12 mb-12 fade-in-element">
-          <h2 class="text-3xl md:text-4xl font-didot font-medium mb-6 text-center">
-            Our <span class="glow-title">Story</span>
-          </h2>
-          <div class="prose prose-lg max-w-none opacity-80 leading-relaxed">
+        <!-- Article Header -->
+        <article class="glass-card p-8 md:p-12 fade-in-element">
+          <header class="mb-8">
+            <div class="mb-4">
+              <img src="./assets/Img-chord-function-I-min-DiSGjrN5.jpg" alt="Chord Function - I" class="w-full h-64 md:h-80 object-cover rounded-lg opacity-80">
+            </div>
+            <div class="text-sm opacity-60 mb-2">August 23, 2025</div>
+            <h1 class="highlight-glow text-4xl md:text-5xl font-didot font-medium mb-4">| Chord Function<span class="glow-title">- I |</span>
+            </h1>
+            <div class="text-sm opacity-90 mb-4">
+              <span>By <span class="highlight-glow">AppaLV</span></span>
+              <span class="mx-2">•</span>
+              <span>Tags: classical music, chord</span>
+              <span class="mx-2">•</span>
+              <span>Categories: music composition, music</span>
+            </div>
+          </header>
+
+          <!-- Article Content -->
+          <div class="prose prose-lg max-w-none opacity-90 leading-relaxed">
+            <h2 class="text-2xl font-medium mb-4 glow-title">Basic theory</h2>
             <p class="mb-6">
-              AppMuse was born from a deep passion for music and a vision to bridge the gap between traditional musical education and modern creative expression. Founded by accomplished musicians and educators, we believe that music has the power to transform lives, tell stories, and connect people across cultures and generations.
+              The key note, or tonic, of a piece of music is called note number one, the first step of (here), the ascending scale iii–IV–V. Chords built on several scale degrees are numbered likewise. Thus the chord progression E minor–F–G can be described as three–four–five, (or iii–IV–V).
             </p>
+            <p class="mb-8">
+              A chord may be built upon any note of a musical scale. Therefore, a seven-note diatonic scale allows seven basic diatonic triads, each degree of the scale becoming the root of its own chord.
+            </p>
+
+            <!-- Audio Player Section -->
+<div class="audio-wrapper">
+    <div class="audio-container glass-card">
+      <h3 class="text-lg font-medium mb-4 glow">Audio Example</h3>
+      <audio controls preload="metadata">
+        <source src="./assets/chord-progression-example-H2FfMEBW.mp3" type="audio/mpeg">
+        <source src="/assets/audio/chord-progression-example.ogg" type="audio/ogg">
+        Your browser does not support the audio element.
+      </audio>
+      <figcaption class="text-sm opacity-70 mt-2">A IV–V–I progression in the key of C major (example audio).</figcaption>
+    </div>
+  </div>
+
+            <h2 class="text-2xl font-medium mb-4 glow-title">Common progressions</h2>
+            <h3 class="text-xl font-medium mb-3 glow">Simple progressions</h3>
             <p class="mb-6">
-              Our journey began in the world of classical performance, where we discovered the profound impact of combining technical mastery with emotional storytelling. This led us to explore diverse musical landscapes—from the atmospheric soundscapes of video game scoring to the emotional depth of anime soundtracks, and the intimate connection of live piano performance.
-            </p>
-            <p>
-              Today, AppMuse stands as a comprehensive musical platform, offering professional composition services, personalized education, and captivating performances. We're committed to nurturing the next generation of musicians while creating memorable musical experiences for audiences worldwide.
+              Diatonic scales such as the major and minor scales lend themselves particularly well to the construction of common chords because they contain many perfect fifths.
             </p>
           </div>
-        </div>
-
-        <!-- Mission & Vision -->
-        <div class="grid md:grid-cols-2 gap-8 mb-12">
-          <div class="glass-card p-8 fade-in-element">
-            <h3 class="text-2xl font-medium mb-4 glow-title">Our Mission</h3>
-            <p class="opacity-80 leading-relaxed">
-              To inspire and empower musicians at every level through exceptional education, innovative composition, and transformative performances that push the boundaries of musical expression while honoring classical traditions.
-            </p>
-          </div>
-          
-          <div class="glass-card p-8 fade-in-element">
-            <h3 class="text-2xl font-medium mb-4 glow-title">Our Vision</h3>
-            <p class="opacity-80 leading-relaxed">
-              A world where music serves as a universal language of creativity and connection, where every individual has access to quality musical education, and where innovative compositions enhance storytelling across all media.
-            </p>
-          </div>
-        </div>
-
-        <!-- Values -->
-        <div class="glass-card p-8 md:p-12 fade-in-element">
-          <h2 class="text-3xl md:text-4xl font-didot font-medium mb-8 text-center">
-            Our <span class="glow-title">Values</span>
-          </h2>
-          
-          <div class="grid md:grid-cols-3 gap-8">
-            <div class="text-center">
-              <div class="w-16 h-16 bg-glow-blue/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-glow-blue" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/>
-                </svg>
-              </div>
-              <h4 class="text-xl font-medium mb-2 glow">Excellence</h4>
-              <p class="opacity-70 text-sm">Pursuing the highest standards in every composition, lesson, and performance.</p>
-            </div>
-            
-            <div class="text-center">
-              <div class="w-16 h-16 bg-glow-blue/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-glow-blue" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z"/>
-                </svg>
-              </div>
-              <h4 class="text-xl font-medium mb-2 glow">Innovation</h4>
-              <p class="opacity-70 text-sm">Embracing new technologies and creative approaches while respecting tradition.</p>
-            </div>
-            
-            <div class="text-center">
-              <div class="w-16 h-16 bg-glow-blue/20 rounded-full flex items-center justify-center mx-auto mb-4">
-                <svg class="w-8 h-8 text-glow-blue" fill="currentColor" viewBox="0 0 24 24">
-                  <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
-                </svg>
-              </div>
-              <h4 class="text-xl font-medium mb-2 glow">Passion</h4>
-              <p class="opacity-70 text-sm">Infusing every project with genuine love for music and dedication to craft.</p>
-            </div>
-          </div>
-        </div>
+        </article>
       </div>
-    </section>
+    </main>
 
     <!-- Footer -->
     <footer class="py-12 px-6 border-t border-white/10">
@@ -236,7 +211,6 @@
             </a>
           </p>
         </div>
-        
         <div class="text-center opacity-60 text-sm">
           <p>&copy; 2025 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
         </div>
