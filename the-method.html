@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Education — AppMuse</title>
-  <meta name="description" content="Music education that is not merely about piano. Composition, arrangement, history, and the art of listening — taught by a working composer in the tradition of French classical training, Japanese aesthetics, and Nordic silence." />
+  <title>The Method — AppMuse</title>
+  <meta name="description" content="The teaching philosophy and method behind AppMuse's music courses — where aesthetic vision and compositional craft are inseparable from the first session." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet" />
@@ -392,6 +392,36 @@ h2, h3 {
       .cta-card { padding: 2.5rem 1.5rem; }
       .breadth-grid { grid-template-columns: 1fr; }
     }
+  
+    /* ── FAQ ── */
+    .faq-section { padding: 4rem 2rem; }
+    .faq-list { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .faq-item { border-radius: 14px; overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; align-items: center;
+      justify-content: space-between;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Cinzel', serif; font-size: 0.88rem;
+      font-weight: 600; letter-spacing: 0.05em;
+      color: var(--text); text-align: left;
+      padding: 1.25rem 1.5rem;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--cyan); }
+    .faq-question[aria-expanded="true"] { color: var(--lav); }
+    .faq-icon {
+      font-size: 1.2rem; flex-shrink: 0; margin-left: 1rem;
+      transition: transform 0.25s; color: var(--lav);
+    }
+    .faq-question[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--text-muted);
+      line-height: 1.8; font-weight: 300;
+    }
+    .faq-answer p { margin-bottom: 0.75rem; }
+    .faq-answer p:last-child { margin-bottom: 0; }
   </style>
   <style>
     /* nav compat: site nav uses .dropdown as a visible flex wrapper, not a hidden panel */
@@ -533,7 +563,7 @@ h2, h3 {
         <span class="hero-eyebrow fade-in">AppMuse · Education</span>
         <h1 class="fade-in fade-in-delay-1">Not Merely<br/>Piano</h1>
         <div class="hero-rule fade-in fade-in-delay-2"></div>
-        <p class="hero-subtitle fade-in fade-in-delay-2">The piano was invented 134 years ago.<br/>Music was not.</p>
+        <p class="hero-subtitle fade-in fade-in-delay-2">The piano was invented 134 years ago.<br/>Music was not. Lessons are available in person in Jyväskylä and remotely for students across Finland and internationally.</p>
         <p class="hero-clarifier fade-in fade-in-delay-3">Composition · Piano · History · The Art of Listening</p>
         <div class="hero-cta-row fade-in fade-in-delay-4">
           <a href="#courses" class="btn btn-primary">Explore the Courses</a>
@@ -724,7 +754,7 @@ h2, h3 {
         <div class="teacher-photo-wrap fade-in">
           <div class="teacher-photo-frame glass">
             <img src="./assets/Finland%201%20Version%202%20Enh-COBvNzPV.png" alt="AppaLV — Composer Pianist, AppMuse" />
-            <div class="teacher-photo-caption">AppaLV</div>
+            
           </div>
         </div>
         <div class="teacher-content fade-in fade-in-delay-1">
@@ -792,6 +822,69 @@ h2, h3 {
       </div>
     </section>
 
+    
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container" style="max-width:900px;margin:0 auto;padding:0 1.5rem">
+        <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+        <div class="faq-list">
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Who are your courses designed for?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Two distinct audiences. The first: students who want to study piano or composition seriously, with real technical rigour and historical depth. The second: curious, intellectually engaged adults who are not primarily musicians — those who want to understand music as culture, history, and philosophy, not simply to perform it. Both are welcome. The course adapts.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Are lessons available in person in Jyväskylä?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Yes. In-person sessions are available in Jyväskylä. Online lessons are available for students anywhere in Finland and internationally. Both formats use the same materials and the same depth of engagement.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          What makes your approach different from a conventional music school?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>I do not work from published method books. Every exercise I give a student is either drawn from real repertoire or composed specifically for them. I also teach music as a civilisation — the history of modes, the cultural context of medieval music, the philosophical framework behind compositional choices. You will not be bored.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Do I need to be able to read music to start?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>No. Depending on which course you choose, we begin from where you are. What matters more than prior knowledge is curiosity and a willingness to listen carefully.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          How long are sessions and how often do they occur?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>All sessions are 70 minutes. Frequency is agreed individually — weekly is typical for students in active development, fortnightly for those with busier schedules.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Which course is right for me — Piano, Composition, or Hybrid?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>The Piano Course is for those who want to develop their instrument. The Composition Course is for those who want to understand how music is built, even if they never intend to perform. The Hybrid Course is for those who want both — technique and creative voice developed together. If you are unsure, get in touch and we will discuss your goals before you commit to anything.</p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>
     <!-- CTA -->
     <section class="cta-section">
       <div class="container">
@@ -812,7 +905,7 @@ h2, h3 {
     <footer class="py-12 px-6 border-t border-white/10">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8">
-          <p class="font-signature text-2xl highlight-text">Creating musical magic, one note at a time</p>
+          <p class="font-signature text-2xl highlight-text">As in the ancient art of forging the sword and carving the stone,<br>So crafting requires patience and polishing.</p>
         </div>
         <div class="text-center mb-8">
           <p>
@@ -834,7 +927,17 @@ h2, h3 {
       });
     }, { threshold: 0.10 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+  
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        const answer = btn.nextElementSibling;
+        if (expanded) { answer.setAttribute('hidden', ''); }
+        else { answer.removeAttribute('hidden'); }
+      });
+    });
+</script>
 
 </body>
 </html>

@@ -4,8 +4,8 @@
         <meta charset="UTF-8">
         <link rel="icon" type="image/svg+xml" href="./vite.svg" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Classical Performance - AppMuse Isekai Piano</title>
-        <meta name="description" content="Chopin Beethoven Debussy Bach Schütz Liszt Mozart Vivaldi Harpsichord Piano Fortepiano Pipe Organ Orchestral Conducting Classical Baroque Medieval Music Production Neo-Baroque Ancient Lied">
+        <title>Classical Performance & Cultural Engagements — AppMuse | Nordic Region</title>
+        <meta name="description" content="Classical piano and cultural music engagements for museums, galleries, and heritage events. Early music, NeoBaroque, fortepiano. Nordic region and beyond." />
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
@@ -20,9 +20,48 @@
     <meta name="twitter:title" content="Ambiance Piano Performance - AppMuse Isekai Piano" />
     <meta name="twitter:description" content="Immerse in ambiance aesthetics, where music meets memory, softly echoing in a forgotten bistro." />
     <meta name="twitter:image" content="https://appmuse-isekai.com/thumbnail.png" />
-      <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
-      <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
-    </head>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+    <style>
+      /* ── FAQ ── */
+      :root {
+        --faq-accent-musical: #c084fc;
+        --faq-accent-nonmusical: #00e5ff;
+        --faq-text: #e8d9f5;
+        --faq-muted: #9f8fb8;
+      }
+      .faq-section { padding: 4rem 2rem; }
+      .faq-list { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+      .faq-item { border-radius: 14px; overflow: hidden; background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.10); }
+      .faq-question {
+        width: 100%; display: flex; align-items: center;
+        justify-content: space-between;
+        background: none; border: none; cursor: pointer;
+        font-family: 'Cinzel', serif; font-size: 0.88rem;
+        font-weight: 600; letter-spacing: 0.05em;
+        color: var(--faq-text); text-align: left;
+        padding: 1.25rem 1.5rem;
+        transition: color 0.2s;
+      }
+      .faq-question:hover { color: var(--faq-accent-nonmusical); }
+      .faq-question[aria-expanded="true"] { color: var(--faq-accent-musical); }
+      .faq-icon {
+        font-size: 1.2rem; flex-shrink: 0; margin-left: 1rem;
+        transition: transform 0.25s; color: var(--faq-accent-musical);
+      }
+      .faq-question[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+      .faq-answer {
+        padding: 0 1.5rem 1.25rem;
+        font-family: 'Cormorant Garamond', serif;
+        font-size: 1.05rem; color: var(--faq-muted);
+        line-height: 1.8; font-weight: 300;
+      }
+      .faq-answer p { margin-bottom: 0.75rem; }
+      .faq-answer p:last-child { margin-bottom: 0; }
+    </style>
+  <script type="module" crossorigin src="./assets/main-CyMycWWt.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-C2G-mJNO.css">
+</head>
     
 <body class="font-didot min-h-screen pt-20 ambiance-page-background"> <!-- Ensure this class is present -->
     <!-- Navigation (Copied from index.html) -->
@@ -47,14 +86,15 @@
               <a href="#" class="nav-link">Music Production</a>
               <div class="dropdown-menu">
                 <a href="/game-scoring.html">Game Scoring</a>
-                <a href="/anime-scoring.html">Anime/Animation Scoring</a>
+                <a href="/anime-scoring.html">Animation & Short-Film</a>
                 <a href="https://appmuse-isekai.com/anime-scoring.html">Piano Accompaniment Track</a>
               </div>
             </div>
             
             <div class="dropdown">
-              <a href="/education.html" class="nav-link">Education</a>
+              <a href="#" class="nav-link">Education</a>
               <div class="dropdown-menu">
+                <a href="/the-method.html">The Method</a>
                 <a href="/composition-course.html">Composition Course</a>
                 <a href="/piano-course.html">Piano Course</a>
                 <a href="/hybrid-course.html">Hybrid</a>
@@ -119,12 +159,13 @@
             <div class="space-y-2">
               <div class="font-medium text-glow-blue">Music Production</div>
               <a href="/game-scoring.html" class="nav-link block pl-4">Game Scoring</a>
-              <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
+              <a href="/anime-scoring.html" class="nav-link block pl-4">Animation & Short-Film</a>
               <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
             </div>
             
             <div class="space-y-2">
               <div class="font-medium text-glow-blue">Education</div>
+              <a href="/the-method.html" class="nav-link block pl-4">The Method</a>
               <a href="./composition-course.html" class="nav-link block pl-4">Composition Course</a>
               <a href="./piano-course.html" class="nav-link block pl-4">Piano Course</a>
               <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
@@ -450,6 +491,69 @@
         </div>
     </section>
 
+    
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container" style="max-width:900px;margin:0 auto;padding:0 1.5rem">
+        <h2 class="text-3xl font-medium glow-title text-center mb-8 fade-in-element">Frequently Asked Questions</h2>
+        <div class="faq-list">
+      <div class="faq-item glass-card">
+        <button class="faq-question" aria-expanded="false">
+          What occasions are you available for?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Museum exhibitions, art gallery openings, heritage events, cultural festivals, and academic or ceremonial occasions. My classical programme is designed to add historical and artistic depth to events where the music is part of the cultural statement.</p>
+        </div>
+      </div>
+      <div class="faq-item glass-card">
+        <button class="faq-question" aria-expanded="false">
+          Which instruments do you perform on?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Piano, fortepiano, harpsichord, and pipe organ — depending on the venue's availability and the programme's historical period. I can advise on which instrument best suits the specific cultural context of your event.</p>
+        </div>
+      </div>
+      <div class="faq-item glass-card">
+        <button class="faq-question" aria-expanded="false">
+          What repertoire periods do you cover?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Early music and Baroque (Bach, Handel, Scarlatti), Classical (Mozart, Beethoven), Romantic (Chopin, Liszt, Rachmaninoff), and NeoBaroque and Medieval production. I can design a programme around a specific period, composer, or cultural theme.</p>
+        </div>
+      </div>
+      <div class="faq-item glass-card">
+        <button class="faq-question" aria-expanded="false">
+          Do you offer bespoke programme design for exhibitions?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Yes. For museum or gallery events, I work with curators to design a programme that responds to the works on display — period-appropriate repertoire, thematic connections, and where relevant, brief spoken introductions to the music.</p>
+        </div>
+      </div>
+      <div class="faq-item glass-card">
+        <button class="faq-question" aria-expanded="false">
+          Where are you based, and how far do you travel?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Based in Jyväskylä, Central Finland. Available across Nordic cities with full mobility for event-specific requests.</p>
+        </div>
+      </div>
+      <div class="faq-item glass-card">
+        <button class="faq-question" aria-expanded="false">
+          Can you combine performance with a short lecture or presentation?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Yes — I offer combined performance and contextual commentary for educational and cultural events, drawing on my background in music history and theory.</p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>
     <!-- Footer (Copied from index.html for consistency) -->
     <footer class="py-12 px-6 border-t border-white/10">
         <div class="max-w-4xl mx-auto">
@@ -464,10 +568,21 @@
                 </p>
               </div>
             <div class="text-center opacity-60 text-sm">
-                <p>© 2025 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
+                <p>© 2026 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
             </div>
         </div>
     </footer>
 
-</body>
+    <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        const answer = btn.nextElementSibling;
+        if (expanded) { answer.setAttribute('hidden', ''); }
+        else { answer.removeAttribute('hidden'); }
+      });
+    });
+    </script>
+  </body>
 </html>

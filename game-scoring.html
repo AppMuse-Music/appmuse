@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Game Scoring - AppMuse</title>
+    <title>Game Scoring — Original Soundtracks | AppMuse Composer Finland</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -390,9 +390,40 @@
     .instruments-block{ animation: fadeUp 0.6s 0.26s ease both; }
     .demo-section     { animation: fadeUp 0.6s 0.32s ease both; }
     .cta-block        { animation: fadeUp 0.6s 0.38s ease both; }
+  
+    /* ── FAQ ── */
+    .faq-section { padding: 4rem 2rem; }
+    .faq-list { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .faq-item { border-radius: 14px; overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; align-items: center;
+      justify-content: space-between;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Cinzel', serif; font-size: 0.88rem;
+      font-weight: 600; letter-spacing: 0.05em;
+      color: var(--text); text-align: left;
+      padding: 1.25rem 1.5rem;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--cyan); }
+    .faq-question[aria-expanded="true"] { color: var(--lav); }
+    .faq-icon {
+      font-size: 1.2rem; flex-shrink: 0; margin-left: 1rem;
+      transition: transform 0.25s; color: var(--lav);
+    }
+    .faq-question[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--text-muted);
+      line-height: 1.8; font-weight: 300;
+    }
+    .faq-answer p { margin-bottom: 0.75rem; }
+    .faq-answer p:last-child { margin-bottom: 0; }
   </style>
-    <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
+      <meta name="description" content="Original game soundtracks by a Finland-based composer. RPG, fantasy, isekai, NeoBaroque — piano-led, emotionally precise. Available for indie developers worldwide." />
+    <script type="module" crossorigin src="./assets/main-CyMycWWt.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-C2G-mJNO.css">
   </head>
   <body class="font-didot min-h-screen">
     <!-- Navigation -->
@@ -417,14 +448,15 @@
             <a href="#" class="nav-link">Music Production</a>
             <div class="dropdown-menu">
               <a href="/game-scoring.html">Game Scoring</a>
-              <a href="/anime-scoring.html">Anime/Animation Scoring</a>
+              <a href="/anime-scoring.html">Animation & Short-Film</a>
               <a href="https://appmuse-isekai.com/anime-scoring.html">Piano Accompaniment Track</a>
             </div>
           </div>
 
           <div class="dropdown">
-            <a href="/education.html" class="nav-link">Education</a>
+            <a href="#" class="nav-link">Education</a>
             <div class="dropdown-menu">
+              <a href="/the-method.html">The Method</a>
               <a href="/composition-course.html">Composition Course</a>
               <a href="/piano-course.html">Piano Course</a>
               <a href="/hybrid-course.html">Hybrid</a>
@@ -489,12 +521,13 @@
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Music Production</div>
             <a href="/game-scoring.html" class="nav-link block pl-4">Game Scoring</a>
-            <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
+            <a href="/anime-scoring.html" class="nav-link block pl-4">Animation & Short-Film</a>
             <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
           </div>
 
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Education</div>
+            <a href="/the-method.html" class="nav-link block pl-4">The Method</a>
             <a href="./composition-course.html" class="nav-link block pl-4">Composition Course</a>
             <a href="./piano-course.html" class="nav-link block pl-4">Piano Course</a>
             <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
@@ -549,10 +582,8 @@
     <h2 class="section-title">My <span class="accent">Approach</span></h2>
     <p>
       A game score is not background music — it is the <em>invisible narrator</em>. Trained in
-      the classical tradition of Paris conservatories, and drawn deeply into the Japanese aesthetic
-      principles of <strong>mono no aware</strong> (the poignant beauty of transience) and
-      <strong>yūgen</strong> (subtle, profound mystery), I compose cues that hold the emotional
-      weight of a world.
+      the classical tradition of Paris conservatories, and drawn into Japanese aesthetic sensibility — the beauty found in 
+      transience, the profound depth beneath stillness — I compose cues that hold the emotional weight of a world."
     </p>
     <p>
       Each piece is built as an emotional landscape: a quiet piano line threading through a forgotten
@@ -596,9 +627,7 @@
       <div class="card-icon">🌊</div>
       <h3>Emotional Landscapes</h3>
       <p>
-        From <em>mono no aware</em> — the quiet ache of a world ending — to the
-        adrenaline of an isekai battle. Each cue is crafted to move the player, not
-        merely accompany them.
+        From the quiet ache of a world ending to the adrenaline of an isekai battle. Each cue is crafted to move the player, not merely accompany them.
       </p>
     </div>
 
@@ -683,7 +712,70 @@
     </div>
   </div><!-- /demo-section -->
 
-  <!-- CTA -->
+  
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container" style="max-width:900px;margin:0 auto;padding:0 1.5rem">
+        <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+        <div class="faq-list">
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          What game genres do you score?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>My work centres on RPG, fantasy, action, adventure, and isekai — genres where the music carries a world's emotional weight. I also score medieval and NeoBaroque atmospheres, exploration cues, and intimate character moments. If your game has a specific aesthetic, get in touch and we can discuss whether it is a good fit.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Do you work with international clients?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Yes — all scoring work is conducted remotely. I collaborate with developers across Europe, Asia, and beyond. Delivery formats (stems, loops, WAV, MIDI) are agreed at the outset of each project.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          What instruments and tools do you use?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>My scores are built around piano as the primary voice, with orchestral layers drawn from pipe organ, harpsichord, contrabass, violin, and pipa. I work with high-quality virtual instruments including Pianoteq, with six years of MIDI production experience.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          How do you approach the brief for a new project?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>I begin by reading the world — the visual references, the narrative tone, the emotional arc you want the music to serve. I do not score to a rough cut without first understanding what the music needs to do before the picture begins. We will discuss your project at length before any composition starts.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Can you deliver loop-ready files for a game engine?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Yes. Stems, seamless loops, and adaptive music structures are all available depending on your implementation needs. I am familiar with the practical requirements of game audio delivery.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Where are you based, and does that affect the work?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>I am based in Jyväskylä, Central Finland. Location has no bearing on scoring work — everything is delivered digitally. Finnish, French, and English are all working languages for correspondence.</p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA -->
   <div class="cta-block glass section-wrap">
     <h2>Ready to score your <span class="accent">world</span>?</h2>
     <p>
@@ -702,7 +794,7 @@
     <footer class="py-12 px-6 border-t border-white/10">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8">
-          <p class="font-signature text-2xl highlight-text">Creating musical magic, one note at a time</p>
+          <p class="font-signature text-2xl highlight-text">As in the ancient art of forging the sword and carving the stone,<br>So crafting requires patience and polishing.</p>
         </div>
         <div class="text-center mb-8">
           <p>
@@ -712,10 +804,21 @@
           </p>
         </div>
         <div class="text-center opacity-60 text-sm">
-          <p>&copy; 2025 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
+          <p>&copy; 2026 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
         </div>
       </div>
     </footer>
 
+      <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        const answer = btn.nextElementSibling;
+        if (expanded) { answer.setAttribute('hidden', ''); }
+        else { answer.removeAttribute('hidden'); }
+      });
+    });
+    </script>
   </body>
 </html>

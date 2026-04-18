@@ -1,19 +1,30 @@
 <!doctype html>
-<html lang="en">
+<html lang="fr">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chord Function - I - AppMuse</title>
-    
+    <title>Supermarché, Caisses en Libre-Service, Offrir du « Vide » - AppMuse Blog</title>
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    
 
-    <!-- Inline CSS for audio player styling (add to style.css if preferred) -->
 
+    <style>
+      .article-iframe {
+        width: 100%;
+        border: none;
+        display: block;
+        min-height: 600px;
+      }
+      .iframe-wrapper {
+        border-radius: 12px;
+        overflow: hidden;
+        background: #fff;
+      }
+    </style>
     <script type="module" crossorigin src="./assets/main-CyMycWWt.js"></script>
     <link rel="stylesheet" crossorigin href="./assets/main-C2G-mJNO.css">
   </head>
@@ -23,8 +34,8 @@
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center">
-          <img 
-            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png" 
+          <img
+            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png"
             alt="AppMuse Logo"
             class="logo-img logo-glow mr-2 logo-shift-left"
             style="max-width: 40px; height: auto;"
@@ -33,7 +44,7 @@
             AppMuse
           </a>
         </div>
-        
+
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8 desktop-nav">
           <div class="dropdown">
@@ -44,7 +55,6 @@
               <a href="https://appmuse-isekai.com/anime-scoring.html">Piano Accompaniment Track</a>
             </div>
           </div>
-          
           <div class="dropdown">
             <a href="#" class="nav-link">Education</a>
             <div class="dropdown-menu">
@@ -55,7 +65,6 @@
               <a href="/blog.html">Blog</a>
             </div>
           </div>
-          
           <div class="dropdown">
             <a href="#" class="nav-link">Performance</a>
             <div class="dropdown-menu">
@@ -63,15 +72,13 @@
               <a href="/classical-performance.html">Classical Performance</a>
             </div>
           </div>
-          
           <a href="/pricing.html" class="nav-link">Pricing</a>
           <a href="/about.html" class="nav-link">About</a>
           <a href="/contact.html" class="nav-link">Contact</a>
         </div>
-        
+
         <!-- Theme Toggle & Language Switcher -->
         <div class="flex items-center space-x-4">
-          <!-- Theme Toggle Button -->
           <button id="theme-switch" title="Toggle theme">
             <svg class="w-5 h-5 sun-icon" fill="currentColor" viewBox="0 0 24 24">
               <path d="M12 2.25a.75.75 0 01.75.75v2.25a.75.75 0 01-1.5 0V3a.75.75 0 01.75-.75zM7.5 12a4.5 4.5 0 119 0 4.5 4.5 0 01-9 0zM18.894 6.166a.75.75 0 00-1.06-1.06l-1.591 1.59a.75.75 0 101.06 1.061l1.591-1.59zM21.75 12a.75.75 0 01-.75.75h-2.25a.75.75 0 010-1.5H21a.75.75 0 01.75.75zM17.834 18.894a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 10-1.061 1.06l1.59 1.591zM12 18a.75.75 0 01.75.75V21a.75.75 0 01-1.5 0v-2.25A.75.75 0 0112 18zM7.758 17.303a.75.75 0 00-1.061-1.06l-1.591 1.59a.75.75 0 001.06 1.061l1.591-1.59zM6 12a.75.75 0 01-.75.75H3a.75.75 0 010-1.5h2.25A.75.75 0 016 12zM6.697 7.757a.75.75 0 001.06-1.06l-1.59-1.591a.75.75 0 00-1.061 1.06l1.59 1.591z"/>
@@ -80,8 +87,6 @@
               <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"/>
             </svg>
           </button>
-          
-          <!-- Language Switcher Dropdown -->
           <div class="dropdown">
             <button class="lang-dropdown-btn flex items-center space-x-1 text-sm">
               <span id="current-lang">EN</span>
@@ -98,7 +103,7 @@
             </div>
           </div>
         </div>
-        
+
         <!-- Mobile Menu Button -->
         <div class="hamburger md:hidden" id="mobile-menu-btn">
           <span></span>
@@ -106,7 +111,7 @@
           <span></span>
         </div>
       </div>
-      
+
       <!-- Mobile Menu -->
       <div class="mobile-menu hidden mobile-nav">
         <div class="p-6 space-y-4">
@@ -116,7 +121,6 @@
             <a href="/anime-scoring.html" class="nav-link block pl-4">Animation & Short-Film</a>
             <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
           </div>
-          
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Education</div>
             <a href="/the-method.html" class="nav-link block pl-4">The Method</a>
@@ -125,13 +129,11 @@
             <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
             <a href="/blog.html" class="nav-link block pl-4">Blog</a>
           </div>
-          
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Performance</div>
             <a href="/ambiance-performance.html" class="nav-link block pl-4">Ambiance Piano Performance</a>
             <a href="/classical-performance.html" class="nav-link block pl-4">Classical Performance</a>
           </div>
-          
           <a href="/pricing.html" class="nav-link block">Pricing</a>
           <a href="/about.html" class="nav-link block">About</a>
           <a href="/contact.html" class="nav-link block">Contact</a>
@@ -142,6 +144,7 @@
     <!-- Article Content -->
     <main class="pt-24 pb-16 px-6">
       <div class="max-w-4xl mx-auto">
+
         <!-- Back to Blog -->
         <div class="mb-8 fade-in-element">
           <a href="/blog.html" class="nav-link hover:text-glow-blue transition-colors">
@@ -149,54 +152,32 @@
           </a>
         </div>
 
-        <!-- Article Header -->
-        <article class="glass-card p-8 md:p-12 fade-in-element">
-          <header class="mb-8">
-            <div class="mb-4">
-              <img src="./assets/Img-chord-function-I-min-DiSGjrN5.jpg" alt="Chord Function - I" class="w-full h-64 md:h-80 object-cover rounded-lg opacity-80">
-            </div>
-            <div class="text-sm opacity-60 mb-2">August 23, 2025</div>
-            <h1 class="highlight-glow text-4xl md:text-5xl font-didot font-medium mb-4">| Chord Function<span class="glow-title">- I |</span>
-            </h1>
-            <div class="text-sm opacity-90 mb-4">
-              <span>By <span class="highlight-glow">AppaLV</span></span>
-              <span class="mx-2">•</span>
-              <span>Tags: classical music, chord</span>
-              <span class="mx-2">•</span>
-              <span>Categories: music composition, music</span>
-            </div>
-          </header>
-
-          <!-- Article Content -->
-          <div class="prose prose-lg max-w-none opacity-90 leading-relaxed">
-            <h2 class="text-2xl font-medium mb-4 glow-title">Basic theory</h2>
-            <p class="mb-6">
-              The key note, or tonic, of a piece of music is called note number one, the first step of (here), the ascending scale iii–IV–V. Chords built on several scale degrees are numbered likewise. Thus the chord progression E minor–F–G can be described as three–four–five, (or iii–IV–V).
-            </p>
-            <p class="mb-8">
-              A chord may be built upon any note of a musical scale. Therefore, a seven-note diatonic scale allows seven basic diatonic triads, each degree of the scale becoming the root of its own chord.
-            </p>
-
-            <!-- Audio Player Section -->
-<div class="audio-wrapper">
-    <div class="audio-container glass-card">
-      <h3 class="text-lg font-medium mb-4 glow">Audio Example</h3>
-      <audio controls preload="metadata">
-        <source src="./assets/chord-progression-example-H2FfMEBW.mp3" type="audio/mpeg">
-        <source src="/assets/audio/chord-progression-example.ogg" type="audio/ogg">
-        Your browser does not support the audio element.
-      </audio>
-      <figcaption class="text-sm opacity-70 mt-2">A IV–V–I progression in the key of C major (example audio).</figcaption>
-    </div>
-  </div>
-
-            <h2 class="text-2xl font-medium mb-4 glow-title">Common progressions</h2>
-            <h3 class="text-xl font-medium mb-3 glow">Simple progressions</h3>
-            <p class="mb-6">
-              Diatonic scales such as the major and minor scales lend themselves particularly well to the construction of common chords because they contain many perfect fifths.
-            </p>
+        <!-- Article Meta Header -->
+        <div class="glass-card p-8 md:p-10 fade-in-element mb-2">
+          <div class="text-sm opacity-60 mb-3">March 30, 2026</div>
+          <h1 class="highlight-glow text-4xl md:text-5xl font-didot font-medium mb-4">
+            | <span class="glow-title">Supermarché, Caisses en Libre-Service, Offrir du « Vide »</span> |
+          </h1>
+          <div class="text-sm opacity-90">
+            <span>By <span class="highlight-glow">AppaLV</span></span>
+            <span class="mx-2">•</span>
+            <span>Tags: réflexion, société, consommation</span>
+            <span class="mx-2">•</span>
+            <span>Categories: non-musical</span>
           </div>
-        </article>
+        </div>
+
+        <!-- Article Body — Brevo newsletter rendered in iframe -->
+        <div class="iframe-wrapper fade-in-element">
+          <iframe
+            id="article-iframe"
+            class="article-iframe"
+            src="./articles/supermarche.html"
+            title="Supermarché, Caisses en Libre-Service, Offrir du « Vide »"
+            scrolling="no"
+          ></iframe>
+        </div>
+
       </div>
     </main>
 
@@ -204,7 +185,7 @@
     <footer class="py-12 px-6 border-t border-white/10">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8">
-          <p class="font-signature text-2xl highlight-text">Creating musical magic, one note at a time</p>
+          <p class="font-signature text-2xl highlight-text">As in the ancient art of forging the sword and carving the stone,<br>So crafting requires patience and polishing.</p>
         </div>
         <div class="text-center mb-8">
           <p>
@@ -219,5 +200,22 @@
       </div>
     </footer>
 
+    <script>
+      (function () {
+        var iframe = document.getElementById('article-iframe');
+        function resize() {
+          try {
+            var h = iframe.contentWindow.document.documentElement.scrollHeight
+                 || iframe.contentWindow.document.body.scrollHeight;
+            iframe.style.height = h + 'px';
+          } catch (e) {}
+        }
+        iframe.addEventListener('load', function () {
+          resize();
+          setTimeout(resize, 400);
+          setTimeout(resize, 1200);
+        });
+      })();
+    </script>
   </body>
 </html>

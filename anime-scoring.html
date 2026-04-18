@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Anime/Animation Scoring - AppMuse</title>
+    <title>Animation & Short-Film Scoring — AppMuse | Finland</title>
 
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -45,11 +45,12 @@
     /* Background painting — purple atmospheric gradient, no image */
     body::before {
       content: '';
-      position: fixed; inset: 0; z-index: 0;
+      position: fixed; inset: 0; z-index: 0 !important;
       background:
         radial-gradient(ellipse 90% 55% at 10% 15%, rgba(130,50,210,0.22) 0%, transparent 60%),
         radial-gradient(ellipse 70% 70% at 88% 80%, rgba(0,160,240,0.10) 0%, transparent 55%),
-        radial-gradient(ellipse 50% 90% at 50% 50%, rgba(80,20,140,0.15) 0%, transparent 70%);
+        radial-gradient(ellipse 50% 90% at 50% 50%, rgba(80,20,140,0.15) 0%, transparent 70%) !important;
+      opacity: 1 !important;
       pointer-events: none;
     }
 
@@ -321,9 +322,40 @@
     .instruments-block { animation: fadeUp 0.6s 0.26s ease both; }
     .demo-section      { animation: fadeUp 0.6s 0.32s ease both; }
     .cta-block         { animation: fadeUp 0.6s 0.38s ease both; }
+  
+    /* ── FAQ ── */
+    .faq-section { padding: 4rem 2rem; }
+    .faq-list { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .faq-item { border-radius: 14px; overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; align-items: center;
+      justify-content: space-between;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Cinzel', serif; font-size: 0.88rem;
+      font-weight: 600; letter-spacing: 0.05em;
+      color: var(--text); text-align: left;
+      padding: 1.25rem 1.5rem;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--cyan); }
+    .faq-question[aria-expanded="true"] { color: var(--lav); }
+    .faq-icon {
+      font-size: 1.2rem; flex-shrink: 0; margin-left: 1rem;
+      transition: transform 0.25s; color: var(--lav);
+    }
+    .faq-question[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--text-muted);
+      line-height: 1.8; font-weight: 300;
+    }
+    .faq-answer p { margin-bottom: 0.75rem; }
+    .faq-answer p:last-child { margin-bottom: 0; }
   </style>
-    <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
+      <meta name="description" content="Animation and short-film scores by a Finland-based composer trained in Paris. Anime, animated shorts, and live-action short films — emotional, precise, available worldwide." />
+    <script type="module" crossorigin src="./assets/main-CyMycWWt.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-C2G-mJNO.css">
   </head>
   <body class="font-didot min-h-screen">
     <!-- Navigation -->
@@ -348,14 +380,15 @@
             <a href="#" class="nav-link">Music Production</a>
             <div class="dropdown-menu">
               <a href="/game-scoring.html">Game Scoring</a>
-              <a href="/anime-scoring.html">Anime/Animation Scoring</a>
+              <a href="/anime-scoring.html">Animation & Short-Film</a>
               <a href="https://appmuse-isekai.com/anime-scoring.html">Piano Accompaniment Track</a>
             </div>
           </div>
 
           <div class="dropdown">
-            <a href="/education.html" class="nav-link">Education</a>
+            <a href="#" class="nav-link">Education</a>
             <div class="dropdown-menu">
+              <a href="/the-method.html">The Method</a>
               <a href="/composition-course.html">Composition Course</a>
               <a href="/piano-course.html">Piano Course</a>
               <a href="/hybrid-course.html">Hybrid</a>
@@ -420,12 +453,13 @@
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Music Production</div>
             <a href="/game-scoring.html" class="nav-link block pl-4">Game Scoring</a>
-            <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
+            <a href="/anime-scoring.html" class="nav-link block pl-4">Animation & Short-Film</a>
             <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
           </div>
 
           <div class="space-y-2">
             <div class="font-medium text-glow-blue">Education</div>
+            <a href="/the-method.html" class="nav-link block pl-4">The Method</a>
             <a href="./composition-course.html" class="nav-link block pl-4">Composition Course</a>
             <a href="./piano-course.html" class="nav-link block pl-4">Piano Course</a>
             <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
@@ -453,7 +487,7 @@
 
   <!-- PAGE HERO -->
   <section class="page-hero">
-    <h1>Animé &amp; Short-Film <span class="accent">Scoring</span></h1>
+    <h1>Anime &amp; Short-Film <span class="accent">Scoring</span></h1>
     <p class="hero-sub">
       Original scores for anime, animated shorts, and live-action short films —
       music that poeticises stories rather than merely accompanying them.
@@ -480,23 +514,27 @@
   <div class="approach-block glass section-wrap">
     <h2 class="section-title">My <span class="accent">Philosophy</span></h2>
     <p>
-      Anime taught me that music can make the unspeakable visible. The moment a character
-      understands something they can never undo — <em>that</em> is where a score must already
-      be waiting. Rooted in the Japanese aesthetic of <strong>mono no aware</strong>
-      (the bittersweet awareness of impermanence) and <strong>yūgen</strong>
-      (beauty too deep for words), I write music that doesn't explain the story —
-      it enters it.
+      Anime taught me that music can make the unspeakable
+      visible. The moment a character understands something
+      they can never undo — <em>that</em> is where a score
+      must already be waiting. Not underlining what the
+      image says. Arriving before it.
     </p>
     <p>
-      For short films — whether animated or live-action — each second of picture carries
-      enormous emotional weight. I work closely with the director's vision, building
-      themes that develop across the arc of a short, honouring its intimacy rather than
-      inflating it with sound it doesn't need.
+      For short films, every second of picture carries
+      disproportionate weight. I work from the director's
+      vision, building themes that develop across the arc,
+      honouring the intimacy of the form rather than
+      inflating it.
     </p>
     <p>
-      My work blends classical training from Paris conservatories with the aesthetics of
-      Japanese culture and Nordic restraint — a combination that allows me to score both
-      the grandeur of an isekai climax and the silence after a quiet, devastating revelation.
+      My work draws on classical training from Paris
+      conservatories and deep engagement with Japanese
+      aesthetic sensibility — the beauty found in
+      transience, the depth beneath stillness — combined
+      with Nordic restraint. A score can hold both the
+      grandeur of an isekai climax and the silence after
+      a quiet, devastating revelation.
     </p>
   </div>
 
@@ -509,9 +547,11 @@
       <div class="card-icon">🌸</div>
       <h3>Emotional Storytelling</h3>
       <p>
-        Every theme is composed as a character's inner life made audible — motifs that
-        carry weight, develop with the arc, and leave a resonance that outlasts the
-        final frame.
+        Every theme is composed as a character's inner life
+        made audible. Motifs that carry weight, develop with
+        the arc, and leave a resonance that outlasts the
+        final frame. The score is not decoration — it is
+        part of the structure.
       </p>
     </div>
 
@@ -519,9 +559,11 @@
       <div class="card-icon">🎹</div>
       <h3>Piano as the Narrative Voice</h3>
       <p>
-        The piano is at the heart of each score — intimate where intimacy is needed,
-        expansive at the climax, and silent in precisely the right moments. It is the
-        instrument closest to breath.
+        Piano is at the heart of each score — intimate where
+        intimacy is needed, expansive at the climax, silent
+        in precisely the right moments. It is the instrument
+        closest to breath, and the one most capable of
+        carrying what a character cannot say.
       </p>
     </div>
 
@@ -529,9 +571,12 @@
       <div class="card-icon">🗾</div>
       <h3>Japanese Aesthetic Roots</h3>
       <p>
-        Drawing on <em>anison</em> sensibility, classical counterpoint, and the
-        contemplative tradition of Japanese art music — producing scores that feel
-        genuinely Eastern in spirit without being superficial in execution.
+        Drawing on <em>anison</em> sensibility, classical
+        counterpoint, and the contemplative tradition of
+        Japanese art music — scores that feel genuinely
+        Eastern in spirit without superficial execution.
+        The quiet ache of something irretrievably lost.
+        Not a decorative idea — a compositional tool.
       </p>
     </div>
 
@@ -539,9 +584,10 @@
       <div class="card-icon">🎬</div>
       <h3>Short-Film Precision</h3>
       <p>
-        Short films demand economy. Every cue must earn its place. I compose to picture,
-        synchronising with editorial rhythm and working collaboratively with directors
-        through the revision process.
+        Short films demand economy. Every cue must earn its
+        place. I compose to picture, synchronising with
+        editorial rhythm and working collaboratively with
+        directors from first sketch to final mix.
       </p>
     </div>
 
@@ -562,10 +608,49 @@
 
   <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
 
+  <div class="approach-block glass section-wrap">
+    <h2 class="section-title">Scoring to <span class="accent">Raw Animation</span></h2>
+    <p class="section-subtitle" style="text-align:center;
+      font-family:'Cormorant Garamond',serif;
+      font-style:italic; color:var(--text-muted);
+      font-size:1.05rem; margin-bottom:1.8rem;">
+      Animatics, storyboards, unfinished cuts —
+      scored with full intention
+    </p>
+    <p>
+      In animation production, the score often precedes
+      the finished picture. CGI pipelines are long.
+      Animatics are rough. This is not an obstacle —
+      it is where compositional work becomes most
+      revealing.
+    </p>
+    <p>
+      Scoring to raw animation requires reading intent
+      from pacing, dialogue rhythm, and sparse movement
+      — composing toward an emotional arc that the image
+      has not yet delivered. It demands more imagination
+      than scoring to polished visuals, not less. This
+      is also how professional animation scoring works:
+      music locks before full renders, shaping the edit
+      rather than following it.
+    </p>
+    <p>
+      I accept briefs at every stage of production. A
+      locked animatic is sufficient to begin thematic
+      development. Early storyboard sequences are
+      sufficient to establish the emotional palette and
+      character motifs. A score begun on rough material
+      has time to become part of the work — not an
+      addition applied afterward.
+    </p>
+  </div>
+
+  <div class="ornament">✦ &nbsp; ✦ &nbsp; ✦</div>
+
   <!-- DÉMO SECTION -->
   <div class="demo-section glass section-wrap">
     <h2 class="section-title">DÉMO</h2>
-    <p class="demo-cat">Animé &amp; Short-Film Scoring</p>
+    <p class="demo-cat">Anime &amp; Short-Film Scoring</p>
 
     <div class="demo-grid">
 
@@ -607,13 +692,77 @@
     </div>
   </div><!-- /demo-section -->
 
-  <!-- CTA -->
+  
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container" style="max-width:900px;margin:0 auto;padding:0 1.5rem">
+        <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+        <div class="faq-list">
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Do you score anime and animated short films only, or live-action too?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Both. The page title reflects where most commissions originate, but I score live-action short films with equal care. The common thread is narrative intimacy — music that serves a story rather than decorating it.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          What is your compositional approach to anime scoring?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>I write music that arrives before the emotion is stated — it does not explain, it anticipates. This means composing toward the feeling a scene is moving into, not underlining what the image has already shown. Piano is the primary voice; the orchestra is built around it.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Can you deliver both opening/ending theme songs and incidental score?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Yes. I compose in Anison, J-pop, and contemporary classical styles for themes, and full incidental scores for in-episode cues. Each is treated as a distinct compositional challenge.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          How do you handle synchronisation to picture?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>I compose to picture wherever possible, working with your animatic or rough cut to ensure musical phrasing aligns with editorial rhythm. For projects still in storyboard phase, I compose thematic material and establish the emotional palette for later synchronisation.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Do you work with international animation studios and independent creators?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Yes — all collaboration is remote. I have worked with creators across Europe and Asia. Correspondence in French, English, and basic Japanese is possible.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Where are you based?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Jyväskylä, Central Finland. All scoring work is delivered digitally worldwide.</p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>
+    <!-- CTA -->
   <div class="cta-block glass section-wrap">
     <h2>Bring your <span class="accent">story</span> to life.</h2>
     <p>
-      Whether you're producing an anime short, an animated film, or a live-action
-      short-film — let's build a score that makes the invisible visible. Share your
-      project and we'll find the music it has been waiting for.
+      Whether you are working from a finished picture or
+      a rough animatic that has not yet found its sound —
+      share what you have. The music can begin earlier
+      than you think.
     </p>
     <div class="btn-row">
       <a href="https://appmuse-isekai.com/contact.html" class="btn btn-primary">Start Your Project</a>
@@ -627,7 +776,7 @@
     <footer class="py-12 px-6 border-t border-white/10">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8">
-          <p class="font-signature text-2xl highlight-text">Creating musical magic, one note at a time</p>
+          <p class="font-signature text-2xl highlight-text">As in the ancient art of forging the sword and carving the stone,<br>So crafting requires patience and polishing.</p>
         </div>
         <div class="text-center mb-8">
           <p>
@@ -637,10 +786,21 @@
           </p>
         </div>
         <div class="text-center opacity-60 text-sm">
-          <p>&copy; 2025 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
+          <p>&copy; 2026 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
         </div>
       </div>
     </footer>
 
+      <script>
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        const answer = btn.nextElementSibling;
+        if (expanded) { answer.setAttribute('hidden', ''); }
+        else { answer.removeAttribute('hidden'); }
+      });
+    });
+    </script>
   </body>
 </html>

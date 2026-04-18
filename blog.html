@@ -5,14 +5,144 @@
     <link rel="icon" type="image/svg+xml" href="./vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog - AppMuse</title>
-    
+
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
-    
-    <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
-    <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
+
+
+    <style>
+      /* Category pills */
+      .category-pill {
+        display: inline-block;
+        font-size: 0.65rem;
+        font-weight: 600;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        padding: 0.2rem 0.7rem;
+        border-radius: 100px;
+        margin-bottom: 0.5rem;
+      }
+      .pill-musical {
+        color: #c084fc;
+        border: 1px solid rgba(192,132,252,0.35);
+        background: rgba(192,132,252,0.08);
+      }
+      .pill-non-musical {
+        color: #00e5ff;
+        border: 1px solid rgba(0,229,255,0.30);
+        background: rgba(0,229,255,0.07);
+      }
+      /* Tab filter bar */
+      .tab-filter-bar {
+        display: flex;
+        gap: 0.75rem;
+        margin-bottom: 2rem;
+        flex-wrap: wrap;
+      }
+      .tab-btn {
+        font-family: inherit;
+        font-size: 0.75rem;
+        font-weight: 600;
+        letter-spacing: 0.10em;
+        text-transform: uppercase;
+        padding: 0.5rem 1.4rem;
+        border-radius: 100px;
+        border: 1px solid rgba(255,255,255,0.15);
+        background: transparent;
+        color: rgba(255,255,255,0.55);
+        cursor: pointer;
+        transition: all 0.2s;
+      }
+      .tab-btn:hover {
+        border-color: rgba(192,132,252,0.45);
+        color: #c084fc;
+      }
+      .tab-btn.active {
+        background: rgba(192,132,252,0.12);
+        border-color: rgba(192,132,252,0.50);
+        color: #c084fc;
+      }
+      /* Sidebar collapsible */
+      .sidebar-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        background: none;
+        border: none;
+        cursor: pointer;
+        font-size: 1.1rem;
+        font-weight: 500;
+        color: inherit;
+        padding: 0;
+        font-family: inherit;
+        text-align: left;
+      }
+      .sidebar-toggle:hover { color: #c084fc; }
+      .sidebar-toggle[aria-expanded="true"] .toggle-icon {
+        transform: rotate(180deg);
+      }
+      .toggle-icon {
+        transition: transform 0.2s;
+        font-size: 0.75rem;
+        opacity: 0.7;
+      }
+      .sidebar-list {
+        margin-top: 1rem;
+      }
+
+      /* ── Sidebar label ── */
+      .sidebar-label {
+        font-size: 0.7rem !important;
+        font-weight: 600 !important;
+        text-transform: uppercase;
+        letter-spacing: 0.18em;
+        opacity: 0.6;
+        margin-bottom: 1.25rem;
+        display: block;
+      }
+
+      /* ── Accent bars on category toggles ── */
+      .sidebar-section[data-category="musical"] .sidebar-toggle {
+        border-left: 3px solid rgba(192,132,252,0.30);
+        padding-left: 0.75rem;
+      }
+      .sidebar-section[data-category="non-musical"] .sidebar-toggle {
+        border-left: 3px solid rgba(0,229,255,0.25);
+        padding-left: 0.75rem;
+      }
+
+      /* ── Expanded state ── */
+      .sidebar-section[data-category="musical"] .sidebar-toggle[aria-expanded="true"] {
+        border-left-color: #c084fc;
+        background: rgba(192,132,252,0.10);
+        border-radius: 0 8px 8px 0;
+        color: #c084fc;
+      }
+      .sidebar-section[data-category="non-musical"] .sidebar-toggle[aria-expanded="true"] {
+        border-left-color: #00e5ff;
+        background: rgba(0,229,255,0.07);
+        border-radius: 0 8px 8px 0;
+        color: #00e5ff;
+      }
+
+      /* ── Toggle icon accent colours ── */
+      .sidebar-section[data-category="musical"] .toggle-icon { color: #c084fc; }
+      .sidebar-section[data-category="non-musical"] .toggle-icon { color: #00e5ff; }
+
+      /* ── Article list: indent + muted date labels ── */
+      .sidebar-list .space-y-2 a { padding-left: 1rem; }
+      .sidebar-list h3,
+      .sidebar-list h4 {
+        font-size: 0.65rem !important;
+        opacity: 0.45 !important;
+        letter-spacing: 0.08em;
+      }
+    </style>
+    <script type="module" crossorigin src="./assets/main-CyMycWWt.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/main-C2G-mJNO.css">
   </head>
   <body class="font-didot min-h-screen">
     <!-- Navigation -->
@@ -20,8 +150,8 @@
       <div class="max-w-6xl mx-auto px-6 py-4 flex items-center justify-between">
         <!-- Logo -->
         <div class="flex items-center">
-          <img 
-            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png" 
+          <img
+            src="./assets/New%20Logo%20Centralised-min%20Circle-lBGMWQAg.png"
             alt="AppMuse Logo"
             class="logo-img logo-glow mr-2 logo-shift-left"
             style="max-width: 40px; height: auto;"
@@ -30,28 +160,29 @@
             AppMuse
           </a>
         </div>
-        
+
         <!-- Desktop Navigation -->
         <div class="hidden md:flex items-center space-x-8 desktop-nav">
           <div class="dropdown">
             <a href="#" class="nav-link">Music Production</a>
             <div class="dropdown-menu">
               <a href="/game-scoring.html">Game Scoring</a>
-              <a href="/anime-scoring.html">Anime/Animation Scoring</a>
+              <a href="/anime-scoring.html">Animation & Short-Film</a>
               <a href="https://appmuse-isekai.com/anime-scoring.html">Piano Accompaniment Track</a>
             </div>
           </div>
-          
+
           <div class="dropdown">
-            <a href="/education.html" class="nav-link">Education</a>
+            <a href="#" class="nav-link">Education</a>
             <div class="dropdown-menu">
+              <a href="/the-method.html">The Method</a>
               <a href="/composition-course.html">Composition Course</a>
               <a href="/piano-course.html">Piano Course</a>
               <a href="/hybrid-course.html">Hybrid</a>
               <a href="/blog.html">Blog</a>
             </div>
           </div>
-          
+
           <div class="dropdown">
             <a href="#" class="nav-link">Performance</a>
             <div class="dropdown-menu">
@@ -59,12 +190,12 @@
               <a href="/classical-performance.html">Classical Performance</a>
             </div>
           </div>
-          
+
           <a href="/pricing.html" class="nav-link">Pricing</a>
           <a href="/about.html" class="nav-link">About</a>
           <a href="/contact.html" class="nav-link">Contact</a>
         </div>
-        
+
         <!-- Theme Toggle & Language Switcher -->
         <div class="flex items-center space-x-4">
           <!-- Theme Toggle Button -->
@@ -76,7 +207,7 @@
               <path d="M9.528 1.718a.75.75 0 01.162.819A8.97 8.97 0 009 6a9 9 0 009 9 8.97 8.97 0 003.463-.69.75.75 0 01.981.98 10.503 10.503 0 01-9.694 6.46c-5.799 0-10.5-4.701-10.5-10.5 0-4.368 2.667-8.112 6.46-9.694a.75.75 0 01.818.162z"/>
             </svg>
           </button>
-          
+
           <!-- Language Switcher Dropdown -->
           <div class="dropdown">
             <button class="lang-dropdown-btn flex items-center space-x-1 text-sm">
@@ -94,7 +225,7 @@
             </div>
           </div>
         </div>
-        
+
 
       <!-- Mobile Menu Button -->
       <div class="hamburger md:hidden" id="mobile-menu-btn">
@@ -103,38 +234,39 @@
         <span></span>
       </div>
     </div>
-    
+
     <!-- Mobile Menu -->
     <div class="mobile-menu hidden mobile-nav">
       <div class="p-6 space-y-4">
         <div class="space-y-2">
           <div class="font-medium text-glow-blue">Music Production</div>
           <a href="/game-scoring.html" class="nav-link block pl-4">Game Scoring</a>
-          <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
+          <a href="/anime-scoring.html" class="nav-link block pl-4">Animation & Short-Film</a>
           <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
         </div>
-        
+
         <div class="space-y-2">
           <div class="font-medium text-glow-blue">Education</div>
+          <a href="/the-method.html" class="nav-link block pl-4">The Method</a>
           <a href="./composition-course.html" class="nav-link block pl-4">Composition Course</a>
           <a href="./piano-course.html" class="nav-link block pl-4">Piano Course</a>
           <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
           <a href="/blog.html" class="nav-link block pl-4">Blog</a>
         </div>
-        
+
         <div class="space-y-2">
           <div class="font-medium text-glow-blue">Performance</div>
           <a href="/ambiance-performance.html" class="nav-link block pl-4">Ambiance Piano Performance</a>
           <a href="/classical-performance.html" class="nav-link block pl-4">Classical Performance</a>
         </div>
-        
+
         <a href="/pricing.html" class="nav-link block">Pricing</a>
         <a href="/about.html" class="nav-link block">About</a>
         <a href="/contact.html" class="nav-link block">Contact</a>
       </div>
     </div>
   </nav>
-  
+
   <!-- Mobile Blog List Button - Now Vertical -->
   <button id="mobile-blog-list-btn" class="fixed z-40 md:hidden">
     <div class="flex flex-col items-center">
@@ -144,118 +276,227 @@
       <span class="vertical-text">Articles</span>
     </div>
   </button>
-  
+
   <!-- Mobile Blog List Panel -->
   <div id="mobile-blog-panel" class="fixed inset-y-0 left-0 z-50 w-80 bg-glass-dark backdrop-blur-lg border-r border-white/10 transform -translate-x-full transition-transform duration-300 md:hidden">
     <div class="flex items-center justify-between p-4 border-b border-white/10">
-      <h3 class="text-lg font-medium glow-title">Articles</h3>
+      <h3 class="glow-title sidebar-label">Articles</h3>
       <button id="close-blog-panel" class="p-2 hover:bg-white/10 rounded-lg transition-colors">
         <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
           <path d="M6 18L18 6M6 6l12 12" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>
         </svg>
       </button>
     </div>
-    
+
     <div class="p-4 overflow-y-auto h-full pb-20">
-      <!-- Mobile Article List Content -->
-      <div class="space-y-6">
-        <!-- 2025/08 -->
-        <div class="border-b border-white/10 pb-4">
-          <h4 class="text-sm font-medium text-glow-blue mb-3">2025/08</h4>
-          <div class="space-y-2">
-            <a href="/article-7.html" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-7">
-              Chord function- I
-            </a>
+      <div class="space-y-4">
+
+        <!-- Musical Articles collapsible -->
+        <div class="sidebar-section" data-category="musical">
+          <button class="sidebar-toggle" aria-expanded="false">
+            Musical Articles
+            <span class="toggle-icon">▾</span>
+          </button>
+          <div class="sidebar-list" hidden>
+            <div class="space-y-6 mt-2">
+              <!-- 2025/08 -->
+              <div class="border-b border-white/10 pb-4">
+                <h4 class="text-sm font-medium text-glow-blue mb-3">2025/08</h4>
+                <div class="space-y-2">
+                  <a href="/article-7.html" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-7">
+                    Chord function- I
+                  </a>
+                </div>
+              </div>
+              <!-- 2025/01 -->
+              <div class="border-b border-white/10 pb-4">
+                <h4 class="text-sm font-medium text-glow-blue mb-3">2025/01</h4>
+                <div class="space-y-2">
+                  <a href="#article-1" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-1">
+                    The Art of Isekai Music Composition
+                  </a>
+                  <a href="#article-2" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-2">
+                    Piano Techniques for Game Scoring
+                  </a>
+                  <a href="#article-3" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-3">
+                    Emotional Storytelling Through Music
+                  </a>
+                </div>
+              </div>
+              <!-- 2024/12 -->
+              <div class="border-b border-white/10 pb-4">
+                <h4 class="text-sm font-medium text-glow-blue mb-3">2024/12</h4>
+                <div class="space-y-2">
+                  <a href="#article-4" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-4">
+                    Classical Foundations for Modern Composers
+                  </a>
+                  <a href="#article-5" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-5">
+                    The Philosophy of Musical Expression
+                  </a>
+                  <a href="#article-6" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-6">
+                    Performance Tips for Ambiance Piano
+                  </a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <!-- 2025/01 -->
-        <div class="border-b border-white/10 pb-4">
-          <h4 class="text-sm font-medium text-glow-blue mb-3">2025/01</h4>
-          <div class="space-y-2">
-            <a href="#article-1" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-1">
-              The Art of Isekai Music Composition
-            </a>
-            <a href="#article-2" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-2">
-              Piano Techniques for Game Scoring
-            </a>
-            <a href="#article-3" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-3">
-              Emotional Storytelling Through Music
-            </a>
+
+        <!-- Non-Musical Articles collapsible -->
+        <div class="sidebar-section" data-category="non-musical" style="margin-top:1.5rem">
+          <button class="sidebar-toggle" aria-expanded="false">
+            Non-Musical Articles
+            <span class="toggle-icon">▾</span>
+          </button>
+          <div class="sidebar-list" hidden>
+            <div class="space-y-6 mt-2">
+              <!-- 2026/04 -->
+              <div class="border-b border-white/10 pb-4">
+                <h4 class="text-sm font-medium text-glow-blue mb-3">2026/04</h4>
+                <div class="space-y-2">
+                  <a href="#article-ostentation" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-ostentation">Ostentation</a>
+                </div>
+              </div>
+              <!-- 2026/03 -->
+              <div class="border-b border-white/10 pb-4">
+                <h4 class="text-sm font-medium text-glow-blue mb-3">2026/03</h4>
+                <div class="space-y-2">
+                  <a href="#article-supermarche" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-supermarche">Supermarché, Caisses en Libre-Service, Offrir du « Vide »</a>
+                  <a href="#article-soustraction-vide" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-soustraction-vide">Soustraction, vide</a>
+                  <a href="#article-se-brosser-les-dents" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-se-brosser-les-dents">Se brosser les dents</a>
+                </div>
+              </div>
+              <!-- 2026/02 -->
+              <div class="border-b border-white/10 pb-4">
+                <h4 class="text-sm font-medium text-glow-blue mb-3">2026/02</h4>
+                <div class="space-y-2">
+                  <a href="#article-plus-vite" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-plus-vite">Plus vite ? Moins de temps perdu ?</a>
+                  <a href="#article-par-defaut" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-par-defaut">Par défaut, et ce qui se trouve derrière</a>
+                </div>
+              </div>
+              <!-- 2026/01 -->
+              <div class="border-b border-white/10 pb-4">
+                <h4 class="text-sm font-medium text-glow-blue mb-3">2026/01</h4>
+                <div class="space-y-2">
+                  <a href="#article-meditation-i" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-meditation-i">Méditation - I</a>
+                  <a href="#article-actualiser-la-page" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-actualiser-la-page">Actualiser la page, ou affronter le problème</a>
+                </div>
+              </div>
+            </div>
           </div>
         </div>
-        
-        <!-- 2024/12 -->
-        <div class="border-b border-white/10 pb-4">
-          <h4 class="text-sm font-medium text-glow-blue mb-3">2024/12</h4>
-          <div class="space-y-2">
-            <a href="#article-4" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-4">
-              Classical Foundations for Modern Composers
-            </a>
-            <a href="#article-5" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-5">
-              The Philosophy of Musical Expression
-            </a>
-            <a href="#article-6" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-6">
-              Performance Tips for Ambiance Piano
-            </a>
-          </div>
-        </div>
+
       </div>
     </div>
   </div>
-  
+
   <!-- Mobile Panel Overlay -->
   <div id="mobile-panel-overlay" class="fixed inset-0 bg-black/50 z-40 opacity-0 pointer-events-none transition-opacity duration-300 md:hidden"></div>
-  
+
   <!-- Main Content -->
   <div class="flex min-h-screen pt-20">
     <!-- Desktop Sidebar -->
     <aside class="hidden md:block w-80 p-6 border-r border-white/10 bg-glass-dark backdrop-blur-sm">
       <div class="sticky top-24">
-        <h2 class="text-xl font-medium mb-6 glow-title">Articles</h2>
-        
-        <div class="space-y-6">
-          <!-- 2025/08 -->
-          <div class="border-b border-white/10 pb-4">
-            <h3 class="text-sm font-medium text-glow-blue mb-3">2025/08</h3>
-            <div class="space-y-2">
-              <a href="/article-7.html" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-7">
-                Chord function- I
-              </a>
+        <h2 class="glow-title sidebar-label">Articles</h2>
+
+        <div class="space-y-4">
+
+          <!-- Musical Articles collapsible -->
+          <div class="sidebar-section" data-category="musical">
+            <button class="sidebar-toggle" aria-expanded="false">
+              Musical Articles
+              <span class="toggle-icon">▾</span>
+            </button>
+            <div class="sidebar-list" hidden>
+              <div class="space-y-6 mt-2">
+                <!-- 2025/08 -->
+                <div class="border-b border-white/10 pb-4">
+                  <h3 class="text-sm font-medium text-glow-blue mb-3">2025/08</h3>
+                  <div class="space-y-2">
+                    <a href="/article-7.html" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-7">
+                      Chord function- I
+                    </a>
+                  </div>
+                </div>
+                <!-- 2025/01 -->
+                <div class="border-b border-white/10 pb-4">
+                  <h3 class="text-sm font-medium text-glow-blue mb-3">2025/01</h3>
+                  <div class="space-y-2">
+                    <a href="#article-1" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-1">
+                      The Art of Isekai Music Composition
+                    </a>
+                    <a href="#article-2" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-2">
+                      Piano Techniques for Game Scoring
+                    </a>
+                    <a href="#article-3" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-3">
+                      Emotional Storytelling Through Music
+                    </a>
+                  </div>
+                </div>
+                <!-- 2024/12 -->
+                <div class="border-b border-white/10 pb-4">
+                  <h3 class="text-sm font-medium text-glow-blue mb-3">2024/12</h3>
+                  <div class="space-y-2">
+                    <a href="#article-4" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-4">
+                      Classical Foundations for Modern Composers
+                    </a>
+                    <a href="#article-5" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-5">
+                      The Philosophy of Musical Expression
+                    </a>
+                    <a href="#article-6" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-6">
+                      Performance Tips for Ambiance Piano
+                    </a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          
-          <!-- 2025/01 -->
-          <div class="border-b border-white/10 pb-4">
-            <h3 class="text-sm font-medium text-glow-blue mb-3">2025/01</h3>
-            <div class="space-y-2">
-              <a href="#article-1" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-1">
-                The Art of Isekai Music Composition
-              </a>
-              <a href="#article-2" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-2">
-                Piano Techniques for Game Scoring
-              </a>
-              <a href="#article-3" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-3">
-                Emotional Storytelling Through Music
-              </a>
+
+          <!-- Non-Musical Articles collapsible -->
+          <div class="sidebar-section" data-category="non-musical" style="margin-top:1.5rem">
+            <button class="sidebar-toggle" aria-expanded="false">
+              Non-Musical Articles
+              <span class="toggle-icon">▾</span>
+            </button>
+            <div class="sidebar-list" hidden>
+              <div class="space-y-6 mt-2">
+                <!-- 2026/04 -->
+                <div class="border-b border-white/10 pb-4">
+                  <h3 class="text-sm font-medium text-glow-blue mb-3">2026/04</h3>
+                  <div class="space-y-2">
+                    <a href="#article-ostentation" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-ostentation">Ostentation</a>
+                  </div>
+                </div>
+                <!-- 2026/03 -->
+                <div class="border-b border-white/10 pb-4">
+                  <h3 class="text-sm font-medium text-glow-blue mb-3">2026/03</h3>
+                  <div class="space-y-2">
+                    <a href="#article-supermarche" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-supermarche">Supermarché, Caisses en Libre-Service, Offrir du « Vide »</a>
+                    <a href="#article-soustraction-vide" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-soustraction-vide">Soustraction, vide</a>
+                    <a href="#article-se-brosser-les-dents" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-se-brosser-les-dents">Se brosser les dents</a>
+                  </div>
+                </div>
+                <!-- 2026/02 -->
+                <div class="border-b border-white/10 pb-4">
+                  <h3 class="text-sm font-medium text-glow-blue mb-3">2026/02</h3>
+                  <div class="space-y-2">
+                    <a href="#article-plus-vite" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-plus-vite">Plus vite ? Moins de temps perdu ?</a>
+                    <a href="#article-par-defaut" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-par-defaut">Par défaut, et ce qui se trouve derrière</a>
+                  </div>
+                </div>
+                <!-- 2026/01 -->
+                <div class="border-b border-white/10 pb-4">
+                  <h3 class="text-sm font-medium text-glow-blue mb-3">2026/01</h3>
+                  <div class="space-y-2">
+                    <a href="#article-meditation-i" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-meditation-i">Méditation - I</a>
+                    <a href="#article-actualiser-la-page" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-actualiser-la-page">Actualiser la page, ou affronter le problème</a>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
-          
-          <!-- 2024/12 -->
-          <div class="border-b border-white/10 pb-4">
-            <h3 class="text-sm font-medium text-glow-blue mb-3">2024/12</h3>
-            <div class="space-y-2">
-              <a href="#article-4" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-4">
-                Classical Foundations for Modern Composers
-              </a>
-              <a href="#article-5" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-5">
-                The Philosophy of Musical Expression
-              </a>
-              <a href="#article-6" class="block text-sm opacity-80 hover:opacity-100 hover:text-glow-blue transition-all duration-200 article-link" data-article="article-6">
-                Performance Tips for Ambiance Piano
-              </a>
-            </div>
-          </div>
+
         </div>
       </div>
     </aside>
@@ -266,23 +507,176 @@
           <!-- Hero Section -->
           <div class="text-center mb-16 fade-in-element">
             <h1 class="text-5xl md:text-6xl font-didot font-medium mb-6">
-              Musical <span class="glow-title">Blog</span>
+              <span class="glow-title">Blog</span>
             </h1>
             <p class="text-xl md:text-2xl opacity-80 leading-relaxed max-w-3xl mx-auto">
               Insights, tutorials, and stories from the world of musical composition and performance.
             </p>
           </div>
 
+          <!-- Tab Filter Bar -->
+          <div class="tab-filter-bar">
+            <button class="tab-btn active" data-filter="all">All</button>
+            <button class="tab-btn" data-filter="musical">Musical Articles</button>
+            <button class="tab-btn" data-filter="non-musical">Non-Musical Articles</button>
+          </div>
+
           <!-- Blog Posts Grid -->
           <div class="grid md:grid-cols-2 lg:grid-cols-2 gap-8 fade-in-element">
-            <!-- Blog Post 7 - New Article -->
-            <article id="article-7" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+
+            <!-- Non-Musical: Supermarché — March 30, 2026 -->
+            <article id="article-supermarche" data-category="non-musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <a href="/supermarche.html" class="block">
+                <div class="mb-4">
+                  <img src="./articles/images/supermarche/hero.png" alt="Supermarché" class="w-full h-48 object-cover rounded-lg opacity-80">
+                </div>
+                <div class="space-y-3">
+                  <div class="text-sm opacity-60">March 30, 2026</div>
+                  <span class="category-pill pill-non-musical">Non-Musical</span>
+                  <h3 class="text-xl font-medium glow-title">Supermarché, Caisses en Libre-Service, Offrir du « Vide »</h3>
+                  <p class="opacity-80 text-sm leading-relaxed">
+                    On oublie souvent son propre besoin de « vide ».
+                  </p>
+                  <span class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</span>
+                </div>
+              </a>
+            </article>
+
+            <!-- Non-Musical: Soustraction, vide — March 17, 2026 -->
+            <article id="article-soustraction-vide" data-category="non-musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <a href="/soustraction-vide.html" class="block">
+                <div class="mb-4">
+                  <img src="./articles/images/soustraction-vide/hero.png" alt="Soustraction, vide" class="w-full h-48 object-cover rounded-lg opacity-80">
+                </div>
+                <div class="space-y-3">
+                  <div class="text-sm opacity-60">March 17, 2026</div>
+                  <span class="category-pill pill-non-musical">Non-Musical</span>
+                  <h3 class="text-xl font-medium glow-title">Soustraction, vide</h3>
+                  <p class="opacity-80 text-sm leading-relaxed">
+                    Il ne s'agit pas de ce qui est présent, mais plutôt de ce qui fait défaut.
+                  </p>
+                  <span class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</span>
+                </div>
+              </a>
+            </article>
+
+            <!-- Non-Musical: Se brosser les dents — March 3, 2026 -->
+            <article id="article-se-brosser-les-dents" data-category="non-musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <a href="/se-brosser-les-dents.html" class="block">
+                <div class="mb-4">
+                  <img src="./articles/images/se-brosser-les-dents/hero.png" alt="Se brosser les dents" class="w-full h-48 object-cover rounded-lg opacity-80">
+                </div>
+                <div class="space-y-3">
+                  <div class="text-sm opacity-60">March 3, 2026</div>
+                  <span class="category-pill pill-non-musical">Non-Musical</span>
+                  <h3 class="text-xl font-medium glow-title">Se brosser les dents</h3>
+                  <p class="opacity-80 text-sm leading-relaxed">
+                    Remercier l'élan, mais ne pas en dépendre.
+                  </p>
+                  <span class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</span>
+                </div>
+              </a>
+            </article>
+
+            <!-- Non-Musical: Plus vite — Feb 17, 2026 -->
+            <article id="article-plus-vite" data-category="non-musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <a href="/plus-vite.html" class="block">
+                <div class="mb-4">
+                  <img src="./articles/images/plus-vite/hero.png" alt="Plus vite ? Moins de temps perdu ?" class="w-full h-48 object-cover rounded-lg opacity-80">
+                </div>
+                <div class="space-y-3">
+                  <div class="text-sm opacity-60">February 17, 2026</div>
+                  <span class="category-pill pill-non-musical">Non-Musical</span>
+                  <h3 class="text-xl font-medium glow-title">Plus vite ? Moins de temps perdu ?</h3>
+                  <p class="opacity-80 text-sm leading-relaxed">
+                    L'humanité, qui a longtemps rêvé de conquérir le ciel, en maîtrise enfin la technique au XXIᵉ siècle.
+                  </p>
+                  <span class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</span>
+                </div>
+              </a>
+            </article>
+
+            <!-- Non-Musical: Par défaut — Feb 3, 2026 -->
+            <article id="article-par-defaut" data-category="non-musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <a href="/par-defaut.html" class="block">
+                <div class="mb-4">
+                  <img src="./articles/images/par-defaut/hero.png" alt="Par défaut, et ce qui se trouve derrière" class="w-full h-48 object-cover rounded-lg opacity-80">
+                </div>
+                <div class="space-y-3">
+                  <div class="text-sm opacity-60">February 3, 2026</div>
+                  <span class="category-pill pill-non-musical">Non-Musical</span>
+                  <h3 class="text-xl font-medium glow-title">Par défaut, et ce qui se trouve derrière</h3>
+                  <p class="opacity-80 text-sm leading-relaxed">
+                    Simplement, beaucoup d'entre eux sont remis au « Default ».
+                  </p>
+                  <span class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</span>
+                </div>
+              </a>
+            </article>
+
+            <!-- Non-Musical: Méditation - I — Jan 20, 2026 -->
+            <article id="article-meditation-i" data-category="non-musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <a href="/meditation-i.html" class="block">
+                <div class="mb-4">
+                  <img src="./articles/images/meditation-i/hero.png" alt="Méditation - I" class="w-full h-48 object-cover rounded-lg opacity-80">
+                </div>
+                <div class="space-y-3">
+                  <div class="text-sm opacity-60">January 20, 2026</div>
+                  <span class="category-pill pill-non-musical">Non-Musical</span>
+                  <h3 class="text-xl font-medium glow-title">Méditation - I</h3>
+                  <p class="opacity-80 text-sm leading-relaxed">
+                    Au début, le regard sera attiré par les voitures, mais il faut le ramener vers la tasse.
+                  </p>
+                  <span class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</span>
+                </div>
+              </a>
+            </article>
+
+            <!-- Non-Musical: Actualiser la page — Jan 6, 2026 -->
+            <article id="article-actualiser-la-page" data-category="non-musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <a href="/actualiser-la-page.html" class="block">
+                <div class="mb-4">
+                  <img src="./articles/images/actualiser-la-page/hero.png" alt="Actualiser la page, ou affronter le problème" class="w-full h-48 object-cover rounded-lg opacity-80">
+                </div>
+                <div class="space-y-3">
+                  <div class="text-sm opacity-60">January 6, 2026</div>
+                  <span class="category-pill pill-non-musical">Non-Musical</span>
+                  <h3 class="text-xl font-medium glow-title">Actualiser la page, ou affronter le problème</h3>
+                  <p class="opacity-80 text-sm leading-relaxed">
+                    Jusqu'au moment où « un moustique se pose sur son propre visage »,
+                  </p>
+                  <span class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</span>
+                </div>
+              </a>
+            </article>
+
+            <!-- Non-Musical: Ostentation -->
+            <article id="article-ostentation" data-category="non-musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+              <a href="/article-ostentation.html" class="block">
+                <div class="mb-4">
+                  <img src="./assets/ostentation-thumbnail-DuEL7--I.png" alt="Ostentation" class="w-full h-48 object-cover rounded-lg opacity-80">
+                </div>
+                <div class="space-y-3">
+                  <div class="text-sm opacity-60">April 1, 2026</div>
+                  <span class="category-pill pill-non-musical">Non-Musical</span>
+                  <h3 class="text-xl font-medium glow-title">Ostentation</h3>
+                  <p class="opacity-80 text-sm leading-relaxed">
+                    Épices, sucre et sel furent longtemps des biens de luxe — ce que l'on exhibe révèle ce que l'on croit valoir.
+                  </p>
+                  <span class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</span>
+                </div>
+              </a>
+            </article>
+
+            <!-- Blog Post 7 - Chord Function- I -->
+            <article id="article-7" data-category="musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
               <a href="/article-7.html" class="block">
                 <div class="mb-4">
-                  <img src="./assets/Img-chord-function-I-min-DiSGjrN5.jpg" alt="Chord Function- I" class="w-full h-48 object-cover rounded-lg opacity-80">
+                  <img src="./assets/forging%20the%20sword-Cgv4hXMT.png" alt="AppMuse — forging the craft" class="w-full h-48 object-cover rounded-lg opacity-80">
                 </div>
                 <div class="space-y-3">
                   <div class="text-sm opacity-60">August 23, 2025</div>
+                  <span class="category-pill pill-musical">Musical</span>
                   <h3 class="text-xl font-medium glow-title">Chord Function- I</h3>
                   <p class="opacity-80 text-sm leading-relaxed">
                     Understanding the fundamental principles of chord progressions and how they create the harmonic foundation of music composition.
@@ -293,12 +687,13 @@
             </article>
 
             <!-- Blog Post 1 -->
-            <article id="article-1" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+            <article id="article-1" data-category="musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
               <div class="mb-4">
-                <img src="https://images.pexels.com/photos/164821/pexels-photo-164821.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Piano composition" class="w-full h-48 object-cover rounded-lg opacity-80">
+                <img src="./assets/forging%20the%20sword-Cgv4hXMT.png" alt="AppMuse — forging the craft" class="w-full h-48 object-cover rounded-lg opacity-80">
               </div>
               <div class="space-y-3">
                 <div class="text-sm opacity-60">January 15, 2025</div>
+                <span class="category-pill pill-musical">Musical</span>
                 <h3 class="text-xl font-medium glow-title">The Art of Isekai Music Composition</h3>
                 <p class="opacity-80 text-sm leading-relaxed">
                   Exploring how to create musical landscapes that transport listeners to otherworldly realms through piano composition and arrangement techniques.
@@ -308,12 +703,13 @@
             </article>
 
             <!-- Blog Post 2 -->
-            <article id="article-2" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+            <article id="article-2" data-category="musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
               <div class="mb-4">
-                <img src="https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Game music production" class="w-full h-48 object-cover rounded-lg opacity-80">
+                <img src="./assets/forging%20the%20sword-Cgv4hXMT.png" alt="AppMuse — forging the craft" class="w-full h-48 object-cover rounded-lg opacity-80">
               </div>
               <div class="space-y-3">
                 <div class="text-sm opacity-60">January 10, 2025</div>
+                <span class="category-pill pill-musical">Musical</span>
                 <h3 class="text-xl font-medium glow-title">Piano Techniques for Game Scoring</h3>
                 <p class="opacity-80 text-sm leading-relaxed">
                   Learn essential piano techniques and compositional approaches for creating memorable video game soundtracks that enhance gameplay experience.
@@ -323,12 +719,13 @@
             </article>
 
             <!-- Blog Post 3 -->
-            <article id="article-3" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+            <article id="article-3" data-category="musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
               <div class="mb-4">
-                <img src="https://images.pexels.com/photos/1246437/pexels-photo-1246437.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Emotional music" class="w-full h-48 object-cover rounded-lg opacity-80">
+                <img src="./assets/forging%20the%20sword-Cgv4hXMT.png" alt="AppMuse — forging the craft" class="w-full h-48 object-cover rounded-lg opacity-80">
               </div>
               <div class="space-y-3">
                 <div class="text-sm opacity-60">January 5, 2025</div>
+                <span class="category-pill pill-musical">Musical</span>
                 <h3 class="text-xl font-medium glow-title">Emotional Storytelling Through Music</h3>
                 <p class="opacity-80 text-sm leading-relaxed">
                   Discover how to weave emotional narratives into your compositions, creating music that speaks directly to the listener's heart and imagination.
@@ -338,12 +735,13 @@
             </article>
 
             <!-- Blog Post 4 -->
-            <article id="article-4" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+            <article id="article-4" data-category="musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
               <div class="mb-4">
-                <img src="https://images.pexels.com/photos/1407354/pexels-photo-1407354.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Classical music" class="w-full h-48 object-cover rounded-lg opacity-80">
+                <img src="./assets/forging%20the%20sword-Cgv4hXMT.png" alt="AppMuse — forging the craft" class="w-full h-48 object-cover rounded-lg opacity-80">
               </div>
               <div class="space-y-3">
                 <div class="text-sm opacity-60">December 28, 2024</div>
+                <span class="category-pill pill-musical">Musical</span>
                 <h3 class="text-xl font-medium glow-title">Classical Foundations for Modern Composers</h3>
                 <p class="opacity-80 text-sm leading-relaxed">
                   Understanding classical music theory and how it applies to contemporary composition, bridging traditional techniques with modern creativity.
@@ -353,12 +751,13 @@
             </article>
 
             <!-- Blog Post 5 -->
-            <article id="article-5" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+            <article id="article-5" data-category="musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
               <div class="mb-4">
-                <img src="https://images.pexels.com/photos/1751731/pexels-photo-1751731.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Musical philosophy" class="w-full h-48 object-cover rounded-lg opacity-80">
+                <img src="./assets/forging%20the%20sword-Cgv4hXMT.png" alt="AppMuse — forging the craft" class="w-full h-48 object-cover rounded-lg opacity-80">
               </div>
               <div class="space-y-3">
                 <div class="text-sm opacity-60">December 20, 2024</div>
+                <span class="category-pill pill-musical">Musical</span>
                 <h3 class="text-xl font-medium glow-title">The Philosophy of Musical Expression</h3>
                 <p class="opacity-80 text-sm leading-relaxed">
                   Exploring the deeper meaning behind musical creation and how composers can infuse their personal philosophy into their artistic works.
@@ -368,12 +767,13 @@
             </article>
 
             <!-- Blog Post 6 -->
-            <article id="article-6" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
+            <article id="article-6" data-category="musical" class="glass-card p-6 cursor-pointer hover:bg-white/[0.08] transition-all duration-300 article-card">
               <div class="mb-4">
-                <img src="https://images.pexels.com/photos/1407322/pexels-photo-1407322.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Ambiance piano" class="w-full h-48 object-cover rounded-lg opacity-80">
+                <img src="./assets/forging%20the%20sword-Cgv4hXMT.png" alt="AppMuse — forging the craft" class="w-full h-48 object-cover rounded-lg opacity-80">
               </div>
               <div class="space-y-3">
                 <div class="text-sm opacity-60">December 15, 2024</div>
+                <span class="category-pill pill-musical">Musical</span>
                 <h3 class="text-xl font-medium glow-title">Performance Tips for Ambiance Piano</h3>
                 <p class="opacity-80 text-sm leading-relaxed">
                   Master the art of creating atmospheric piano performances that enhance dining experiences and create memorable ambient soundscapes.
@@ -381,6 +781,7 @@
                 <a href="#" class="text-glow-blue text-sm hover:opacity-80 transition-opacity">Read More →</a>
               </div>
             </article>
+
           </div>
 
           <!-- Newsletter Signup -->
@@ -389,10 +790,10 @@
             <p class="opacity-80 mb-6">Subscribe to receive our latest blog posts and musical insights directly in your inbox.</p>
             <form action="https://formspree.io/f/your-id" method="POST" class="max-w-md mx-auto">
               <div class="flex gap-3">
-                <input 
-                  type="email" 
-                  name="email" 
-                  placeholder="Enter your email address" 
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Enter your email address"
                   class="input-field flex-1"
                   required
                 >
@@ -408,7 +809,7 @@
     <footer class="py-12 px-6 border-t border-white/10">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8">
-          <p class="font-signature text-2xl highlight-text">Creating musical magic, one note at a time</p>
+          <p class="font-signature text-2xl highlight-text">As in the ancient art of forging the sword and carving the stone,<br>So crafting requires patience and polishing.</p>
         </div>
         <div class="text-center mb-8">
           <p>
@@ -418,10 +819,48 @@
           </p>
         </div>
         <div class="text-center opacity-60 text-sm">
-          <p>&copy; 2025 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
+          <p>&copy; 2026 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
         </div>
       </div>
     </footer>
 
+    <script>
+      (function () {
+        // Tab filter
+        const tabBtns = document.querySelectorAll('.tab-btn');
+        const cards = document.querySelectorAll('[data-category]');
+
+        tabBtns.forEach(btn => {
+          btn.addEventListener('click', () => {
+            tabBtns.forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+
+            const filter = btn.dataset.filter;
+            cards.forEach(card => {
+              if (filter === 'all' || card.dataset.category === filter) {
+                card.style.display = '';
+              } else {
+                card.style.display = 'none';
+              }
+            });
+          });
+        });
+
+        // Sidebar & mobile panel collapsible toggles
+        const toggles = document.querySelectorAll('.sidebar-toggle');
+        toggles.forEach(toggle => {
+          toggle.addEventListener('click', () => {
+            const list = toggle.nextElementSibling;
+            const expanded = toggle.getAttribute('aria-expanded') === 'true';
+            toggle.setAttribute('aria-expanded', String(!expanded));
+            if (expanded) {
+              list.setAttribute('hidden', '');
+            } else {
+              list.removeAttribute('hidden');
+            }
+          });
+        });
+      })();
+    </script>
   </body>
 </html>

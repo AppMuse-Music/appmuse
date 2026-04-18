@@ -3,8 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Hybrid Course — AppMuse</title>
-  <meta name="description" content="Where Worlds Converge — Piano, Composition, and Arrangement taught as one integrated practice. For students who want to compose across traditions: classical, anime, game music, and beyond." />
+  <title>Hybrid Course — Piano, Composition & Arrangement | AppMuse Jyväskylä</title>
+  <meta name="description" content="An integrated course combining piano technique, composition, and arrangement. From Handel to Hisaishi — for students in Jyväskylä and online worldwide." />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Great+Vibes&display=swap" rel="stylesheet" />
@@ -365,6 +365,36 @@
       .bridges-row { flex-direction: column; gap: 0; }
       .bridge-arrow { transform: rotate(90deg); }
     }
+  
+    /* ── FAQ ── */
+    .faq-section { padding: 4rem 2rem; }
+    .faq-list { max-width: 860px; margin: 0 auto; display: flex; flex-direction: column; gap: 0.75rem; }
+    .faq-item { border-radius: 14px; overflow: hidden; }
+    .faq-question {
+      width: 100%; display: flex; align-items: center;
+      justify-content: space-between;
+      background: none; border: none; cursor: pointer;
+      font-family: 'Cinzel', serif; font-size: 0.88rem;
+      font-weight: 600; letter-spacing: 0.05em;
+      color: var(--text); text-align: left;
+      padding: 1.25rem 1.5rem;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--cyan); }
+    .faq-question[aria-expanded="true"] { color: var(--lav); }
+    .faq-icon {
+      font-size: 1.2rem; flex-shrink: 0; margin-left: 1rem;
+      transition: transform 0.25s; color: var(--lav);
+    }
+    .faq-question[aria-expanded="true"] .faq-icon { transform: rotate(45deg); }
+    .faq-answer {
+      padding: 0 1.5rem 1.25rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-size: 1.05rem; color: var(--text-muted);
+      line-height: 1.8; font-weight: 300;
+    }
+    .faq-answer p { margin-bottom: 0.75rem; }
+    .faq-answer p:last-child { margin-bottom: 0; }
   </style>
   <style>
     /* nav compat: site nav uses .dropdown as a visible flex wrapper, not a hidden panel */
@@ -391,8 +421,8 @@ h1, h2, h3 {
 }
   
   </style>
-  <script type="module" crossorigin src="./assets/main-iYeSm7qV.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/main-gbnUSyAU.css">
+  <script type="module" crossorigin src="./assets/main-CyMycWWt.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/main-C2G-mJNO.css">
 </head>
 <body>
 
@@ -418,14 +448,15 @@ h1, h2, h3 {
             <a href="#" class="nav-link">Music Production</a>
             <div class="dropdown-menu">
               <a href="/game-scoring.html">Game Scoring</a>
-              <a href="/anime-scoring.html">Anime/Animation Scoring</a>
+              <a href="/anime-scoring.html">Animation & Short-Film</a>
               <a href="https://appmuse-isekai.com/anime-scoring.html">Piano Accompaniment Track</a>
             </div>
           </div>
 
           <div class="dropdown">
-            <a href="./education.html" class="nav-link">Education</a>
+            <a href="#" class="nav-link">Education</a>
             <div class="dropdown-menu">
+              <a href="/the-method.html">The Method</a>
               <a href="./composition-course.html">Composition Course</a>
               <a href="./piano-course.html">Piano Course</a>
               <a href="./hybrid-course.html">Hybrid</a>
@@ -491,12 +522,13 @@ h1, h2, h3 {
         <div class="space-y-2">
           <div class="font-medium text-glow-blue">Music Production</div>
           <a href="/game-scoring.html" class="nav-link block pl-4">Game Scoring</a>
-          <a href="/anime-scoring.html" class="nav-link block pl-4">Anime/Animation Scoring</a>
+          <a href="/anime-scoring.html" class="nav-link block pl-4">Animation & Short-Film</a>
           <a href="https://appmuse-isekai.com/anime-scoring.html" class="nav-link block pl-4">Piano Accompaniment Track</a>
         </div>
 
         <div class="space-y-2">
           <div class="font-medium text-glow-blue">Education</div>
+          <a href="/the-method.html" class="nav-link block pl-4">The Method</a>
           <a href="./composition-course.html" class="nav-link block pl-4">Composition Course</a>
           <a href="./piano-course.html" class="nav-link block pl-4">Piano Course</a>
           <a href="./hybrid-course.html" class="nav-link block pl-4">Hybrid</a>
@@ -714,6 +746,69 @@ h1, h2, h3 {
       </div>
     </section>
 
+    
+    <!-- FAQ -->
+    <section class="faq-section">
+      <div class="container" style="max-width:900px;margin:0 auto;padding:0 1.5rem">
+        <h2 class="section-title fade-in">Frequently Asked Questions</h2>
+        <div class="faq-list">
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Who is the Hybrid Course designed for?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Students who feel their musical ambitions do not fit neatly into one category. If you want to play Chopin and compose your own anime-inspired piece and understand why the Dorian mode sounds the way it does — this is the course. It is for people who find the artificial separation between "technique" and "creativity" frustrating.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          How is one 70-minute session structured across three disciplines?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>It is not divided into segments — piano technique, compositional thinking, and arrangement craft are woven into a continuous session. A technical problem in a Chopin étude becomes a gateway to harmonic analysis; a compositional question leads back to a physical solution at the keyboard. The disciplines illuminate each other.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Is this course suitable for beginners?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>The Hybrid Course works best for students who have some foundation — either in piano technique or in music theory, but not necessarily both. A complete beginner may find it more productive to start with the Piano Course for two or three months first, then transition. We discuss this during an initial consultation.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Can I use this course to develop skills for game or anime scoring?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Yes — this is explicitly part of what the Hybrid Course covers. I compose professionally in those genres, and the curriculum draws directly from that work. You will study the same harmonic and compositional tools I use in my own scoring practice.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          How does the MDA framework apply to the teaching?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>In the Hybrid Course I use the MDA framework — Mechanics, Dynamics, Aesthetics — as a way of understanding what practice is actually for. The Aesthetic is the lighthouse: the emotional destination, the feeling a piece should create. The Mechanics (technique, fingering, timing) are in service of that destination. Keeping the Aesthetic in view prevents practice from becoming mechanical.</p>
+        </div>
+      </div>
+      <div class="faq-item glass">
+        <button class="faq-question" aria-expanded="false">
+          Are sessions available in Jyväskylä or only online?
+          <span class="faq-icon">+</span>
+        </button>
+        <div class="faq-answer" hidden>
+          <p>Both. In-person sessions are available in Jyväskylä. Online sessions are available worldwide. Materials are delivered digitally before each session regardless of format.</p>
+        </div>
+      </div>
+        </div>
+      </div>
+    </section>
     <!-- CTA -->
     <section class="cta-section">
       <div class="container">
@@ -734,7 +829,7 @@ h1, h2, h3 {
     <footer class="py-12 px-6 border-t border-white/10">
       <div class="max-w-4xl mx-auto">
         <div class="text-center mb-8">
-          <p class="font-signature text-2xl highlight-text">Creating musical magic, one note at a time</p>
+          <p class="font-signature text-2xl highlight-text">As in the ancient art of forging the sword and carving the stone,<br>So crafting requires patience and polishing.</p>
         </div>
         <div class="text-center mb-8">
           <p>
@@ -744,7 +839,7 @@ h1, h2, h3 {
           </p>
         </div>
         <div class="text-center opacity-60 text-sm">
-          <p>&copy; 2025 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
+          <p>&copy; 2026 AppMuse. All rights reserved. | <a href="#" class="hover:text-glow-blue transition-colors">Privacy Policy</a></p>
         </div>
       </div>
     </footer>
@@ -756,7 +851,17 @@ h1, h2, h3 {
       });
     }, { threshold: 0.12 });
     document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
-  </script>
+  
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const expanded = btn.getAttribute('aria-expanded') === 'true';
+        btn.setAttribute('aria-expanded', String(!expanded));
+        const answer = btn.nextElementSibling;
+        if (expanded) { answer.setAttribute('hidden', ''); }
+        else { answer.removeAttribute('hidden'); }
+      });
+    });
+</script>
 
 </body>
 </html>
