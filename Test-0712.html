@@ -1,0 +1,234 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AppMuse — Page</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=Cinzel:wght@400;600&family=Great+Vibes&display=swap" rel="stylesheet">
+  <style>
+
+  :root{--bg:#1a0a2e;--bg-card:rgba(255,255,255,0.05);--bg-card-hover:rgba(255,255,255,0.08);--border:rgba(255,255,255,0.10);--border-hover:rgba(192,132,252,0.28);--cyan:#00e5ff;--lav:#c084fc;--text:#e8d9f5;--text-muted:#9f8fb8;--glow-blue:#31CFFF;}
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{font-family:'Cormorant Garamond',Georgia,serif;background-color:var(--bg);color:var(--text);min-height:100vh;overflow-x:hidden;}
+  /* Restore sensible list defaults stripped by the CSS reset */
+  ul,ol{padding-inline-start:1.5rem;margin:0.5rem 0;}
+  ul{list-style-type:disc;} ol{list-style-type:decimal;}
+  li{margin-bottom:0.3rem;}
+  /* Link styling */
+  a{color:var(--cyan);text-decoration:underline;}
+  a:hover{text-decoration:none;}
+  .highlight-glow{color:var(--lav);-webkit-text-fill-color:var(--lav);text-shadow:0 0 16px rgba(192,132,252,0.6),0 0 32px rgba(192,132,252,0.3);}
+  .text-glow-blue{color:var(--cyan);-webkit-text-fill-color:var(--cyan);text-shadow:0 0 12px rgba(0,229,255,0.55),0 0 28px rgba(0,229,255,0.25);}
+  .glow-title{color:#31CFFF;-webkit-text-fill-color:#31CFFF;text-shadow:0 0 20px rgba(49,207,255,0.6),0 0 48px rgba(49,207,255,0.3),0 0 80px rgba(49,207,255,0.15);}
+  .notice-glow{color:#fff;-webkit-text-fill-color:#fff;text-shadow:0 0 4px #fff,0 0 8px #fff;opacity:0.85;}
+  .glow-white-purple{color:#fff;-webkit-text-fill-color:#fff;text-shadow:0 0 6px #dd00ff,0 0 12px #dd00ff,0 0 22px rgba(221,0,255,0.45);opacity:0.9;}
+  .accent{color:var(--cyan);}
+  .glass{background:var(--bg-card);border:1px solid var(--border);border-radius:18px;backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);}
+  .glass-card{background:var(--bg-card);border:1px solid var(--border);border-radius:16px;backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);}
+  .section-title{font-family:"Didot","Playfair Display",Palatino,serif;font-size:1.5rem;font-weight:600;text-align:center;margin-bottom:1.8rem;color:var(--text);}
+  .section-title .accent{color:var(--cyan);}
+  .section-wrap{max-width:900px;margin:0 auto;padding:0 1.5rem;}
+  .ornament{text-align:center;color:rgba(192,132,252,0.28);font-size:0.85rem;letter-spacing:0.45em;margin:1.8rem 0;user-select:none;}
+  .approach-block{padding:2.8rem 3rem;margin:2rem auto;max-width:900px;}
+  .approach-block p{font-size:1.06rem;line-height:1.88;color:var(--text-muted);margin-bottom:1.1rem;}
+  .approach-block p:last-child{margin-bottom:0;}
+  .approach-block em{color:var(--text);font-style:italic;}
+  .approach-block strong{color:var(--lav);font-weight:400;}
+  .glow{position:relative;overflow:visible;}
+  .glow::before{content:'';position:absolute;inset:-14px;border-radius:calc(18px + 14px);background:linear-gradient(140deg,rgba(192,132,252,0.9),rgba(0,229,255,0.9),rgba(192,132,252,0.9));filter:blur(22px);opacity:0.45;z-index:-1;pointer-events:none;animation:amGlowPulse 3s ease-in-out infinite;}
+  @keyframes amGlowPulse{0%,100%{opacity:0.35;filter:blur(22px);}50%{opacity:0.65;filter:blur(30px);}}
+  .border-glow-subtle{box-shadow:0 0 0 1px rgba(192,132,252,0.5),0 0 12px rgba(192,132,252,0.45),0 0 28px rgba(192,132,252,0.18);}
+  .border-glow-bold{box-shadow:0 0 0 1.5px rgba(0,229,255,0.7),0 0 10px rgba(192,132,252,0.85),0 0 24px rgba(0,229,255,0.55),0 0 48px rgba(192,132,252,0.22);}
+  .cards-grid{display:grid;gap:1.2rem;max-width:900px;margin:2rem auto;padding:0 1.5rem;}
+  .feat-card{padding:1.8rem 1.9rem;}
+  .card-icon{font-size:1.5rem;margin-bottom:0.75rem;}
+  .feat-card h3{font-family:"Didot","Playfair Display",Palatino,serif;font-size:0.88rem;font-weight:600;color:var(--lav);letter-spacing:0.07em;margin-bottom:0.65rem;}
+  .feat-card p{font-size:0.97rem;line-height:1.78;color:var(--text-muted);}
+  .tag-strip{display:flex;flex-wrap:wrap;gap:0.5rem;justify-content:center;padding:1.6rem 2rem;}
+  .tag{font-family:'Cinzel',Palatino,serif;font-size:0.65rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.32rem 0.85rem;border-radius:100px;white-space:nowrap;border:1px solid rgba(192,132,252,0.30);color:var(--lav);background:rgba(192,132,252,0.07);}
+  .tag-cyan{color:var(--cyan);border-color:rgba(0,229,255,0.35);background:rgba(0,229,255,0.07);}
+  .tag-rose{color:#f9a8d4;border-color:rgba(249,168,212,0.35);background:rgba(249,168,212,0.07);}
+  .cta-block{text-align:center;padding:3rem 2.5rem;}
+  .cta-block h2{font-family:"Didot","Playfair Display",Palatino,serif;font-size:clamp(1.5rem,4vw,2.1rem);font-weight:600;letter-spacing:0.03em;margin-bottom:1rem;color:var(--text);}
+  .cta-block h2 .accent{color:var(--cyan);}
+  .cta-block p{font-size:1.02rem;line-height:1.75;color:var(--text-muted);max-width:520px;margin:0 auto 2.2rem;}
+  .btn-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .btn{display:inline-block;font-family:'Cinzel',Palatino,serif;font-size:0.72rem;letter-spacing:0.12em;text-transform:uppercase;padding:0.82rem 2rem;border-radius:100px;text-decoration:none;cursor:pointer;transition:all 0.2s;border:none;}
+  .btn-primary{background:linear-gradient(135deg,#0891b2,var(--cyan));color:#0a0a1a;font-weight:700;box-shadow:0 0 20px rgba(0,229,255,0.30);}
+  .btn-primary:hover{box-shadow:0 0 32px rgba(0,229,255,0.55);transform:translateY(-2px);}
+  .btn-ghost{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,0.22);}
+  .btn-ghost:hover{border-color:var(--cyan);color:var(--cyan);}
+  .image-block-wrap{margin:0.5rem 0;}
+  .category-pill{display:inline-block;font-size:0.62rem;font-weight:600;letter-spacing:0.10em;text-transform:uppercase;padding:0.2rem 0.7rem;border-radius:100px;margin-bottom:0.5rem;}
+  .pill-musical{color:#c084fc;border:1px solid rgba(192,132,252,0.35);background:rgba(192,132,252,0.08);}
+  .pill-non-musical{color:#00e5ff;border:1px solid rgba(0,229,255,0.30);background:rgba(0,229,255,0.07);}
+  .demo-card{display:block;text-decoration:none;border-radius:14px;overflow:hidden;border:1px solid var(--border);background:rgba(0,0,0,0.25);transition:transform 0.22s,border-color 0.22s;max-width:440px;margin:0 auto;}
+  .demo-card:hover{transform:translateY(-4px);border-color:rgba(0,229,255,0.28);}
+  .demo-thumb{position:relative;width:100%;aspect-ratio:16/9;overflow:hidden;background:#0c0118;}
+  .demo-thumb img{width:100%;height:100%;object-fit:cover;display:block;opacity:0.80;transition:opacity 0.22s;}
+  .demo-card:hover .demo-thumb img{opacity:1;}
+  .play-overlay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;}
+  .play-btn{width:50px;height:50px;border-radius:50%;background:rgba(0,0,0,0.42);border:2px solid var(--cyan);display:flex;align-items:center;justify-content:center;transition:background 0.2s,transform 0.2s;}
+  .play-btn svg{width:18px;fill:var(--cyan);margin-left:3px;}
+  .demo-card:hover .play-btn{background:rgba(0,229,255,0.22);transform:scale(1.1);}
+  .demo-caption{padding:0.8rem 1rem;}
+  .demo-title{font-family:'Great Vibes',cursive;font-size:1.15rem;color:var(--text);display:block;margin-bottom:0.15rem;}
+  .demo-genre{font-family:'Cinzel',serif;font-size:0.58rem;letter-spacing:0.10em;text-transform:uppercase;color:var(--lav);}
+  .image-caption{font-family:'Cormorant Garamond',Georgia,serif;font-size:0.88rem;color:var(--text-muted);text-align:center;margin-top:0.5rem;font-style:italic;}
+  .video-wrap{margin:0.5rem 0;border-radius:12px;overflow:hidden;}
+  nav{position:fixed;top:0;left:0;right:0;z-index:50;background:rgba(26,10,46,0.85);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid rgba(255,255,255,0.08);}
+  .nav-inner{max-width:1200px;margin:0 auto;padding:0.9rem 1.5rem;display:flex;align-items:center;justify-content:space-between;}
+  .site-name{font-family:'Playfair Display',Georgia,serif;font-size:1.5rem;font-weight:500;color:var(--text);text-decoration:none;}
+  .nav-links{display:flex;gap:2rem;}
+  .nav-link{color:var(--text-muted);text-decoration:none;font-size:0.9rem;transition:color 0.2s;}
+  .nav-link:hover{color:var(--text);}
+  footer{padding:3rem 1.5rem;border-top:1px solid rgba(255,255,255,0.08);margin-top:4rem;}
+  .footer-inner{max-width:900px;margin:0 auto;text-align:center;}
+  .footer-quote{font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;color:var(--text-muted);line-height:1.8;margin-bottom:1.5rem;font-style:italic;}
+  .footer-contact a{color:var(--lav);text-decoration:none;font-size:1.1rem;}
+  .footer-copy{font-size:0.8rem;color:var(--text-muted);margin-top:1.5rem;opacity:0.6;}
+  main{max-width:900px;margin:0 auto;padding:6rem 1.5rem 4rem;}
+  a{color:var(--cyan);text-decoration:underline;text-underline-offset:2px;}
+  /* Piano Course components */
+  .pc-hero{min-height:55vh;display:flex;align-items:center;justify-content:center;text-align:center;padding:4rem 2rem;background:radial-gradient(ellipse 80% 50% at 50% 0%,rgba(0,229,255,.10) 0%,transparent 60%),radial-gradient(ellipse 60% 40% at 20% 70%,rgba(192,132,252,.07) 0%,transparent 50%),var(--bg);position:relative;overflow:hidden;}
+  .pc-hero-inner{max-width:780px;margin:0 auto;position:relative;}
+  .pc-hero-tag{display:inline-block;font-family:'Cinzel',Palatino,serif;font-size:.7rem;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--cyan);border:1px solid rgba(0,229,255,.30);border-radius:30px;padding:.35rem 1.1rem;margin-bottom:1.6rem;}
+  .pc-hero h1{font-family:"Didot","Playfair Display",Palatino,serif;font-size:clamp(2.4rem,6vw,4rem);font-weight:700;line-height:1.15;margin-bottom:1.2rem;background:linear-gradient(135deg,var(--text) 40%,var(--cyan) 100%);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+  .pc-hero-subtitle{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(1.1rem,2.5vw,1.4rem);font-style:italic;color:var(--text-muted);margin-bottom:2.2rem;font-weight:300;}
+  .pc-hero-cta-row{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;}
+  .pc-btn{font-family:'Cinzel',Palatino,serif;font-size:.72rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:.75rem 1.8rem;border-radius:8px;text-decoration:none;transition:all .25s;display:inline-block;cursor:pointer;}
+  .pc-btn-primary{background:linear-gradient(135deg,#0891b2,var(--cyan));color:#0a0a1a;border:none;font-weight:700;}
+  .pc-btn-outline{background:transparent;color:var(--lav);border:1px solid rgba(192,132,252,.40);}
+  .pc-pull-quote-wrap{max-width:760px;margin:0 auto;padding:0 2rem;}
+  .pc-pull-quote{padding:2.5rem 3rem;border-left:3px solid var(--cyan);background:rgba(0,229,255,.04);border-radius:0 14px 14px 0;}
+  .pc-pull-quote blockquote{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;font-size:clamp(1.15rem,2.5vw,1.4rem);color:var(--text);font-weight:300;line-height:1.75;}
+  .pc-pull-quote cite{display:block;margin-top:1rem;font-family:'Cinzel',Palatino,serif;font-size:.68rem;font-style:normal;letter-spacing:.1em;color:var(--text-muted);}
+  .pc-faq-list{max-width:860px;margin:0 auto;display:flex;flex-direction:column;gap:.75rem;padding:0 1.5rem;}
+  .pc-faq-item{border-radius:14px;overflow:hidden;background:var(--bg-card);border:1px solid var(--border);}
+  .pc-faq-question{width:100%;display:flex;align-items:center;justify-content:space-between;background:none;border:none;cursor:pointer;font-family:'Cinzel',Palatino,serif;font-size:.88rem;font-weight:600;letter-spacing:.05em;color:var(--text);text-align:left;padding:1.25rem 1.5rem;transition:color .2s;}
+  .pc-faq-question:hover{color:var(--cyan);}
+  .pc-faq-icon{font-size:1.2rem;flex-shrink:0;margin-left:1rem;transition:transform .25s;color:var(--lav);}
+  .pc-faq-answer{padding:0 1.5rem 1.25rem;font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;color:var(--text-muted);line-height:1.8;font-weight:300;}
+  .pc-hidden{display:none;}
+  .pc-checklist-wrap{max-width:900px;margin:0 auto;}
+  .pc-checklist-card{padding:2.5rem 3rem;}
+  .pc-checklist-title{font-family:'Cinzel',Palatino,serif;font-size:clamp(1.5rem,3vw,2.2rem);font-weight:700;text-align:center;margin-bottom:.6rem;color:var(--text);}
+  .pc-checklist-subtitle{font-family:'Cormorant Garamond',Georgia,serif;font-style:italic;color:var(--text-muted);text-align:center;font-size:1.15rem;margin-bottom:2rem;font-weight:300;}
+  .pc-included-list{list-style:none;display:grid;grid-template-columns:repeat(2,1fr);gap:.85rem;}
+  .pc-included-list li{display:flex;align-items:flex-start;gap:.75rem;font-size:1.05rem;color:var(--text-muted);font-weight:300;line-height:1.7;}
+  .pc-included-list li::before{content:'✦';color:var(--lav);font-size:.7rem;margin-top:.35rem;flex-shrink:0;}
+
+  </style>
+</head>
+<body>
+<main>
+  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.08rem;line-height:1.85;text-align:left;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;"><p>Your paragraph text here. Double-click to edit and use the toolbar above to format.</p></div>
+
+<div style="margin-top:4rem;">
+  <div class="glass border-glow-bold" style="padding:40px;border-radius:18px;max-width:900px;margin:0 auto;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:.5rem;text-align:center;"><p>Test for Child Align</p></div>
+    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:.5rem;text-align:center;"><p>New text block.</p></div>
+    <div style="text-align:center;padding:.5rem 0;"><a href="#" class="btn btn-primary" style="border-radius:100px;">Button</a></div>
+  </div>
+</div>
+
+  <div style="padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;"><hr style="border:none;border-top:1px solid rgba(255,255,255,0.15);width:80%;margin:0 auto;display:block;"></div>
+
+  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.08rem;line-height:1.85;text-align:left;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;"><p><span class="notice-glow">Your paragraph text here. Double-click to edit and use the toolbar above to format.</span></p></div>
+
+<div style="margin-bottom:4rem;">
+  <div class="glass section-wrap" style="padding:2rem 2.5rem;border-radius:18px;min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0.8rem;box-sizing:border-box;margin:2rem auto;max-width:900px;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+    <h2 class="section-title" style="text-align:center;margin:0;">Card Title</h2>
+    <p style="font-size:1.06rem;line-height:1.88;color:var(--text-muted);text-align:center;margin:0;"><ul><li>I have a lot bullet</li><li>soso travel</li><li>Dunpling</li><li>winter in Lapland</li></ul><div><br></div></p>
+  </div>
+</div>
+
+  <div style="text-align:center;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;"><span class="pc-hero-tag border-glow-subtle">Education · Course</span></div>
+
+  <div class="glass section-wrap" style="padding:2rem 2.5rem;border-radius:18px;min-height:220px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0.8rem;box-sizing:border-box;margin:2rem auto;max-width:900px;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+    <h2 class="section-title" style="text-align:center;margin:0;">New Glass card</h2>
+    <p style="font-size:1.06rem;line-height:1.88;color:var(--text-muted);text-align:center;margin:0;"><span class="text-glow-blue">Test to see the Center aligned!<div>If I have many line?</div><div>content more, works?</div></span><div></div></p>
+  </div>
+
+<section class="pc-hero" style="min-height:520px;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+<div style="max-width:900px;margin:0 auto;padding:0 2rem;display:flex;flex-direction:column;gap:0;">
+<div style="text-align:center;margin-top:auto;width:100%;">
+  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.08rem;line-height:1.85;text-align:left;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;"><p><ul><li>Test for Bullet +&nbsp;</li><li>Gap only have one gap.</li><li>Your paragraph text here. Double-click to edit and use the toolbar above to format.</li></ul></p></div>
+</div>
+</div>
+</section>
+
+  <section class="pc-hero" style="min-height:520px;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+    <div class="pc-hero-inner">
+    <div class="pc-hero-tag">Education · Course</div>
+    <h1>Your Headline Here</h1>
+    <p class="pc-hero-subtitle"><span class="notice-glow">Test for Text Glwing effect!!!</span></p>
+    <div class="pc-hero-cta-row">
+      <a href="#" class="pc-btn pc-btn-primary">Primary Button</a>
+      <a href="#" class="pc-btn pc-btn-outline">Secondary</a>
+    </div>
+    </div>
+  </section>
+
+<div style="margin-top:4rem;margin-bottom:4rem;">
+  <div style="text-align:center;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;"><a href="#" class="btn btn-primary" style="border-radius:100px;">Test for Center!!!!</a></div>
+</div>
+
+  <div class="glass section-wrap" style="padding:2rem 2.5rem;border-radius:18px;display:flex;flex-direction:column;justify-content:flex-start;align-items:center;gap:0.8rem;box-sizing:border-box;margin:2rem auto;max-width:900px;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+    <h2 class="section-title" style="text-align:center;margin:0;"><div style="text-align: left;"><span style="color: var(--text); font-family: Didot, &quot;Playfair Display&quot;, Palatino, serif; font-size: 1.5rem;">Card I can enter Title</span></div></h2>
+    <p style="font-size:1.06rem;line-height:1.88;color:var(--text-muted);text-align:center;margin:0;"><div style="text-align: center;"><span style="color: var(--text-muted); font-size: 1.06rem;">Body text with detailed information. Double-click to edit.</span></div></p>
+  </div>
+
+<div style="margin-top:4rem;margin-bottom:4rem;">
+  <div class="glass section-wrap border-glow-subtle" style="padding:2rem 2.5rem;border-radius:0px;display:flex;flex-direction:column;justify-content:flex-start;align-items:flex-start;gap:0.8rem;box-sizing:border-box;margin:2rem auto;max-width:900px;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+    <h2 class="section-title" style="text-align:left;margin:0;">Card Title</h2>
+    <p style="font-size:1.06rem;line-height:1.88;color:var(--text-muted);text-align:left;margin:0;"></p>
+  </div>
+</div>
+
+  <h2 class="section-title" style="padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;"><span>My</span> <span class="accent">Philosophy</span></h2>
+
+  <h2 style="text-align:left;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">New Title</h2>
+
+<section class="pc-hero" style="min-height:520px;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+<div style="max-width:900px;margin:0 auto;padding:0 2rem;display:flex;flex-direction:column;gap:0;">
+<div style="text-align:center;width:100%;">
+  <h2 style="text-align:center;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">New Title</h2>
+</div>
+</div>
+</section>
+
+  <div class="glass" style="padding:40px;border-radius:18px;max-width:900px;margin:0 auto;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+    <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.05rem;line-height:1.85;color:var(--text-muted);margin-bottom:.5rem;text-align:left;"><p>Your text here.</p></div>
+  </div>
+
+<section class="pc-hero" style="min-height:520px;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">
+<div style="max-width:900px;margin:0 auto;padding:0 2rem;display:flex;flex-direction:column;gap:0;">
+<div style="text-align:center;margin-top:auto;margin-bottom:auto;width:100%;">
+  <h2 style="text-align:center;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;">Test to Centered.!!!</h2>
+</div>
+<div style="text-align:left;width:100%;">
+  <div style="font-family:'Cormorant Garamond',Georgia,serif;font-size:1.08rem;line-height:1.85;text-align:center;padding:0px 0px 0px 0px;margin-top:0px;margin-bottom:0px;"><p>Your paragraph text here. Double-click to edit and use the toolbar above to format.</p></div>
+</div>
+</div>
+</section>
+</main>
+
+
+
+  <script>
+    document.querySelectorAll('.pc-faq-question').forEach(btn=>{
+      btn.addEventListener('click',()=>{
+        const ans=btn.nextElementSibling;
+        const isHidden=ans.classList.contains('pc-hidden');
+        ans.classList.toggle('pc-hidden',!isHidden);
+        const icon=btn.querySelector('.pc-faq-icon');
+        if(icon) icon.style.transform=isHidden?'rotate(45deg)':'';
+      });
+    });
+  </script>
+</body>
+</html>
